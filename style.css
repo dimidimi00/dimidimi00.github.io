@@ -322,7 +322,7 @@ color: white;
   .more-work-container {
     justify-content: space-around;
 }
-    h5 {
+    .intro-text h5 {
     padding-top: 1rem;
 }
 }
