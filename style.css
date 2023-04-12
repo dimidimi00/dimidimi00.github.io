@@ -96,9 +96,10 @@ h2 {
     font-size: 4rem;
 }
 
-h3 {
+ h3 {
     padding: 2rem 0;
 }
+
 
 h4 {
     padding-bottom: 2rem;
@@ -242,7 +243,7 @@ color: white;
     h2 {
         font-size: 3rem;
     }
-    h3 {
+    .journey-container h3 {
         padding: 2rem 0;
     }
     h4 {
@@ -306,6 +307,12 @@ color: white;
         max-width: 100%;
         margin:0 0 3rem 0;
     }
+    h3 {
+        padding: 0rem;
+    }
+    .icons {
+        padding-bottom: 3rem;
+    }
     .more-work-container {
         display: block;
     }
@@ -322,7 +329,7 @@ color: white;
   .more-work-container {
     justify-content: space-around;
 }
-    .intro-text h5 {
+h5 {
     padding-top: 1rem;
 }
 }
