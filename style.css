@@ -92,7 +92,7 @@ h1 {
 }
 
 h2 {
-    padding: 4rem 0 2rem 0;
+    padding: 2rem 0 2rem 0;
     font-size: 4rem;
 }
 
@@ -146,7 +146,7 @@ h5{
 }
 
 .portfolio h2 {
-    padding-top: 3rem;
+    padding-top: 2rem;
 }
 .portfolio p {
     padding-bottom: 2rem
@@ -189,6 +189,7 @@ footer {
 footer h2 {
 text-align: center;
 color: white;  
+padding-top: 4rem;
 }
 
 .fade-in {
@@ -242,6 +243,7 @@ color: white;
     }
     h2 {
         font-size: 3rem;
+        padding-top: 2rem;
     }
     .journey-container h3 {
         padding: 2rem 0;
@@ -249,13 +251,14 @@ color: white;
     h4 {
         margin-bottom: 3rem; 
     }
-    .portfolio h2 {
-        padding-top: 3rem;
-    }
+
     .portfolio p {
         padding-bottom: 2rem
     }
 
+    .portfolio h2 {
+        padding-top: 2rem;  
+    }
     .card-project {
         max-width: 40%;
         margin:0 0 3rem 0;
@@ -289,6 +292,9 @@ color: white;
         object-fit: cover;
         
   }
+  .more-work h2 {
+    padding-top: 3rem;
+  }
   .more-work-container {
     justify-content: space-around;
 }
@@ -303,6 +309,9 @@ color: white;
 
 
 @media (max-width: 800px) {
+    .container {
+        padding: 15px 30px;
+    }
     .card-project {
         max-width: 100%;
         margin:0 0 3rem 0;
@@ -326,10 +335,28 @@ color: white;
         object-fit: cover;
         
   }
+  .portfolio h2 {
+    font-size: 2rem;  
+    padding: 1.5rem 0;
+}
+  footer h2 {
+    font-size: 2.2rem;
+}
   .more-work-container {
     justify-content: space-around;
 }
 h5 {
     padding-top: 1rem;
 }
+}
+
+
+
+
+
+@media (max-width: 553px) {
+    .icons {
+        padding-bottom: 6rem;
+    }
+
 }
