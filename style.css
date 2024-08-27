@@ -48,6 +48,11 @@ header {
     clip-path: inset(0 -100vmax);
     
 }
+.full-bleed-blue {
+    box-shadow: 0 0 0 100vmax #586ff0;
+    clip-path: inset(0 -100vmax);
+    
+}
 .full-bleed-orange {
     box-shadow: 0 0 0 100vmax #f19656;
     clip-path: inset(0 -100vmax);
@@ -93,7 +98,7 @@ header {
 }
 
 .journey-container {
-    background-color: #ff286c;
+    background-color: #586ff0;
     /* padding: 0 6rem; */
     color: white;
     padding: 20rem 3rem;
@@ -209,6 +214,7 @@ h5{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding: 2rem 0;
 }
 .more-work {
     display: flex;
