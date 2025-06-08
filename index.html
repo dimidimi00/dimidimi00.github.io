@@ -16,7 +16,7 @@
             --bg-medium: rgb(28, 28, 28);
             --bg-light-container: #2c2c2f; /* Background for the skills section */
             --card-bg-dark: #2a2a2e;
-            --accent-color: #6E44FF; /* CHANGED to new purple */
+            --accent-color: #6E44FF; 
             --text-light: #ffffff;
             --text-light-secondary: #bbbbbb;
             --shadow-color: rgba(0, 0, 0, 0.3);
@@ -128,7 +128,7 @@
             margin-left: -50vw;
             margin-right: -50vw;
             background-color: var(--accent-color);
-            color: var(--text-light); /* Changed for readability on purple */
+            color: var(--text-light); 
             padding: 8rem 0;
         }
 
@@ -735,48 +735,58 @@
         <h2>Thank you for visiting! ツ</h2>
     </footer>
 
-    <script>
-        // --- Collapsible Tab/Accordion Script ---
-        const tabHeaders = document.querySelectorAll(".tab-header");
+     <script>
+    const tabHeaders = document.querySelectorAll(".tab-header");
 
-        tabHeaders.forEach(header => {
-            header.addEventListener("click", () => {
-                const isActive = header.classList.contains("active");
-                
-                // Deactivate all tabs before proceeding
-                tabHeaders.forEach(otherHeader => {
-                    otherHeader.classList.remove("active");
-                    otherHeader.nextElementSibling.style.maxHeight = null;
-                });
+    tabHeaders.forEach(header => {
+        header.addEventListener("click", () => {
+            const isActive = header.classList.contains("active");
 
-                // Activate the clicked tab ONLY if it wasn't already active
-                if (!isActive) {
-                    header.classList.add("active");
-                    const tabContent = header.nextElementSibling;
-                    // Add a slight delay to ensure the closing animation of other tabs doesn't interfere
-                    setTimeout(() => {
-                        tabContent.style.maxHeight = tabContent.scrollHeight + 50 + "px";
-                    }, 50);
+
+            let previouslyActiveHeader = null;
+            tabHeaders.forEach(otherHeader => {
+                if (otherHeader.classList.contains("active")) {
+                    previouslyActiveHeader = otherHeader;
                 }
+                otherHeader.classList.remove("active");
+                otherHeader.nextElementSibling.style.maxHeight = null;
             });
+
+
+            if (!isActive) {
+                header.classList.add("active");
+                const tabContent = header.nextElementSibling;
+
+
+                setTimeout(() => {
+                    tabContent.style.maxHeight = tabContent.scrollHeight + 50 + "px";
+
+                    header.scrollIntoView({
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100); 
+            } else if (isActive && previouslyActiveHeader === header) {
+            }
         });
+    });
 
-        // --- Fade In On Scroll Script ---
-        const sections = document.querySelectorAll('.fade-in-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
+    // --- Fade In On Scroll Script ---
+    const sections = document.querySelectorAll('.fade-in-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
+    }, { threshold: 0.1 });
 
-    </script>
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+</script>
 
 </body>
 </html>
