@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Dimitar's Website"/>
-    <meta property="og:image" content="images/thumbnail.png"/>
+    <meta property="og:title" content="Dimitar's Website" />
+    <meta property="og:image" content="images/thumbnail.png" />
     <link rel="icon" type="image/png" href="images/webicon.png">
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
@@ -16,9 +16,10 @@
         :root {
             --bg-dark: rgb(19, 19, 19);
             --bg-medium: rgb(28, 28, 28);
-            --bg-light-container: #2c2c2f; /* Background for the skills section */
+            --bg-light-container: #2c2c2f;
+            /* Background for the skills section */
             --card-bg-dark: #2a2a2e;
-            --accent-color: #6E44FF; 
+            --accent-color: #6E44FF;
             --text-light: #ffffff;
             --text-light-secondary: #bbbbbb;
             --shadow-color: rgba(0, 0, 0, 0.3);
@@ -44,23 +45,48 @@
 
         /* --- Animations --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: white; }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fade-in-section {
             opacity: 0;
             animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Keyframes for the arrow animation */
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        .scroll-arrow svg {
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow svg:nth-child(2) {
+            animation-delay: 0.04s;
+        }
+
+        .scroll-arrow svg:nth-child(3) {
+            animation-delay: 0.07s;
         }
 
         /* --- Header --- */
@@ -70,36 +96,47 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
-            text-align: center;
-            padding: 2rem;
+                        text-align: center;
+
+  background-image:  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSAzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxlbGxpcHNlIGN4PSIyLjUiIGN5PSIxLjUiIHJ4PSIwLjUiIHJ5PSIwLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg=='), 
+        linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
+  background-size: 5px 3px;
+  background-blend-mode: overlay; 
+  background-repeat: repeat; 
+        
+        }
+        .post-journey {
+              background-image:  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSAzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxlbGxpcHNlIGN4PSIyLjUiIGN5PSIxLjUiIHJ4PSIwLjUiIHJ5PSIwLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg=='), 
+        linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
+  background-size: 5px 3px;
+  background-blend-mode: overlay; 
+  background-repeat: repeat; 
         }
 
         .intro-text h1 {
-            font-size: clamp(2.7rem, 6vw, 5rem);
+            font-size: clamp(3.7rem, 6vw, 8rem);
             color: var(--text-light);
             overflow: hidden;
-            border-right: .15em solid white;
             white-space: nowrap;
             margin: 0 auto;
-            animation: typing 1.6s steps(20, end), blink-caret .75s step-end infinite;
+            box-sizing: border-box;
         }
 
         .intro-text h5 {
             font-weight: 400;
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.5rem, 3vw, 2.4rem);
             color: var(--text-light);
-            margin-top: 1.5rem;
-            animation-delay: 1.6s;
+            margin-top: 0.5rem;
+            animation-delay: 0.1s;
         }
 
         .intro-text h5 span {
             color: var(--accent-color);
         }
-        
+
         .icons-social {
             margin-top: 3rem;
-            animation-delay: 1.8s;
+            animation-delay: 0.24s;
         }
 
         .icons-social a {
@@ -112,6 +149,34 @@
 
         .icons-social a:hover {
             color: var(--accent-color);
+                                    text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
+
+        }
+
+        .scroll-arrow-container {
+            position: absolute;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        .scroll-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scroll-arrow svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-light-secondary);
+            margin-top: -9px;
+            /* Overlap the arrows */
+        }
+
+        .scroll-arrow svg:first-child {
+            margin-top: 0;
         }
 
 
@@ -130,7 +195,7 @@
             margin-left: -50vw;
             margin-right: -50vw;
             background-color: var(--accent-color);
-            color: var(--text-light); 
+            color: var(--text-light);
             padding: 8rem 0;
         }
 
@@ -153,14 +218,12 @@
 
         /* Skills section  */
         .skills-wrapper {
-             padding: 8rem 0;
+            padding: 8rem 0;
         }
-        
+
         .skills {
-            background-color: var(--bg-light-container);
             padding: 4rem clamp(1.5rem, 5vw, 4rem);
             border-radius: 15px;
-            box-shadow: 0 8px 25px var(--shadow-color);
             text-align: center;
         }
 
@@ -175,8 +238,11 @@
             margin: 0.5rem 1rem;
             transition: transform 0.3s ease;
         }
+
         .skills .icons img:hover {
             transform: scale(1.1);
+  -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+  filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
         }
 
         /* --- Collapsible Tabs --- */
@@ -188,7 +254,7 @@
         .more-work-section h2 {
             color: var(--text-light);
         }
-        
+
         .tabs-container {
             max-width: 1100px;
             margin: 4rem auto 0;
@@ -214,9 +280,11 @@
             align-items: center;
         }
 
-        .tab-header:hover, .tab-header.active {
+        .tab-header:hover,
+        .tab-header.active {
             background-color: var(--accent-color);
             color: var(--text-light);
+
         }
 
         .tab-header::after {
@@ -241,7 +309,7 @@
         .tab-content-inner {
             padding: 2.5rem;
         }
-        
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -259,9 +327,11 @@
             text-decoration: none;
             color: var(--text-light);
         }
+
         .card-project:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+                        box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
+
         }
 
         .card-project img {
@@ -280,7 +350,7 @@
 
         .project-title {
             font-weight: bold;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
 
         .project-name {
@@ -294,7 +364,7 @@
             line-height: 1.5;
             flex-grow: 1;
         }
-        
+
         .showreel-card {
             display: flex;
             align-items: center;
@@ -307,24 +377,27 @@
             transition: transform 0.3s ease;
             box-shadow: 0 4px 15px var(--shadow-color);
         }
+
         .showreel-card:hover {
-             transform: scale(1.02);
+            transform: scale(1.02);
+
         }
-        
+
         .showreel-card img {
             max-width: 50%;
             height: auto;
             border-radius: 5px 0 0 5px;
         }
-        
+
         .showreel-title h3 {
             font-size: 2.4rem;
         }
-         .showreel-title p {
-             font-style: italic;
-             font-size: 1.4rem;
-             color: var(--text-light-secondary);
-         }
+
+        .showreel-title p {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-light-secondary);
+        }
 
         /* --- Footer --- */
         footer {
@@ -335,71 +408,93 @@
         }
 
         /* --- Responsive Design --- */
-        @media (max-width: 800px) {
-            .showreel-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .showreel-card img {
-                max-width: 100%;
-                border-radius: 5px 5px 0 0;
-            }
-            .showreel-title {
-                padding: 1.5rem;
+        @media (min-width: 550px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns for small tablets */
             }
         }
-        
+
+        @media (min-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 columns for tablets */
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(4, 1fr);
+                /* 4 columns for desktops */
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="intro-text">
-            <h1>You can call me Dimi!</h1>
+    <header id="home">
+        <div class="intro-text fade-in-section">
+            <h1>Dimitar Ristevski</h1>
             <h5 class="fade-in-section">
-                <span>about_me</span>: Computer & Tech geek;<br>Graphic & Motion Designer
+Motion Designer |<span> IT Solutions Specialist </span>
             </h5>
             <div class="icons-social fade-in-section">
-                <a class="links-deco" href="https://www.linkedin.com/in/dimitar-ri/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="devicon-linkedin-plain"></i></a>
-                <a class="links-deco" href="https://github.com/dimidimi00" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="devicon-github-original"></i></a>
-                <a class="links-deco" href="https://twitter.com/dimidimi00" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="devicon-twitter-original"></i></a>
+                <a class="links-deco" href="https://www.linkedin.com/in/dimitar-ri/" target="_blank"
+                    rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="devicon-linkedin-plain"></i></a>
+                <a class="links-deco" href="https://github.com/dimidimi00" target="_blank" rel="noopener noreferrer"
+                    aria-label="GitHub Profile"><i class="devicon-github-original"></i></a>
+                <a class="links-deco" href="https://twitter.com/dimidimi00" target="_blank" rel="noopener noreferrer"
+                    aria-label="Twitter Profile"><i class="devicon-twitter-original"></i></a>
             </div>
+        </div>
+        <div class="scroll-arrow-container">
+            <a href="#journey" class="scroll-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </a>
         </div>
     </header>
 
     <main>
-        <section class="full-bleed-accent">
+        <section id="journey" class="full-bleed-accent">
             <div class="journey-container fade-in-section">
-                <h2>My Work Journey</h2>
+                <h2>About me</h2>
                 <p>
-                    A dedicated tech enthusiast with a passion for continuous learning, my career journey blends creative production with robust IT solutions.
-                    
-                    <br><br>For over six years, I specialized in video production, thoroughly crafting content from concept to completion. My expertise spans planning, editing, motion graphics, and sound design for both short and long-form videos, online courses, and 2D animations. I've partnered with a diverse range of local and global clients on numerous projects, including high-profile events and conferences such as allweb.mk, allweb.al, and Fibula Workshop.
-                    
-                    <br><br>Currently, I serve as a Digital Marketer and IT Solutions Specialist at Fibula Travel Macedonia. In this role, I am responsible for optimizing our digital footprint and streamlining operational workflows. I expertly manage platforms like Brevo and Contentful, while ensuring seamless B2B functionality through systems such as TourVisio, all to leverage technology for enhanced marketing strategies and improved business efficiency.
+                    A dedicated tech enthusiast with a passion for continuous learning. <br>With over six years in video
+                    production and IT, I've managed everything from planning and editing to motion graphics and sound
+                    design. Currently, as a Digital Marketer and IT Solutions Specialist, I handle our digital
+                    platforms, B2B systems, and create compelling content that drives engagement.
                 </p>
             </div>
         </section>
-
+<div class="post-journey">
         <div class="skills-wrapper">
             <div class="container">
-                <section class="skills fade-in-section" style="box-shadow: 0 1px 2px hsla(253, 100%, 63%, 0.493);">
+                <section class="skills fade-in-section">
                     <h3>🧰 Applications | Languages | Tools</h3>
                     <div class="icons">
-                        <img alt="After Effects" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-plain.svg" style="filter: brightness(350%);" />
-                        <img alt="Premiere Pro" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-plain.svg" style="filter: brightness(350%);"/>
-                        <img alt="Photoshop" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" style="filter: brightness(350%);" />
-                        <img alt="Illustrator" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" style="filter: brightness(350%);"/>
-                        <img alt="VS Code" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
-                        <img alt="HTML5" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
-                        <img alt="CSS3" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" />
-                        <img alt="Bootstrap" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" />
-                        <img alt="JavaScript" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
-                        <img alt="Git" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
-                        <img alt="Node.js" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
-                        <img alt="Express" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" style="filter: invert(100%);"/>
-                        <img alt="MongoDB" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
+                        <img alt="After Effects" src="https://img.icons8.com/color/96/000000/adobe-after-effects.png" />
+                        <img alt="Premiere Pro" src="https://img.icons8.com/color/96/000000/adobe-premiere-pro.png" />
+                        <img alt="Photoshop" src="https://img.icons8.com/color/96/000000/adobe-photoshop.png" />
+                        <img alt="Illustrator" src="https://img.icons8.com/color/96/000000/adobe-illustrator.png" />
+                        <img alt="HTML5" src="https://img.icons8.com/color/96/000000/html-5.png" />
+                        <img alt="CSS3" src="https://img.icons8.com/color/96/000000/css3.png" />
+                        <img alt="JavaScript" src="https://img.icons8.com/color/96/000000/javascript.png" />
+                        <img alt="Git" src="https://img.icons8.com/color/96/git.png" />
+                        <img alt="MongoDB" src="https://img.icons8.com/color/96/mongodb.png" />
+                        <img alt="Windows" src="https://img.icons8.com/color/96/windows-11.png" />
+                        <img alt="Linux" src="https://img.icons8.com/color/96/linux--v1.png" />
                     </div>
                 </section>
             </div>
@@ -410,80 +505,102 @@
                 <h2>More of My Work</h2>
                 <div class="tabs-container">
 
-                    <button class="tab-header" >Projects & Events</button>
+                    <button class="tab-header">Projects & Events</button>
                     <div class="tab-content">
                         <div class="tab-content-inner">
                             <div class="projects-grid">
-                                <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/uslugigovmk.png" alt="Uslugi.gov.mk Project">
                                     <div class="card-project-body">
                                         <div class="project-title">Rebranding of Uslugi.gov.mk</div>
                                         <p class="project-name">Uslugi.gov.mk</p>
-                                        <p class="project-desc">Animation used as a promo video for an offline event and as a TV Ad.</p>
+                                        <p class="project-desc">Animation used as a promo video for an offline event and
+                                            as a TV Ad.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/tKv0Y_P9Ivg/maxresdefault.jpg" alt="Brainster+ Project">
+                                <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/tKv0Y_P9Ivg/maxresdefault.jpg"
+                                        alt="Brainster+ Project">
                                     <div class="card-project-body">
                                         <div class="project-title">Brainster+ Main Flagship Ad</div>
                                         <p class="project-name">Brainster+</p>
-                                        <p class="project-desc">Animation used as a promo video for a hybridization campaign by Brainster.</p>
+                                        <p class="project-desc">Animation used as a promo video for a hybridization
+                                            campaign by Brainster.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/FKvMNd88GSQ/maxresdefault.jpg" alt="ALLWEB.MK Project">
+                                <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/FKvMNd88GSQ/maxresdefault.jpg"
+                                        alt="ALLWEB.MK Project">
                                     <div class="card-project-body">
                                         <div class="project-title">ALLWEB.MK</div>
                                         <p class="project-name">Allweb X Aftermovie</p>
-                                        <p class="project-desc">Director of the post-production & creator of the event's on-screen visuals.</p>
+                                        <p class="project-desc">Director of the post-production & creator of the event's
+                                            on-screen visuals.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/QNsONcdGqq8" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/QNsONcdGqq8/maxresdefault.jpg" alt="Literatura.mk Project">
+                                <a href="https://youtu.be/QNsONcdGqq8" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/QNsONcdGqq8/maxresdefault.jpg"
+                                        alt="Literatura.mk Project">
                                     <div class="card-project-body">
                                         <div class="project-title">Literatura.mk</div>
                                         <p class="project-name">Recap 2022</p>
-                                        <p class="project-desc">Animation used as a recap of 2022, exhibited for a Christmas event.</p>
+                                        <p class="project-desc">Animation used as a recap of 2022, exhibited for a
+                                            Christmas event.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=940102877023051" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=940102877023051" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/scivi.jpg" alt="SciVi Project">
                                     <div class="card-project-body">
                                         <div class="project-title">SciVi - Science Videos</div>
                                         <p class="project-name">New Platform Promo</p>
-                                        <p class="project-desc">Animation used as a promotional video for an educational platform.</p>
+                                        <p class="project-desc">Animation used as a promotional video for an educational
+                                            platform.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/AmOpF0eS-OA" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/AmOpF0eS-OA/maxresdefault.jpg" alt="Literatura.mk Bookstores Project">
+                                <a href="https://youtu.be/AmOpF0eS-OA" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/AmOpF0eS-OA/maxresdefault.jpg"
+                                        alt="Literatura.mk Bookstores Project">
                                     <div class="card-project-body">
                                         <div class="project-title">Literatura.mk - Bookstore and more</div>
                                         <p class="project-name">New Bookstores Promo</p>
-                                        <p class="project-desc">Animation used as a promo video for a campaign for newly opened bookstores.</p>
+                                        <p class="project-desc">Animation used as a promo video for a campaign for newly
+                                            opened bookstores.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=603657754393309" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=603657754393309" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/undp1.jpg" alt="UNDP MK Project 1">
                                     <div class="card-project-body">
                                         <div class="project-title">UNDP MK - Animation</div>
                                         <p class="project-name">New Platform Promo</p>
-                                        <p class="project-desc">2D Animation made from scratch for events and social media for UNDP MK.</p>
+                                        <p class="project-desc">2D Animation made from scratch for events and social
+                                            media for UNDP MK.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=4674385525973608" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=4674385525973608" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/undp2.jpg" alt="UNDP MK Project 2">
                                     <div class="card-project-body">
                                         <div class="project-title">UNDP MK - Animation</div>
                                         <p class="project-name">New control system</p>
-                                        <p class="project-desc">Another 2D Animation made from scratch for events and social media for UNDP MK.</p>
+                                        <p class="project-desc">Another 2D Animation made from scratch for events and
+                                            social media for UNDP MK.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=1001611937126307" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=1001611937126307" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/undp3.jpg" alt="UNDP MK Project 3">
                                     <div class="card-project-body">
                                         <div class="project-title">UNDP MK - Animation</div>
                                         <p class="project-name">New control app</p>
-                                        <p class="project-desc">Third adaptation of the 2D Animation made for UNDP MK.</p>
+                                        <p class="project-desc">Third adaptation of the 2D Animation made for UNDP MK.
+                                        </p>
                                     </div>
                                 </a>
                             </div>
@@ -494,39 +611,49 @@
                     <div class="tab-content">
                         <div class="tab-content-inner">
                             <div class="projects-grid">
-                                <a href="https://youtu.be/cg9ePsTWIO4" target="_blank" rel="noopener noreferrer" class="card-project">
-                                     <img src="https://img.youtube.com/vi/93clzL9Tw_E/maxresdefault.jpg" alt="Sam Svoj Barmen">
+                                <a href="https://youtu.be/cg9ePsTWIO4" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/93clzL9Tw_E/maxresdefault.jpg"
+                                        alt="Sam Svoj Barmen">
                                     <div class="card-project-body">
                                         <div class="project-title">Sam Svoj Barmen</div>
                                         <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">YouTube series about making cocktails with products from the Gemak store.</p>
+                                        <p class="project-desc">YouTube series about making cocktails with products from
+                                            the Gemak store.</p>
                                     </div>
                                 </a>
-                               <a href="https://youtu.be/RLWSNRApqs4" target="_blank" rel="noopener noreferrer" class="card-project">
-                                     <img src="https://img.youtube.com/vi/9IjjYciNyVo/maxresdefault.jpg" alt="#komkast">
+                                <a href="https://youtu.be/RLWSNRApqs4" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/9IjjYciNyVo/maxresdefault.jpg" alt="#komkast">
                                     <div class="card-project-body">
                                         <div class="project-title">#komkast</div>
                                         <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">Online audio and video podcast about digitalisation. Worked on most episodes from 2020 to 2022.</p>
+                                        <p class="project-desc">Online audio and video podcast about digitalisation.
+                                            Worked on most episodes from 2020 to 2022.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/hhkg03lHxgY" target="_blank" rel="noopener noreferrer" class="card-project">
-                                     <img src="https://img.youtube.com/vi/hhkg03lHxgY/maxresdefault.jpg" alt="Wellcast">
+                                <a href="https://youtu.be/hhkg03lHxgY" target="_blank" rel="noopener noreferrer"
+                                    class="card-project">
+                                    <img src="https://img.youtube.com/vi/hhkg03lHxgY/maxresdefault.jpg" alt="Wellcast">
                                     <div class="card-project-body">
                                         <div class="project-title">Wellcast with Josif</div>
                                         <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">Online audio and video podcast about wellness. Worked on the first 17 episodes.</p>
+                                        <p class="project-desc">Online audio and video podcast about wellness. Worked on
+                                            the first 17 episodes.</p>
                                     </div>
                                 </a>
-                                <a href="https://rumble.com/v1x2dow-e-commerce-cyber-threats-callback-phishing-campaigns-android-apps-infecting.html" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://user-images.githubusercontent.com/122376776/222989350-7a79afb3-3af3-4be3-9f2c-d7fe6f244390.jpg" alt="Talk Nerdy To Me">
+                                <a href="https://rumble.com/v1x2dow-e-commerce-cyber-threats-callback-phishing-campaigns-android-apps-infecting.html"
+                                    target="_blank" rel="noopener noreferrer" class="card-project">
+                                    <img src="https://user-images.githubusercontent.com/122376776/222989350-7a79afb3-3af3-4be3-9f2c-d7fe6f244390.jpg"
+                                        alt="Talk Nerdy To Me">
                                     <div class="card-project-body">
                                         <div class="project-title">Talk Nerdy To Me</div>
                                         <p class="project-name">Rumble Series</p>
                                         <p class="project-desc">Editing and motion graphics since late 2022.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=561745414710979" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=561745414710979" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/decal.jpg" alt="Decal.mk">
                                     <div class="card-project-body">
                                         <div class="project-title">Decal.mk</div>
@@ -534,7 +661,8 @@
                                         <p class="project-desc">Promotional videos for Decal.mk.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=752601065161733" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=752601065161733" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/svc.jpg" alt="SVC">
                                     <div class="card-project-body">
                                         <div class="project-title">SVC</div>
@@ -542,7 +670,8 @@
                                         <p class="project-desc">Aftermovie for the Skopje Vinyl Festival.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.instagram.com/p/CcLnC7PoCMy" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.instagram.com/p/CcLnC7PoCMy" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/brummel1.jpg" alt="Brummel Reels">
                                     <div class="card-project-body">
                                         <div class="project-title">Brummel Reels</div>
@@ -550,24 +679,31 @@
                                         <p class="project-desc">Promotional reel for the new Brummel Jacket.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.facebook.com/watch/?v=775920689832625" target="_blank" rel="noopener noreferrer" class="card-project">
+                                <a href="https://www.facebook.com/watch/?v=775920689832625" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
                                     <img src="images/undp4.jpg" alt="UNDP MK Video">
                                     <div class="card-project-body">
                                         <div class="project-title">UNDP MK</div>
                                         <p class="project-name">Pre-recorded live video</p>
-                                        <p class="project-desc">Editing an online pre-recorded event during the pandemic for UNDP MK.</p>
+                                        <p class="project-desc">Editing an online pre-recorded event during the pandemic
+                                            for UNDP MK.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.youtube.com/watch?v=xuJZBZtHrOo" target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg" alt="Viva Sokovi">
+                                <a href="https://www.youtube.com/watch?v=xuJZBZtHrOo" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
+                                    <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg"
+                                        alt="Viva Sokovi">
                                     <div class="card-project-body">
                                         <div class="project-title">Viva Sokovi</div>
                                         <p class="project-name">IGTV Series</p>
-                                        <p class="project-desc">Editing and motion graphics for the first ever Macedonian IGTV series.</p>
+                                        <p class="project-desc">Editing and motion graphics for the first ever
+                                            Macedonian IGTV series.</p>
                                     </div>
                                 </a>
-                                <a href="https://www.youtube.com/watch?v=f7dlK31t4Tw" target="_blank" rel="noopener noreferrer" class="card-project">
-                                     <img src="https://img.youtube.com/vi/f7dlK31t4Tw/hqdefault.jpg" alt="Analitika s Petkom">
+                                <a href="https://www.youtube.com/watch?v=f7dlK31t4Tw" target="_blank"
+                                    rel="noopener noreferrer" class="card-project">
+                                    <img src="https://img.youtube.com/vi/f7dlK31t4Tw/hqdefault.jpg"
+                                        alt="Analitika s Petkom">
                                     <div class="card-project-body">
                                         <div class="project-title">Analitika s Petkom</div>
                                         <p class="project-name">Online YouTube Course</p>
@@ -580,146 +716,172 @@
 
                     <button class="tab-header">Social Media Content</button>
                     <div class="tab-content">
-                         <div class="tab-content-inner projects-grid">
-                           
-                            <a href="https://www.instagram.com/fibulatravelmk/reel/DIlCmhuxu6a/" target="_blank" rel="noopener noreferrer" class="card-project">
-                                <img src="images/fibws.png" alt="Fibula WS25 Teaser">
-                               <div class="card-project-body">
-                                   <div class="project-title">Fibula Workshop Early Aftermovie Teaser </div>
-                                   <p class="project-name">Instagram Reels</p>
-                                   <p class="project-desc">Teaser for the Fibula Workshop 25</p>
-                               </div>
-                           </a>
-                           <a href="https://www.instagram.com/fibulatravelmk/reel/DIwJGrovdEX/" target="_blank" rel="noopener noreferrer" class="card-project">
-                            <img src="images/fiblol.png" alt="Fibula Land of Legends">
-                           <div class="card-project-body">
-                               <div class="project-title">The more you know: Land of Legends</div>
-                               <p class="project-name">Instagram Reels</p>
-                               <p class="project-desc">One of many informational ads for Fibula Travel Macedonia</p>
-                           </div>
-                       </a>
-                       <a href="https://www.instagram.com/fibulatravelmk/reel/DI3tZuTvA-A/
-                       " target="_blank" rel="noopener noreferrer" class="card-project">
-                        <img src="images/fibnp.png" alt="Fibula EarlyBooking">
-                       <div class="card-project-body">
-                           <div class="project-title">Early Booking ad for Fibula</div>
-                           <p class="project-name">Instagram Reels</p>
-                           <p class="project-desc">Early booking prices on all Fibula arrangements</p>
-                       </div>
-                   </a>
+                        <div class="tab-content-inner projects-grid">
 
-                            <a href="https://www.instagram.com/brainsterco/reel/C2uunjwN9cL/" target="_blank" rel="noopener noreferrer" class="card-project">
+                            <a href="https://www.instagram.com/fibulatravelmk/reel/DIlCmhuxu6a/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/fibws.png" alt="Fibula WS25 Teaser">
+                                <div class="card-project-body">
+                                    <div class="project-title">Fibula Workshop Early Aftermovie Teaser </div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Teaser for the Fibula Workshop 25</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/fibulatravelmk/reel/DIwJGrovdEX/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/fiblol.png" alt="Fibula Land of Legends">
+                                <div class="card-project-body">
+                                    <div class="project-title">The more you know: Land of Legends</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">One of many informational ads for Fibula Travel Macedonia
+                                    </p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/fibulatravelmk/reel/DI3tZuTvA-A/
+                       " target="_blank" rel="noopener noreferrer" class="card-project">
+                                <img src="images/fibnp.png" alt="Fibula EarlyBooking">
+                                <div class="card-project-body">
+                                    <div class="project-title">Early Booking ad for Fibula</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Early booking prices on all Fibula arrangements</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/brainsterco/reel/C2uunjwN9cL/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
                                 <img src="images/bux.png" alt="Brainster+ Animation">
-                               <div class="card-project-body">
-                                   <div class="project-title">What + do you get with Brainster+ Animation </div>
-                                   <p class="project-name">Instagram Reels</p>
-                                   <p class="project-desc">One of many animated ads for Brainster+ Instagram ReelsS</p>
-                               </div>
-                           </a>
-                           <a href="https://www.instagram.com/brainsterco/reel/C04TzF4ubzk/
+                                <div class="card-project-body">
+                                    <div class="project-title">What + do you get with Brainster+ Animation </div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">One of many animated ads for Brainster+ Instagram ReelsS</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C04TzF4ubzk/
                            " target="_blank" rel="noopener noreferrer" class="card-project">
-                            <img src="images/bmini.png" alt="Brainster+ Flagship Short">
-                           <div class="card-project-body">
-                               <div class="project-title">Brainster+ Flagship Ad Short </div>
-                               <p class="project-name">Instagram Short</p>
-                               <p class="project-desc">Instagram Short cut from the flagship ad</p>
-                           </div>
-                        </a>
-                        <a href="https://www.instagram.com/brainsterco/reel/C31_MgpMdVg/" target="_blank" rel="noopener noreferrer" class="card-project">
-                            <img src="images/bbilt.png" alt="Brainster Bilten">
-                           <div class="card-project-body">
-                               <div class="project-title">Brainster ‘Bilten’ Monthly video</div>
-                               <p class="project-name">Instagram Reels</p>
-                               <p class="project-desc">Series of monthly videos for Brainster monthly updates</p>
-                           </div>
-                       </a>
-                       <a href="https://www.instagram.com/reel/C9UZrUQsUjp/" target="_blank" rel="noopener noreferrer" class="card-project">
-                        <img src="images/bjf.png" alt="Brainster Jobfair Video">
-                       <div class="card-project-body">
-                           <div class="project-title">Brainster JobFair Event Shorts No.1</div>
-                           <p class="project-name">Instagram Reels</p>
-                           <p class="project-desc">Series of multiple videos following around students at Brainster, while they look for internship at their JobFair Event</p>
-                       </div>
-                   </a>
-                   <a href="https://www.instagram.com/reel/C8T-0MvsU4S/" target="_blank" rel="noopener noreferrer" class="card-project">
-                    <img src="images/bsbp.png" alt="Brainster Jobfair Video">
-                   <div class="card-project-body">
-                       <div class="project-title">Brainster JobFair Event Shorts No.2</div>
-                       <p class="project-name">Instagram Reels</p>
-                       <p class="project-desc">Series of multiple videos following around students at Brainster, while they look for internship at their JobFair Event</p>
-                   </div>
-               </a>
-               <a href="https://www.instagram.com/brainsterco/reel/C8l5Lg7M6Yz/" target="_blank" rel="noopener noreferrer" class="card-project">
-                <img src="images/bfl.png" alt="Brainster Jobfair Video">
-               <div class="card-project-body">
-                   <div class="project-title">Brainster JobFair Event Shorts No.3</div>
-                   <p class="project-name">Instagram Reels</p>
-                   <p class="project-desc">Series of multiple videos following around students at Brainster, while they look for internship at their JobFair Event</p>
-               </div>
-           </a>
-           <a href="https://www.instagram.com/brainsterco/reel/DBv8Djts92l/" target="_blank" rel="noopener noreferrer" class="card-project">
-            <img src="images/bjf4.png" alt="Brainster Jobfair Video">
-           <div class="card-project-body">
-               <div class="project-title">Brainster JobFair Event Shorts No.4</div>
-               <p class="project-name">Instagram Reels</p>
-               <p class="project-desc">Series of multiple videos following around students at Brainster, while they look for internship at their JobFair Event</p>
-           </div>
-       </a>
-       <a href="https://www.instagram.com/brainsternext/reel/C_C9l_2scqc/" target="_blank" rel="noopener noreferrer" class="card-project">
-        <img src="images/bnpr.png" alt="Brainster Meet the students">
-       <div class="card-project-body">
-           <div class="project-title">Brainster Meet the Students No.1</div>
-           <p class="project-name">Instagram Reels</p>
-           <p class="project-desc">Series of multiple videos following around students at Brainster</p>
-       </div>
-   </a>
-   <a href="https://www.instagram.com/brainsternext/reel/C_LQU0zMvpH/" target="_blank" rel="noopener noreferrer" class="card-project">
-    <img src="images/bnan.png" alt="Brainster Meet the students">
-   <div class="card-project-body">
-       <div class="project-title">Brainster Meet the Students No.1</div>
-       <p class="project-name">Instagram Reels</p>
-       <p class="project-desc">Series of multiple videos following around students at Brainster</p>
-   </div>
-</a>
-<a href="https://www.instagram.com/brainsterco/reel/C5YnrEPsAcm/" target="_blank" rel="noopener noreferrer" class="card-project">
-    <img src="images/blab.png" alt="Brainster Event Aftermovie">
-   <div class="card-project-body">
-       <div class="project-title">Brainster Aftermovie Short</div>
-       <p class="project-name">Instagram Reels</p>
-       <p class="project-desc">Short Aftermovie for a Brainster event</p>
-   </div>
-</a>
-<a href="https://www.instagram.com/brainsterco/reel/C6L9w3Usep-/" target="_blank" rel="noopener noreferrer" class="card-project">
-    <img src="images/bsnp.png" alt="Brainster Teaser">
-   <div class="card-project-body">
-       <div class="project-title">Brainster Teaser Short</div>
-       <p class="project-name">Instagram Reels</p>
-       <p class="project-desc">Short video teaser for a Brainster event</p>
-   </div>
-</a>
-<a href="https://www.instagram.com/brainsterco/reel/C8CEsW1MnVe/" target="_blank" rel="noopener noreferrer" class="card-project">
-    <img src="images/bjf9.png" alt="Brainster Jobfair Aftermovie Short">
-   <div class="card-project-body">
-       <div class="project-title">Brainster JobFair Aftermovie Short</div>
-       <p class="project-name">Instagram Reels</p>
-       <p class="project-desc">Short video aftermovie for the JobFair Brainster event</p>
-   </div>
-</a>
-<a href="https://www.instagram.com/reel/CR650ZcqhqR/" target="_blank" rel="noopener noreferrer" class="card-project">
-    <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg" alt="Viva Sokovi IGTV Series">
-   <div class="card-project-body">
-       <div class="project-title">Viva Sokovi IGTV Series</div>
-       <p class="project-name">Instagram Reels</p>
-       <p class="project-desc">One of many episodes for the first macedonian IGTV Series</p>
-   </div>
-</a>
+                                <img src="images/bmini.png" alt="Brainster+ Flagship Short">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster+ Flagship Ad Short </div>
+                                    <p class="project-name">Instagram Short</p>
+                                    <p class="project-desc">Instagram Short cut from the flagship ad</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C31_MgpMdVg/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bbilt.png" alt="Brainster Bilten">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster ‘Bilten’ Monthly video</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of monthly videos for Brainster monthly updates</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/reel/C9UZrUQsUjp/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bjf.png" alt="Brainster Jobfair Video">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster JobFair Event Shorts No.1</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster, while they look for internship at their JobFair Event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/reel/C8T-0MvsU4S/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bsbp.png" alt="Brainster Jobfair Video">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster JobFair Event Shorts No.2</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster, while they look for internship at their JobFair Event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C8l5Lg7M6Yz/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bfl.png" alt="Brainster Jobfair Video">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster JobFair Event Shorts No.3</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster, while they look for internship at their JobFair Event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/DBv8Djts92l/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bjf4.png" alt="Brainster Jobfair Video">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster JobFair Event Shorts No.4</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster, while they look for internship at their JobFair Event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsternext/reel/C_C9l_2scqc/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bnpr.png" alt="Brainster Meet the students">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster Meet the Students No.1</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsternext/reel/C_LQU0zMvpH/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bnan.png" alt="Brainster Meet the students">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster Meet the Students No.1</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Series of multiple videos following around students at
+                                        Brainster</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C5YnrEPsAcm/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/blab.png" alt="Brainster Event Aftermovie">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster Aftermovie Short</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Short Aftermovie for a Brainster event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C6L9w3Usep-/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bsnp.png" alt="Brainster Teaser">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster Teaser Short</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Short video teaser for a Brainster event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/brainsterco/reel/C8CEsW1MnVe/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="images/bjf9.png" alt="Brainster Jobfair Aftermovie Short">
+                                <div class="card-project-body">
+                                    <div class="project-title">Brainster JobFair Aftermovie Short</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">Short video aftermovie for the JobFair Brainster event</p>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/reel/CR650ZcqhqR/" target="_blank"
+                                rel="noopener noreferrer" class="card-project">
+                                <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg"
+                                    alt="Viva Sokovi IGTV Series">
+                                <div class="card-project-body">
+                                    <div class="project-title">Viva Sokovi IGTV Series</div>
+                                    <p class="project-name">Instagram Reels</p>
+                                    <p class="project-desc">One of many episodes for the first macedonian IGTV Series
+                                    </p>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
                     <button class="tab-header">Showreels</button>
-                    <div class="tab-content" > <div class="tab-content-inner">
-                             <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" rel="noopener noreferrer" class="showreel-card">
-                                <img src="https://i.ytimg.com/vi/yUJAUBe0hZQ/maxresdefault.jpg" alt="2023 Showreel Thumbnail">
+                    <div class="tab-content">
+                        <div class="tab-content-inner">
+                            <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank"
+                                rel="noopener noreferrer" class="showreel-card">
+                                <img src="https://i.ytimg.com/vi/yUJAUBe0hZQ/maxresdefault.jpg"
+                                    alt="2023 Showreel Thumbnail">
                                 <div class="showreel-title">
                                     <h3>2023 Showreel</h3>
                                     <p>Clicking on the image will redirect you to the source.</p>
@@ -731,64 +893,66 @@
                 </div>
             </div>
         </section>
+        </div>
     </main>
 
     <footer>
         <h2>Thank you for visiting! ツ</h2>
     </footer>
 
-     <script>
-    const tabHeaders = document.querySelectorAll(".tab-header");
+    <script>
+        const tabHeaders = document.querySelectorAll(".tab-header");
 
-    tabHeaders.forEach(header => {
-        header.addEventListener("click", () => {
-            const isActive = header.classList.contains("active");
+        tabHeaders.forEach(header => {
+            header.addEventListener("click", () => {
+                const isActive = header.classList.contains("active");
 
 
-            let previouslyActiveHeader = null;
-            tabHeaders.forEach(otherHeader => {
-                if (otherHeader.classList.contains("active")) {
-                    previouslyActiveHeader = otherHeader;
+                let previouslyActiveHeader = null;
+                tabHeaders.forEach(otherHeader => {
+                    if (otherHeader.classList.contains("active")) {
+                        previouslyActiveHeader = otherHeader;
+                    }
+                    otherHeader.classList.remove("active");
+                    otherHeader.nextElementSibling.style.maxHeight = null;
+                });
+
+
+                if (!isActive) {
+                    header.classList.add("active");
+                    const tabContent = header.nextElementSibling;
+
+
+                    setTimeout(() => {
+                        tabContent.style.maxHeight = tabContent.scrollHeight + 50 + "px";
+
+                        header.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                } else if (isActive && previouslyActiveHeader === header) {
                 }
-                otherHeader.classList.remove("active");
-                otherHeader.nextElementSibling.style.maxHeight = null;
             });
-
-
-            if (!isActive) {
-                header.classList.add("active");
-                const tabContent = header.nextElementSibling;
-
-
-                setTimeout(() => {
-                    tabContent.style.maxHeight = tabContent.scrollHeight + 50 + "px";
-
-                    header.scrollIntoView({
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }, 100); 
-            } else if (isActive && previouslyActiveHeader === header) {
-            }
         });
-    });
 
-    // --- Fade In On Scroll Script ---
-    const sections = document.querySelectorAll('.fade-in-section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+        // --- Fade In On Scroll Script ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
-    }, { threshold: 0.1 });
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-</script>
+    </script>
 
 </body>
+
 </html>
