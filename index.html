@@ -11,13 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <title>Dimitar's Website</title>
-    <style>
-        /* --- General Styling & Optimizations --- */
+<style>
         :root {
             --bg-dark: rgb(19, 19, 19);
             --bg-medium: rgb(28, 28, 28);
             --bg-light-container: #2c2c2f;
-            /* Background for the skills section */
             --card-bg-dark: #2a2a2e;
             --accent-color: #6E44FF;
             --text-light: #ffffff;
@@ -96,21 +94,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-                        text-align: center;
+            text-align: center;
 
-  background-image:  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSAzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxlbGxpcHNlIGN4PSIyLjUiIGN5PSIxLjUiIHJ4PSIwLjUiIHJ5PSIwLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg=='), 
-        linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
-  background-size: 5px 3px;
-  background-blend-mode: overlay; 
-  background-repeat: repeat; 
-        
+    background-image: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
+    background-blend-mode: normal;            background-size: 5px 3px;
+            background-repeat: repeat;
+
         }
+
         .post-journey {
-              background-image:  url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSAzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxlbGxpcHNlIGN4PSIyLjUiIGN5PSIxLjUiIHJ4PSIwLjUiIHJ5PSIwLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg=='), 
-        linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
-  background-size: 5px 3px;
-  background-blend-mode: overlay; 
-  background-repeat: repeat; 
+    background-image: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
+    background-blend-mode: normal;
+            background-size: 5px 3px;
+            background-repeat: repeat;
         }
 
         .intro-text h1 {
@@ -149,7 +145,7 @@
 
         .icons-social a:hover {
             color: var(--accent-color);
-                                    text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
+            text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
 
         }
 
@@ -172,7 +168,6 @@
             height: 24px;
             color: var(--text-light-secondary);
             margin-top: -9px;
-            /* Overlap the arrows */
         }
 
         .scroll-arrow svg:first-child {
@@ -241,8 +236,8 @@
 
         .skills .icons img:hover {
             transform: scale(1.1);
-  -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
-  filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+            -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+            filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
         }
 
         /* --- Collapsible Tabs --- */
@@ -330,7 +325,7 @@
 
         .card-project:hover {
             transform: translateY(-5px);
-                        box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
 
         }
 
@@ -408,24 +403,42 @@
         }
 
         /* --- Responsive Design --- */
+        @media (hover: hover) and (pointer: fine) {
+
+            .skills .icons img:hover {
+                transform: scale(1.1);
+                -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+                filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+            }
+
+            .card-project:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
+            }
+
+            .icons-social a:hover {
+                color: var(--accent-color);
+                text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
+            }
+
+        }
+
+
         @media (min-width: 550px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* 2 columns for small tablets */
             }
         }
 
         @media (min-width: 900px) {
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
-                /* 3 columns for tablets */
             }
         }
 
         @media (min-width: 1200px) {
             .projects-grid {
                 grid-template-columns: repeat(4, 1fr);
-                /* 4 columns for desktops */
             }
         }
     </style>
@@ -910,57 +923,46 @@ Motion Designer |<span> IT Solutions Specialist </span>
     </footer>
 
     <script>
-        const tabHeaders = document.querySelectorAll(".tab-header");
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabHeaders = document.querySelectorAll('.tab-header');
 
         tabHeaders.forEach(header => {
-            header.addEventListener("click", () => {
-                const isActive = header.classList.contains("active");
+            header.addEventListener('click', function () {
+                const clickedHeader = this;
+                const content = this.nextElementSibling;
+                const isAlreadyActive = this.classList.contains('active');
 
-
-                let previouslyActiveHeader = null;
                 tabHeaders.forEach(otherHeader => {
-                    if (otherHeader.classList.contains("active")) {
-                        previouslyActiveHeader = otherHeader;
+                    if (otherHeader !== clickedHeader) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.maxHeight = null;
                     }
-                    otherHeader.classList.remove("active");
-                    otherHeader.nextElementSibling.style.maxHeight = null;
                 });
 
 
-                if (!isActive) {
-                    header.classList.add("active");
-                    const tabContent = header.nextElementSibling;
+                    if (!isAlreadyActive) {
+                    clickedHeader.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
 
-
-                    setTimeout(() => {
-                        tabContent.style.maxHeight = tabContent.scrollHeight + 50 + "px";
-
-                        header.scrollIntoView({
+                    const onTransitionEnd = () => {
+                        clickedHeader.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    }, 100);
-                } else if (isActive && previouslyActiveHeader === header) {
+
+                        content.removeEventListener('transitionend', onTransitionEnd);
+                    };
+
+                    content.addEventListener('transitionend', onTransitionEnd);
+
+                } else {
+                    clickedHeader.classList.remove('active');
+                    content.style.maxHeight = null;
                 }
             });
         });
-
-        // --- Fade In On Scroll Script ---
-        const sections = document.querySelectorAll('.fade-in-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-    </script>
+    });
+</script>
 
 </body>
 
