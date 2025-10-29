@@ -213,7 +213,7 @@
 
         /* Skills section  */
         .skills-wrapper {
-            padding: 8rem 0;
+            padding: 4rem 0;
         }
 
         .skills {
@@ -422,7 +422,110 @@
             }
 
         }
+  /* CSS for the new Highlights section */
+  .highlights-section {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto 40px auto; 
+  }
 
+  .highlights-section h2 {
+    font-size: 2.5rem; 
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .highlights-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #6E44FF; 
+    margin: 10px auto 0;
+  }
+
+  .highlights-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .highlight-card {
+    flex-basis: 400px; 
+    max-width: 450px;
+    flex-grow: 1;
+
+    background-color: #2a2a2a; 
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    text-decoration: none;
+    color: #f0f0f0;
+    border: 1px solid #444; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-8px); 
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
+  }
+
+
+  .highlight-placeholder {
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    
+    /* ADDED: */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+    .highlight-placeholder video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+
+  .highlight-card .project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 10px;
+  }
+
+  .highlight-card .project-desc {
+    font-size: 1rem;
+    color: #c0c0c0;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 900px) {
+    .highlight-card {
+      flex-basis: 100%; 
+      max-width: 500px;
+    }
+  }
 
         @media (min-width: 550px) {
             .projects-grid {
@@ -434,6 +537,10 @@
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+                .highlight-card {
+      flex-basis: 100%;
+      max-width: 500px;
+    }
         }
 
         @media (min-width: 1200px) {
@@ -450,7 +557,7 @@
         <div class="intro-text fade-in-section">
             <h1>Dimitar Ristevski</h1>
             <h5 class="fade-in-section">
-Graphics Designer |<span> Digital Marketing Specialist </span> | IT Solutions Specialist
+<span> Digital Marketer </span> | IT Support Specialist
             </h5>
             <div class="icons-social fade-in-section">
                 <a class="links-deco" href="https://www.linkedin.com/in/dimitar-ri/" target="_blank"
@@ -484,10 +591,7 @@ Graphics Designer |<span> Digital Marketing Specialist </span> | IT Solutions Sp
             <div class="journey-container fade-in-section">
                 <h2>About me</h2>
                 <p>
-                    A dedicated tech enthusiast with a passion for continuous learning. <br>With over six years in video
-                    production and IT, I've managed everything from planning and editing to motion graphics and sound
-                    design. Currently, as a Digital Marketer and IT Solutions Specialist, I handle our digital
-                    platforms, B2B systems, and create compelling content that drives engagement.
+                    Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance to deliver seamless digital experiences. Proven ability to troubleshoot hardware and software, streamline workflows, and manage key platforms like Brevo and Contentful.
                 </p>
             </div>
         </section>
@@ -508,7 +612,45 @@ Graphics Designer |<span> Digital Marketing Specialist </span> | IT Solutions Sp
                 </section>
             </div>
         </div>
+<section class="highlights-section fade-in-section">
+  <h2>Highlights</h2>
+  <div class="highlights-container">
+    
+        <!-- HIGHLIGHT CARD 1 -->
+    <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="highlight-card">
+            <div class="highlight-placeholder">
+        <video autoplay muted loop playsinline src="images/bvid.mp4">
+      </video>
+      </div>
 
+      <div class="project-info">
+        <div class="project-title">Brainster+ Main Flagship Ad</div>
+        <p class="project-desc">
+          Key animation used as a promotional video for a major hybridization campaign by Brainster, driving significant engagement.
+        </p>
+      </div>
+    </a>
+
+    <!-- HIGHLIGHT CARD 2 -->
+    <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" class="highlight-card">
+      
+      <div class="highlight-placeholder">
+        <video autoplay muted loop playsinline src="images/portfoliovid.mp4">
+      </video>
+      </div>
+      
+      <div class="project-info">
+        <div class="project-title">2023 Showreel</div>
+        <p class="project-desc">
+          A dynamic showcase of my best work from 2023, featuring motion graphics, video editing, and animation projects for various clients.
+        </p>
+      </div>
+    </a>
+
+
+
+  </div>
+</section>
         <section class="more-work-section fade-in-section">
             <div class="container">
                 <h2>More of My Work</h2>
@@ -528,7 +670,7 @@ Graphics Designer |<span> Digital Marketing Specialist </span> | IT Solutions Sp
                                             as a TV Ad.</p>
                                     </div>
                                 </a>
-                                <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noopener noreferrer"
+<!--                                 <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noopener noreferrer"
                                     class="card-project">
                                     <img src="https://img.youtube.com/vi/tKv0Y_P9Ivg/maxresdefault.jpg"
                                         alt="Brainster+ Project">
@@ -537,7 +679,7 @@ Graphics Designer |<span> Digital Marketing Specialist </span> | IT Solutions Sp
                                         <p class="project-name">Brainster+</p>
                                         <p class="project-desc">Animation used as a promo video for a hybridization
                                             campaign by Brainster.</p>
-                                    </div>
+                                    </div> -->
                                 </a>
                                 <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" rel="noopener noreferrer"
                                     class="card-project">
