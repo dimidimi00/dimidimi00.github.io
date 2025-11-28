@@ -1,1109 +1,1027 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Dimitar's Website" />
-    <meta property="og:image" content="images/thumbnail.png" />
+    <title>Dimitar Ristevski | Digital Marketer</title>
     <link rel="icon" type="image/png" href="images/webicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-    <title>Dimitar's Website</title>
-<style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&family=Rajdhani:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
         :root {
-            --bg-dark: rgb(19, 19, 19);
-            --bg-medium: rgb(28, 28, 28);
-            --bg-light-container: #2c2c2f;
-            --card-bg-dark: #2a2a2e;
-            --accent-color: #6E44FF;
-            --text-light: #ffffff;
-            --text-light-secondary: #bbbbbb;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            font-size: 10px;
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --accent-red: #ff0040;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-color: #222222;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-family: 'League Spartan', sans-serif;
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-weight: 300;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        h1, h2, h3, h4 {
+            font-family: 'League Spartan', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
         }
 
-        .fade-in-section {
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img, video { display: block; width: 100%; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
         }
 
-        /* Keyframes for the arrow animation */
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(10px);
-            }
-        }
-
-        .scroll-arrow svg {
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-arrow svg:nth-child(2) {
-            animation-delay: 0.04s;
-        }
-
-        .scroll-arrow svg:nth-child(3) {
-            animation-delay: 0.07s;
-        }
-
-        /* --- Header --- */
         header {
-            width: 100vw;
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-
-    background-image: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
-    background-blend-mode: normal;            background-size: 5px 3px;
-            background-repeat: repeat;
-
+            background: radial-gradient(circle at 70% 50%, #1a0505 0%, #000000 70%);
+            position: relative;
         }
 
-        .post-journey {
-    background-image: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark));
-    background-blend-mode: normal;
-            background-size: 5px 3px;
-            background-repeat: repeat;
+        .hero-content {
+            text-align: left;
+            width: 100%;
         }
 
-        .intro-text h1 {
-            font-size: clamp(3.7rem, 6vw, 8rem);
-            color: var(--text-light);
+        .hero-content h1 {
+            font-size: 5rem;
+            line-height: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            position: relative;
+            padding: 12px 35px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
             overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-            box-sizing: border-box;
+            z-index: 1;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .intro-text h5 {
-            font-weight: 400;
-            font-size: clamp(1.5rem, 3vw, 2.4rem);
-            color: var(--text-light);
-            margin-top: 0.5rem;
-            animation-delay: 0.1s;
-        }
-
-        .intro-text h5 span {
-            color: var(--accent-color);
-        }
-
-        .icons-social {
-            margin-top: 3rem;
-            animation-delay: 0.24s;
-        }
-
-        .icons-social a {
-            color: var(--text-light-secondary);
-            font-size: 3.5rem;
-            margin: 0 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .icons-social a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
-
-        }
-
-        .scroll-arrow-container {
+        .btn::before {
+            content: '';
             position: absolute;
-            bottom: 4rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
+            top: 0; left: 0;
+            width: 0; height: 100%;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 50px;
         }
 
-        .scroll-arrow {
+        .btn:hover {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn:hover::before { width: 100%; }
+
+        .section {
+            padding: 100px 0;
+            border-bottom: 1px solid #111;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            border-left: 5px solid var(--accent-red);
+            padding-left: 25px;
+            line-height: 1;
+        }
+
+        .profile-text {
+            max-width: 900px;
+            color: #d1d1d1;
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .tech-icon-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tech-card {
+            background: transparent;
+            width: 100px;
+            height: 110px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .scroll-arrow svg {
-            width: 24px;
-            height: 24px;
-            color: var(--text-light-secondary);
-            margin-top: -9px;
+        .tech-card:hover {
+            transform: scale(1.15) translateY(-5px);
+            filter: brightness(1.2);
         }
 
-        .scroll-arrow svg:first-child {
-            margin-top: 0;
+        .tech-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); 
         }
 
-
-        /* --- Main Content & Layout --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .tech-card p {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #bbb;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
         }
+        
+        .tech-card:hover p { color: #fff; }
 
-        .full-bleed-accent {
-            width: 100vw;
+        .carousel-wrapper {
             position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            background-color: var(--accent-color);
-            color: var(--text-light);
-            padding: 8rem 0;
-        }
-
-        .journey-container {
-            max-width: 930px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-            line-height: 1.6;
-            font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-            font-weight: 400;
-            animation-delay: 0.2s;
-        }
-
-        h2 {
-            font-size: clamp(3rem, 5vw, 4rem);
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        /* Skills section  */
-        .skills-wrapper {
-            padding: 4rem 0;
-        }
-
-        .skills {
-            padding: 4rem clamp(1.5rem, 5vw, 4rem);
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .skills h3 {
-            font-size: 2.4rem;
-            margin-bottom: 3rem;
-            color: var(--text-light);
-        }
-
-        .skills .icons img {
-            width: clamp(40px, 6vw, 60px);
-            margin: 0.5rem 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .skills .icons img:hover {
-            transform: scale(1.1);
-            -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
-            filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
-        }
-
-        /* --- Collapsible Tabs --- */
-        .more-work-section {
-            padding: 4rem 0 8rem 0;
-            text-align: center;
-        }
-
-        .more-work-section h2 {
-            color: var(--text-light);
-        }
-
-        .tabs-container {
-            max-width: 1100px;
-            margin: 4rem auto 0;
-            text-align: left;
-        }
-
-        .tab-header {
-            background-color: #3a3a3a;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 1.5rem 2rem;
             width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 2rem;
-            font-family: 'League Spartan', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            margin-top: 1rem;
-            border-radius: 5px;
+            height: 550px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .tab-header:hover,
-        .tab-header.active {
-            background-color: var(--accent-color);
-            color: var(--text-light);
-
-        }
-
-        .tab-header::after {
-            content: '+';
-            font-size: 2.5rem;
-            font-weight: 300;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .tab-header.active::after {
-            transform: rotate(45deg);
-        }
-
-        .tab-content {
-            max-height: 0;
+            justify-content: flex-start; 
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-            background: #202022;
-            border-radius: 0 0 5px 5px;
+            perspective: 1000px;
         }
 
-        .tab-content-inner {
-            padding: 2.5rem;
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
-        .projects-grid {
+        .carousel-item {
+            position: absolute;
+            width: 320px; 
+            aspect-ratio: 4/5;
+            background: #111; 
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left center;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .c-active {
+            transform: translateX(0) scale(1);
+            z-index: 10;
+            filter: none;
+            border: 1px solid var(--accent-red);
+            opacity: 1;
+        }
+        
+        .c-next-1 {
+            transform: translateX(350px) scale(0.85);
+            z-index: 9;
+            filter: grayscale(100%) brightness(0.6) blur(1px);
+            opacity: 0.8;
+        }
+
+        .c-next-2 {
+            transform: translateX(620px) scale(0.7);
+            z-index: 8;
+            filter: grayscale(100%) brightness(0.4) blur(3px);
+            opacity: 0.6;
+        }
+
+        .c-next-3 {
+            transform: translateX(850px) scale(0.6);
+            z-index: 7;
+            filter: grayscale(100%) brightness(0.3) blur(5px);
+            opacity: 0.4;
+        }
+
+        .c-hidden {
+            transform: translateX(1200px) scale(0.5);
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .c-prev {
+            transform: translateX(-100px) scale(0.8);
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            display: flex;
+            gap: 15px;
+            z-index: 20;
+        }
+
+        .c-arrow {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .c-arrow:hover {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .highlight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+            display: block;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .highlight-card:hover { border-color: var(--accent-red); transform: translateY(-5px); }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            background: #000;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .highlight-info { padding: 25px; }
+        .highlight-info h3 { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
+        .desc-text { font-size: 1rem; color: var(--text-muted); line-height: 1.5; font-weight: 400; }
+        .tag { display: inline-block; font-size: 0.8rem; color: var(--accent-red); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .filter-bar {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .filter-btn:hover { border-color: var(--accent-red); color: #fff; }
+        .filter-btn.active {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2.5rem;
+            gap: 25px;
+            align-content: start;
+            min-height: 40vh;
         }
 
-        .card-project {
-            background-color: var(--card-bg-dark);
-            border-radius: 5px;
-            box-shadow: 0 4px 15px var(--shadow-color);
+        .g-item {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            transition: 0.3s;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: var(--text-light);
+            border-radius: 12px;
+        }
+        
+        .g-item:hover { border-color: #444; transform: translateY(-3px); }
+
+        .g-thumb { aspect-ratio: 16/9; overflow: hidden; }
+        .g-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .g-item:hover .g-thumb img { transform: scale(1.05); }
+        
+        .g-info { padding: 20px; }
+        .g-info h4 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; text-transform: none; }
+        .g-info span { font-size: 0.85rem; color: #777; font-weight: 400; }
+
+        .hidden-item { display: none !important; }
+        
+        /* --- LOAD MORE BUTTON --- */
+        .load-more-container { 
+            text-align: center; 
+            margin-top: 20px; 
+            padding-bottom: 20px;
+        }
+        .load-more-btn {
+            background: #222; 
+            border: 1px solid #333;
+            color: white; 
+            padding: 15px 50px; 
+            font-family: 'Poppins', sans-serif; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            border-radius: 50px;
+            animation: pulseBtn 2s infinite;
+        }
+        
+        .load-more-btn:hover { 
+            background: var(--accent-red); 
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(255, 0, 64, 0.4);
+            animation: none;
         }
 
-        .card-project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
-
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
 
-        .card-project img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--accent-color);
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            animation: bgFadeIn 0.3s ease forwards;
         }
 
-        .card-project-body {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .project-title {
-            font-weight: bold;
-            font-size: 2.2rem;
-        }
-
-        .project-name {
-            font-style: italic;
-            margin: 0.5rem 0 1rem;
-            color: var(--text-light-secondary);
-        }
-
-        .project-desc {
-            font-size: 1.4rem;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-
-        .showreel-card {
+        .modal-content-wrapper {
+            max-width: 54vh;
+            max-height: 90vh;
+            position: relative;
+            transform: scale(0.8);
+            opacity: 0;
+            animation: expandModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            
             display: flex;
             align-items: center;
-            background-color: var(--card-bg-dark);
-            border-radius: 5px;
-            overflow: hidden;
-            gap: 2rem;
-            text-decoration: none;
-            color: var(--text-light);
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px var(--shadow-color);
+            justify-content: center;
         }
+        
+        @keyframes bgFadeIn { from { background-color: rgba(0,0,0,0); } to { background-color: rgba(0,0,0,0.9); } }
+        @keyframes expandModal { to { transform: scale(1); opacity: 1; } }
 
-        .showreel-card:hover {
-            transform: scale(1.02);
-
+        .modal-img {
+            max-width: 1120px; 
+            max-height: 85vh;  
+            width: 100%;       
+            object-fit: contain; 
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: block;
         }
-
-        .showreel-card img {
-            max-width: 50%;
-            height: auto;
-            border-radius: 5px 0 0 5px;
+        
+        .close-modal {
+            position: absolute;
+            top: -40px; right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.3s;
         }
+        .close-modal:hover { opacity: 1; transform: rotate(90deg); }
 
-        .showreel-title h3 {
-            font-size: 2.4rem;
+        .modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            user-select: none;
+            z-index: 1001;
         }
+        .modal-arrow:hover { background: var(--accent-red); }
+        .modal-prev { left: -70px; }
+        .modal-next { right: -70px; }
 
-        .showreel-title p {
-            font-style: italic;
-            font-size: 1.4rem;
-            color: var(--text-light-secondary);
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--bg-medium);
-            color: var(--text-light);
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        /* --- Responsive Design --- */
-        @media (hover: hover) and (pointer: fine) {
-
-            .skills .icons img:hover {
-                transform: scale(1.1);
-                -webkit-filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
-                filter: drop-shadow(0px 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent));
+        @media (max-width: 768px) {
+            .hero-content h1 { 
+                font-size: 16vw; 
+                line-height: 0.9;
+                margin-bottom: 0px; 
+            }
+            .hero-content p {
+                margin-top: 5px; 
+                margin-bottom: 20px; 
+                font-size: 1.1rem;
             }
 
-            .card-project:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
-            }
-
-            .icons-social a:hover {
-                color: var(--accent-color);
-                text-shadow: 0 5px 5px color-mix(in srgb, var(--accent-color) 70%, transparent);
-            }
-
-        }
-  /* CSS for the new Highlights section */
-  .highlights-section {
-    padding: 60px 20px;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto 40px auto; 
-  }
-
-  .highlights-section h2 {
-    font-size: 2.5rem; 
-    font-weight: 700;
-    color: #f0f0f0;
-    margin-bottom: 40px;
-    position: relative;
-  }
-
-  .highlights-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: #6E44FF; 
-    margin: 10px auto 0;
-  }
-
-  .highlights-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 30px;
-  }
-
-  .highlight-card {
-    flex-basis: 400px; 
-    max-width: 450px;
-    flex-grow: 1;
-
-    background-color: #2a2a2a; 
-    border-radius: 12px;
-    padding: 24px;
-    text-align: left;
-    text-decoration: none;
-    color: #f0f0f0;
-    border: 1px solid #444; 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .highlight-card:hover {
-    transform: translateY(-8px); 
-            box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color) 70%, transparent);
-  }
-
-
-  .highlight-placeholder {
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-    background-color: #3a3a3a;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    
-    /* ADDED: */
-    position: relative;
-    overflow: hidden;
-  }
-
-  .highlight-placeholder img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-  }
-    .highlight-placeholder video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-
-  .highlight-card .project-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f0f0f0;
-    margin-bottom: 10px;
-  }
-
-  .highlight-card .project-desc {
-    font-size: 1rem;
-    color: #c0c0c0;
-    line-height: 1.6;
-  }
-  
-  @media (max-width: 900px) {
-    .highlight-card {
-      flex-basis: 100%; 
-      max-width: 500px;
-    }
-  }
-
-        @media (min-width: 550px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 900px) {
-            .projects-grid {
+            .highlights-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            
+            .tech-icon-grid {
+                display: grid;
                 grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
             }
-                .highlight-card {
-      flex-basis: 100%;
-      max-width: 500px;
-    }
-        }
+            .tech-card {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1/1;
+                padding: 10px;
+            }
+            .tech-card img {
+                width: 40px;
+                height: 40px;
+            }
 
-        @media (min-width: 1200px) {
-            .projects-grid {
-                grid-template-columns: repeat(4, 1fr);
+            .button-group {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: center;
+                gap: 8px; 
             }
+            .button-group::-webkit-scrollbar { display: none; }
+            .button-group .btn {
+                padding: 10px 18px; 
+                font-size: 0.8rem;
+            }
+
+            .filter-bar {
+                flex-wrap: wrap; 
+                justify-content: center;
+                gap: 10px;
+            }
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.80rem; 
+                flex-shrink: 0;
+            }
+            
+            .carousel-wrapper { height: 400px; }
+            .carousel-item { width: 220px; }
+            .c-next-1 { transform: translateX(240px) scale(0.85); }
+            .c-next-2 { transform: translateX(1000px); opacity: 0; }
+            .c-next-3 { transform: translateX(1000px); opacity: 0; }
+            
+            .modal-prev { left: 10px; }
+            .modal-next { right: 10px; }
         }
     </style>
 </head>
-
 <body>
 
-    <header id="home">
-        <div class="intro-text fade-in-section">
-            <h1>Dimitar Ristevski</h1>
-            <h5 class="fade-in-section">
-<span> Digital Marketer </span> | IT Support Specialist
-            </h5>
-            <div class="icons-social fade-in-section">
-                <a class="links-deco" href="https://www.linkedin.com/in/dimitar-ri/" target="_blank"
-                    rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="devicon-linkedin-plain"></i></a>
-                <a class="links-deco" href="https://github.com/dimidimi00" target="_blank" rel="noopener noreferrer"
-                    aria-label="GitHub Profile"><i class="devicon-github-original"></i></a>
-                <a class="links-deco" href="https://twitter.com/dimidimi00" target="_blank" rel="noopener noreferrer"
-                    aria-label="Twitter Profile"><i class="devicon-twitter-original"></i></a>
+    <header>
+        <div class="container hero-content">
+            <h1>DIMITAR<br><span style="color:var(--accent-red)">RISTEVSKI</span></h1>
+            <p>DIGITAL MARKETER | IT SPECIALIST</p>
+            
+            <div class="button-group">
+                <a href="#about" class="btn">Profile</a>
+                <a href="#ai-work" class="btn">AI Lab</a>
+                <a href="#gallery" class="btn">Work</a>
             </div>
-        </div>
-        <div class="scroll-arrow-container">
-            <a href="#journey" class="scroll-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                </svg>
-            </a>
         </div>
     </header>
 
-    <main>
-        <section id="journey" class="full-bleed-accent">
-            <div class="journey-container fade-in-section">
-                <h2>About me</h2>
-                <p>
-                    Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance to deliver seamless digital experiences. Proven ability to troubleshoot hardware and software, streamline workflows, and manage key platforms like Brevo and Contentful.
-                </p>
-            </div>
-        </section>
-<div class="post-journey">
-        <div class="skills-wrapper">
-            <div class="container">
-                <section class="skills fade-in-section">
-                    <h3>🧰 Applications | Languages | Tools</h3>
-                    <div class="icons">
-                        <img alt="After Effects" src="https://img.icons8.com/color/96/000000/adobe-after-effects.png" />
-                        <img alt="Premiere Pro" src="https://img.icons8.com/color/96/000000/adobe-premiere-pro.png" />
-                        <img alt="Photoshop" src="https://img.icons8.com/color/96/000000/adobe-photoshop.png" />
-                        <img alt="Illustrator" src="https://img.icons8.com/color/96/000000/adobe-illustrator.png" />
-                        <img alt="HTML5" src="https://img.icons8.com/color/96/000000/html-5.png" />
-                        <img alt="CSS3" src="https://img.icons8.com/color/96/000000/css3.png" />
-                        <img alt="JavaScript" src="https://img.icons8.com/color/96/000000/javascript.png" />
-                    </div>
-                </section>
-            </div>
-        </div>
-<section class="highlights-section fade-in-section">
-  <h2>Highlights</h2>
-  <div class="highlights-container">
-    
-        <!-- HIGHLIGHT CARD 1 -->
-    <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="highlight-card">
-            <div class="highlight-placeholder">
-        <video autoplay muted loop playsinline src="images/bvid.mp4">
-      </video>
-      </div>
-
-      <div class="project-info">
-        <div class="project-title">Brainster+ Main Flagship Ad</div>
-        <p class="project-desc">
-          Key animation used as a promotional video for a major hybridization campaign by Brainster, driving significant engagement.
-        </p>
-      </div>
-    </a>
-
-    <!-- HIGHLIGHT CARD 2 -->
-    <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" class="highlight-card">
-      
-      <div class="highlight-placeholder">
-        <video autoplay muted loop playsinline src="images/portfoliovid.mp4">
-      </video>
-      </div>
-      
-      <div class="project-info">
-        <div class="project-title">2023 Showreel</div>
-        <p class="project-desc">
-          A dynamic showcase of my best work from 2023, featuring motion graphics, video editing, and animation projects for various clients.
-        </p>
-      </div>
-    </a>
-
-
-
-  </div>
-</section>
-        <section class="more-work-section fade-in-section">
-            <div class="container">
-                <h2>More of My Work</h2>
-                <div class="tabs-container">
-
-                    <button class="tab-header">Projects & Events</button>
-                    <div class="tab-content">
-                        <div class="tab-content-inner">
-                            <div class="projects-grid">
-                                <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/uslugigovmk.png" alt="Uslugi.gov.mk Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Rebranding of Uslugi.gov.mk</div>
-                                        <p class="project-name">Uslugi.gov.mk</p>
-                                        <p class="project-desc">Animation used as a promo video for an offline event and
-                                            as a TV Ad.</p>
-                                    </div>
-                                </a>
-<!--                                 <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/tKv0Y_P9Ivg/maxresdefault.jpg"
-                                        alt="Brainster+ Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Brainster+ Main Flagship Ad</div>
-                                        <p class="project-name">Brainster+</p>
-                                        <p class="project-desc">Animation used as a promo video for a hybridization
-                                            campaign by Brainster.</p>
-                                    </div> -->
-                                </a>
-                                <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/FKvMNd88GSQ/maxresdefault.jpg"
-                                        alt="ALLWEB.MK Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">ALLWEB.MK</div>
-                                        <p class="project-name">Allweb X Aftermovie</p>
-                                        <p class="project-desc">Director of the post-production & creator of the event's
-                                            on-screen visuals.</p>
-                                    </div>
-                                </a>
-                                <a href="https://youtu.be/QNsONcdGqq8" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/QNsONcdGqq8/maxresdefault.jpg"
-                                        alt="Literatura.mk Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Literatura.mk</div>
-                                        <p class="project-name">Recap 2022</p>
-                                        <p class="project-desc">Animation used as a recap of 2022, exhibited for a
-                                            Christmas event.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=940102877023051" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/scivi.jpg" alt="SciVi Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">SciVi - Science Videos</div>
-                                        <p class="project-name">New Platform Promo</p>
-                                        <p class="project-desc">Animation used as a promotional video for an educational
-                                            platform.</p>
-                                    </div>
-                                </a>
-                                <a href="https://youtu.be/AmOpF0eS-OA" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/AmOpF0eS-OA/maxresdefault.jpg"
-                                        alt="Literatura.mk Bookstores Project">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Literatura.mk - Bookstore and more</div>
-                                        <p class="project-name">New Bookstores Promo</p>
-                                        <p class="project-desc">Animation used as a promo video for a campaign for newly
-                                            opened bookstores.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=603657754393309" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/undp1.jpg" alt="UNDP MK Project 1">
-                                    <div class="card-project-body">
-                                        <div class="project-title">UNDP MK - Animation</div>
-                                        <p class="project-name">New Platform Promo</p>
-                                        <p class="project-desc">2D Animation made from scratch for events and social
-                                            media for UNDP MK.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=4674385525973608" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/undp2.jpg" alt="UNDP MK Project 2">
-                                    <div class="card-project-body">
-                                        <div class="project-title">UNDP MK - Animation</div>
-                                        <p class="project-name">New control system</p>
-                                        <p class="project-desc">Another 2D Animation made from scratch for events and
-                                            social media for UNDP MK.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=1001611937126307" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/undp3.jpg" alt="UNDP MK Project 3">
-                                    <div class="card-project-body">
-                                        <div class="project-title">UNDP MK - Animation</div>
-                                        <p class="project-name">New control app</p>
-                                        <p class="project-desc">Third adaptation of the 2D Animation made for UNDP MK.
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="tab-header">Video Editing</button>
-                    <div class="tab-content">
-                        <div class="tab-content-inner">
-                            <div class="projects-grid">
-                                <a href="https://youtu.be/cg9ePsTWIO4" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/93clzL9Tw_E/maxresdefault.jpg"
-                                        alt="Sam Svoj Barmen">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Sam Svoj Barmen</div>
-                                        <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">YouTube series about making cocktails with products from
-                                            the Gemak store.</p>
-                                    </div>
-                                </a>
-                                <a href="https://youtu.be/RLWSNRApqs4" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/9IjjYciNyVo/maxresdefault.jpg" alt="#komkast">
-                                    <div class="card-project-body">
-                                        <div class="project-title">#komkast</div>
-                                        <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">Online audio and video podcast about digitalisation.
-                                            Worked on most episodes from 2020 to 2022.</p>
-                                    </div>
-                                </a>
-                                <a href="https://youtu.be/hhkg03lHxgY" target="_blank" rel="noopener noreferrer"
-                                    class="card-project">
-                                    <img src="https://img.youtube.com/vi/hhkg03lHxgY/maxresdefault.jpg" alt="Wellcast">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Wellcast with Josif</div>
-                                        <p class="project-name">Youtube Series</p>
-                                        <p class="project-desc">Online audio and video podcast about wellness. Worked on
-                                            the first 17 episodes.</p>
-                                    </div>
-                                </a>
-                                <a href="https://rumble.com/v1x2dow-e-commerce-cyber-threats-callback-phishing-campaigns-android-apps-infecting.html"
-                                    target="_blank" rel="noopener noreferrer" class="card-project">
-                                    <img src="https://user-images.githubusercontent.com/122376776/222989350-7a79afb3-3af3-4be3-9f2c-d7fe6f244390.jpg"
-                                        alt="Talk Nerdy To Me">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Talk Nerdy To Me</div>
-                                        <p class="project-name">Rumble Series</p>
-                                        <p class="project-desc">Editing and motion graphics since late 2022.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=561745414710979" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/decal.jpg" alt="Decal.mk">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Decal.mk</div>
-                                        <p class="project-name">B-Roll Promo Video</p>
-                                        <p class="project-desc">Promotional videos for Decal.mk.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=752601065161733" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/svc.jpg" alt="SVC">
-                                    <div class="card-project-body">
-                                        <div class="project-title">SVC</div>
-                                        <p class="project-name">Event Aftermovie</p>
-                                        <p class="project-desc">Aftermovie for the Skopje Vinyl Festival.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.instagram.com/p/CcLnC7PoCMy" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/brummel1.jpg" alt="Brummel Reels">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Brummel Reels</div>
-                                        <p class="project-name">Instagram BRoll Reels</p>
-                                        <p class="project-desc">Promotional reel for the new Brummel Jacket.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.facebook.com/watch/?v=775920689832625" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="images/undp4.jpg" alt="UNDP MK Video">
-                                    <div class="card-project-body">
-                                        <div class="project-title">UNDP MK</div>
-                                        <p class="project-name">Pre-recorded live video</p>
-                                        <p class="project-desc">Editing an online pre-recorded event during the pandemic
-                                            for UNDP MK.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.youtube.com/watch?v=xuJZBZtHrOo" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg"
-                                        alt="Viva Sokovi">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Viva Sokovi</div>
-                                        <p class="project-name">IGTV Series</p>
-                                        <p class="project-desc">Editing and motion graphics for the first ever
-                                            Macedonian IGTV series.</p>
-                                    </div>
-                                </a>
-                                <a href="https://www.youtube.com/watch?v=f7dlK31t4Tw" target="_blank"
-                                    rel="noopener noreferrer" class="card-project">
-                                    <img src="https://img.youtube.com/vi/f7dlK31t4Tw/hqdefault.jpg"
-                                        alt="Analitika s Petkom">
-                                    <div class="card-project-body">
-                                        <div class="project-title">Analitika s Petkom</div>
-                                        <p class="project-name">Online YouTube Course</p>
-                                        <p class="project-desc">Simple edits for a course about Google Analytics.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="tab-header">Social Media Content</button>
-                    <div class="tab-content">
-                        <div class="tab-content-inner projects-grid">
-
-                            <a href="https://www.instagram.com/fibulatravelmk/reel/DKeMobzIBD1/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/fblstrg.png" alt="Fibula Struga Location">
-                                <div class="card-project-body">
-                                    <div class="project-title">Fibula Struga - New Location Animation</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">New Location Animation Tracking for the new office in Struga</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/fibulatravelmk/reel/DIlCmhuxu6a/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/fibws.png" alt="Fibula WS25 Teaser">
-                                <div class="card-project-body">
-                                    <div class="project-title">Fibula Workshop Early Aftermovie Teaser </div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Teaser for the Fibula Workshop 25</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/fibulatravelmk/reel/DIwJGrovdEX/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/fiblol.png" alt="Fibula Land of Legends">
-                                <div class="card-project-body">
-                                    <div class="project-title">The more you know: Land of Legends</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">One of many informational ads for Fibula Travel Macedonia
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/fibulatravelmk/reel/DI3tZuTvA-A/
-                       " target="_blank" rel="noopener noreferrer" class="card-project">
-                                <img src="images/fibnp.png" alt="Fibula EarlyBooking">
-                                <div class="card-project-body">
-                                    <div class="project-title">Early Booking ad for Fibula</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Early booking prices on all Fibula arrangements</p>
-                                </div>
-                            </a>
-
-                            <a href="https://www.instagram.com/brainsterco/reel/C2uunjwN9cL/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bux.png" alt="Brainster+ Animation">
-                                <div class="card-project-body">
-                                    <div class="project-title">What + do you get with Brainster+ Animation </div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">One of many animated ads for Brainster+ Instagram ReelsS</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C04TzF4ubzk/
-                           " target="_blank" rel="noopener noreferrer" class="card-project">
-                                <img src="images/bmini.png" alt="Brainster+ Flagship Short">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster+ Flagship Ad Short </div>
-                                    <p class="project-name">Instagram Short</p>
-                                    <p class="project-desc">Instagram Short cut from the flagship ad</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C31_MgpMdVg/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bbilt.png" alt="Brainster Bilten">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster ‘Bilten’ Monthly video</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of monthly videos for Brainster monthly updates</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/reel/C9UZrUQsUjp/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bjf.png" alt="Brainster Jobfair Video">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster JobFair Event Shorts No.1</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster, while they look for internship at their JobFair Event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/reel/C8T-0MvsU4S/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bsbp.png" alt="Brainster Jobfair Video">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster JobFair Event Shorts No.2</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster, while they look for internship at their JobFair Event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C8l5Lg7M6Yz/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bfl.png" alt="Brainster Jobfair Video">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster JobFair Event Shorts No.3</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster, while they look for internship at their JobFair Event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/DBv8Djts92l/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bjf4.png" alt="Brainster Jobfair Video">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster JobFair Event Shorts No.4</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster, while they look for internship at their JobFair Event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsternext/reel/C_C9l_2scqc/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bnpr.png" alt="Brainster Meet the students">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster Meet the Students No.1</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsternext/reel/C_LQU0zMvpH/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bnan.png" alt="Brainster Meet the students">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster Meet the Students No.1</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Series of multiple videos following around students at
-                                        Brainster</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C5YnrEPsAcm/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/blab.png" alt="Brainster Event Aftermovie">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster Aftermovie Short</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Short Aftermovie for a Brainster event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C6L9w3Usep-/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bsnp.png" alt="Brainster Teaser">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster Teaser Short</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Short video teaser for a Brainster event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/brainsterco/reel/C8CEsW1MnVe/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="images/bjf9.png" alt="Brainster Jobfair Aftermovie Short">
-                                <div class="card-project-body">
-                                    <div class="project-title">Brainster JobFair Aftermovie Short</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">Short video aftermovie for the JobFair Brainster event</p>
-                                </div>
-                            </a>
-                            <a href="https://www.instagram.com/reel/CR650ZcqhqR/" target="_blank"
-                                rel="noopener noreferrer" class="card-project">
-                                <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg"
-                                    alt="Viva Sokovi IGTV Series">
-                                <div class="card-project-body">
-                                    <div class="project-title">Viva Sokovi IGTV Series</div>
-                                    <p class="project-name">Instagram Reels</p>
-                                    <p class="project-desc">One of many episodes for the first macedonian IGTV Series
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <button class="tab-header">Showreels</button>
-                    <div class="tab-content">
-                        <div class="tab-content-inner">
-                            <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank"
-                                rel="noopener noreferrer" class="showreel-card">
-                                <img src="https://i.ytimg.com/vi/yUJAUBe0hZQ/maxresdefault.jpg"
-                                    alt="2023 Showreel Thumbnail">
-                                <div class="showreel-title">
-                                    <h3>2023 Showreel</h3>
-                                    <p>Clicking on the image will redirect you to the source.</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">PROFILE</h2>
+            <p class="profile-text">
+                Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance.
+            </p>
+            
+            <h2 class="section-title" style="margin-top: 80px;">TECH STACK</h2>
+            <div class="tech-icon-grid">
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/adobe-after-effects--v1.png" alt="AE">
+                    <p>AfterEffects</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/adobe-premiere-pro--v1.png" alt="PR">
+                    <p>Premiere</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" alt="PS">
+                    <p>Photoshop</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/adobe-illustrator--v1.png" alt="AI">
+                    <p>Illustrator</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/html-5--v1.png" alt="HTML">
+                    <p>HTML5</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/css3.png" alt="CSS">
+                    <p>CSS3</p>
+                </div>
+                <div class="tech-card">
+                    <img src="https://img.icons8.com/color/96/javascript--v1.png" alt="JS">
+                    <p>JavaScript</p>
+                </div>
+                <div class="tech-card">
+                    <img src="images/contentful.png" onerror="this.src='https://img.icons8.com/fluency/96/content.png'" alt="Contentful">
+                    <p>Contentful</p>
+                </div>
+                <div class="tech-card">
+                    <img src="images/brevo.png" onerror="this.src='https://img.icons8.com/fluency/96/mail.png'" alt="Brevo">
+                    <p>Brevo</p>
                 </div>
             </div>
-        </section>
         </div>
-    </main>
+    </section>
 
-    <footer>
-        <h2>Thank you for visiting! ツ</h2>
+    <section id="ai-work" class="section">
+        <div class="container">
+            <h2 class="section-title">AI @ WORK</h2>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    </div>
+                
+                <div class="carousel-controls">
+                    <div class="c-arrow" onclick="moveCarousel(-1)">&#8592;</div>
+                    <div class="c-arrow" onclick="moveCarousel(1)">&#8594;</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Highlights</h2>
+            <div class="highlights-grid">
+                <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="highlight-card">
+                    <div class="video-wrapper">
+                        <video autoplay muted loop playsinline src="images/bvid.mp4"></video>
+                    </div>
+                    <div class="highlight-info">
+                        <span class="tag">Animation / Promo</span>
+                        <h3>Brainster+ Flagship Ad</h3>
+                        <p class="desc-text">Key animation used as a promotional video for a major hybridization campaign by Brainster, driving significant engagement.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" class="highlight-card">
+                    <div class="video-wrapper">
+                        <video autoplay muted loop playsinline src="images/portfoliovid.mp4"></video>
+                    </div>
+                    <div class="highlight-info">
+                        <span class="tag">Showreel</span>
+                        <h3>2023 Showreel</h3>
+                        <p class="desc-text">A dynamic showcase of my best work from 2023, featuring motion graphics, video editing, and animation projects.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterGallery('project')">Projects</button>
+                <button class="filter-btn" onclick="filterGallery('editing')">Video Editing</button>
+                <button class="filter-btn" onclick="filterGallery('social')">Social Media</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-container">
+                <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="images/uslugigovmk.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Uslugi'" alt="Work"></div>
+                    <div class="g-info"><h4>Uslugi.gov.mk</h4><span>Rebranding</span></div>
+                </a>
+                <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/FKvMNd88GSQ/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>ALLWEB.MK</h4><span>Event Visuals</span></div>
+                </a>
+                <a href="https://youtu.be/QNsONcdGqq8" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/QNsONcdGqq8/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Literatura.mk Recap</h4><span>Animation</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=940102877023051" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="images/scivi.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=SciVi'" alt="Work"></div>
+                    <div class="g-info"><h4>SciVi Platform</h4><span>Promo</span></div>
+                </a>
+                <a href="https://youtu.be/AmOpF0eS-OA" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/AmOpF0eS-OA/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Literatura Stores</h4><span>Promo</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=603657754393309" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="images/undp1.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=UNDP'" alt="Work"></div>
+                    <div class="g-info"><h4>UNDP MK</h4><span>2D Animation</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=4674385525973608" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="images/undp2.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=UNDP'" alt="Work"></div>
+                    <div class="g-info"><h4>UNDP MK - New Systems</h4><span>2D Animation</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=1001611937126307" target="_blank" class="g-item project">
+                    <div class="g-thumb"><img src="images/undp3.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=UNDP'" alt="Work"></div>
+                    <div class="g-info"><h4>UNDP MK - Control App</h4><span>2D Animation</span></div>
+                </a>
+
+                <a href="https://youtu.be/cg9ePsTWIO4" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/93clzL9Tw_E/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Sam Svoj Barmen</h4><span>Youtube Series</span></div>
+                </a>
+                <a href="https://youtu.be/RLWSNRApqs4" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/9IjjYciNyVo/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>#komkast</h4><span>Podcast Editing</span></div>
+                </a>
+                <a href="https://youtu.be/hhkg03lHxgY" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/hhkg03lHxgY/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Wellcast</h4><span>Podcast Editing</span></div>
+                </a>
+                <a href="https://rumble.com/v1x2dow-e-commerce-cyber-threats-callback-phishing-campaigns-android-apps-infecting.html" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://user-images.githubusercontent.com/122376776/222989350-7a79afb3-3af3-4be3-9f2c-d7fe6f244390.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Talk Nerdy To Me</h4><span>Rumble Series</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=561745414710979" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="images/decal.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Decal'" alt="Work"></div>
+                    <div class="g-info"><h4>Decal.mk</h4><span>B-Roll</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=752601065161733" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="images/svc.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=SVC'" alt="Work"></div>
+                    <div class="g-info"><h4>SVC</h4><span>Aftermovie</span></div>
+                </a>
+                <a href="https://www.instagram.com/p/CcLnC7PoCMy" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="images/brummel1.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brummel'" alt="Work"></div>
+                    <div class="g-info"><h4>Brummel Reels</h4><span>Promo</span></div>
+                </a>
+                <a href="https://www.facebook.com/watch/?v=775920689832625" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="images/undp4.jpg" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=UNDP'" alt="Work"></div>
+                    <div class="g-info"><h4>UNDP Live</h4><span>Pre-recorded</span></div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=xuJZBZtHrOo" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Viva Sokovi</h4><span>IGTV Series</span></div>
+                </a>
+                 <a href="https://www.youtube.com/watch?v=f7dlK31t4Tw" target="_blank" class="g-item editing hidden-item">
+                    <div class="g-thumb"><img src="https://img.youtube.com/vi/f7dlK31t4Tw/hqdefault.jpg" alt="Work"></div>
+                    <div class="g-info"><h4>Analitika s Petkom</h4><span>Online Course</span></div>
+                </a>
+
+                <a href="https://www.instagram.com/fibulatravelmk/reel/DKeMobzIBD1/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/fblstrg.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Fibula'" alt="Work"></div>
+                    <div class="g-info"><h4>Fibula Struga</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/fibulatravelmk/reel/DIlCmhuxu6a/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/fibws.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Fibula'" alt="Work"></div>
+                    <div class="g-info"><h4>Fibula Teaser</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/fibulatravelmk/reel/DIwJGrovdEX/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/fiblol.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Fibula'" alt="Work"></div>
+                    <div class="g-info"><h4>Land of Legends</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C2uunjwN9cL/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bux.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Brainster+ Ani</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C04TzF4ubzk/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bmini.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Brainster Flagship</h4><span>Short</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C31_MgpMdVg/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bbilt.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Brainster Bilten</h4><span>Monthly</span></div>
+                </a>
+                <a href="https://www.instagram.com/reel/C9UZrUQsUjp/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bjf.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=JobFair'" alt="Work"></div>
+                    <div class="g-info"><h4>JobFair Shorts</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsternext/reel/C_C9l_2scqc/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bnpr.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Meet Students</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C5YnrEPsAcm/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/blab.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Event Aftermovie</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/fibulatravelmk/reel/DI3tZuTvA-A/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/fibnp.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Fibula'" alt="Work"></div>
+                    <div class="g-info"><h4>Early Booking</h4><span>Reel</span></div>
+                </a>
+                 <a href="https://www.instagram.com/reel/CR650ZcqhqR/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/xuJZBZtHrOo.jpg" onerror="this.src='https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg'" alt="Work"></div>
+                    <div class="g-info"><h4>Viva Sokovi IGTV</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C8T-0MvsU4S/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bsbp.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=JobFair'" alt="Work"></div>
+                    <div class="g-info"><h4>JobFair Short 2</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/C8l5Lg7M6Yz/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bfl.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=JobFair'" alt="Work"></div>
+                    <div class="g-info"><h4>JobFair Short 3</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsterco/reel/DBv8Djts92l/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bjf4.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=JobFair'" alt="Work"></div>
+                    <div class="g-info"><h4>JobFair Short 4</h4><span>Reel</span></div>
+                </a>
+                <a href="https://www.instagram.com/brainsternext/reel/C_LQU0zMvpH/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bnan.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Meet Students 2</h4><span>Reel</span></div>
+                </a>
+                 <a href="https://www.instagram.com/brainsterco/reel/C6L9w3Usep-/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bsnp.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Brainster'" alt="Work"></div>
+                    <div class="g-info"><h4>Teaser Short</h4><span>Reel</span></div>
+                </a>
+                 <a href="https://www.instagram.com/brainsterco/reel/C8CEsW1MnVe/" target="_blank" class="g-item social hidden-item">
+                    <div class="g-thumb"><img src="images/bjf9.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=JobFair'" alt="Work"></div>
+                    <div class="g-info"><h4>Aftermovie Short</h4><span>Reel</span></div>
+                </a>
+            </div>
+
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="load-more-btn">Load More Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #111; color: #555;">
+        <p>&copy; 2024 Dimitar Ristevski</p>
     </footer>
 
+    <div id="aiModal" class="modal">
+        <div class="modal-content-wrapper">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-arrow modal-prev" onclick="changeModalSlide(-1)">&#10094;</div>
+            <img id="modalImg" class="modal-img" src="" alt="Full view">
+            <div class="modal-arrow modal-next" onclick="changeModalSlide(1)">&#10095;</div>
+        </div>
+    </div>
+
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tabHeaders = document.querySelectorAll('.tab-header');
+        const aiImages = [
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/001.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/002.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/003.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/004.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/005.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/006.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/007.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/008.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/009.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/010.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/011.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/012.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/013.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/014.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/015.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/016.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/017.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/018.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/019.jpg',
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/020.jpg'
+        ];
 
-        tabHeaders.forEach(header => {
-            header.addEventListener('click', function () {
-                const clickedHeader = this;
-                const content = this.nextElementSibling;
-                const isAlreadyActive = this.classList.contains('active');
+        let carouselIndex = 0;
+        let autoScrollTimer;
+        let pauseTimer;
+        const track = document.getElementById('carouselTrack');
 
-                tabHeaders.forEach(otherHeader => {
-                    if (otherHeader !== clickedHeader) {
-                        otherHeader.classList.remove('active');
-                        otherHeader.nextElementSibling.style.maxHeight = null;
+        function initCarousel() {
+            track.innerHTML = '';
+            aiImages.forEach((src, i) => {
+                const div = document.createElement('div');
+                div.className = 'carousel-item c-hidden'; 
+                div.innerHTML = `
+                    <img src="${src}" alt="AI ${i+1}" loading="lazy">
+                `;
+                div.onclick = () => handleItemClick(i);
+                track.appendChild(div);
+            });
+            updateCarousel();
+            startAutoScroll();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('.carousel-item');
+            const total = items.length;
+
+            items.forEach(item => item.className = 'carousel-item c-hidden');
+
+            const active = carouselIndex;
+            const next1 = (carouselIndex + 1) % total;
+            const next2 = (carouselIndex + 2) % total;
+            const next3 = (carouselIndex + 3) % total;
+            const prev = (carouselIndex - 1 + total) % total;
+
+            if(items[active]) items[active].className = 'carousel-item c-active';
+            if(items[next1]) items[next1].className = 'carousel-item c-next-1';
+            if(items[next2]) items[next2].className = 'carousel-item c-next-2';
+            if(items[next3]) items[next3].className = 'carousel-item c-next-3';
+            if(items[prev]) items[prev].className = 'carousel-item c-prev';
+        }
+
+        function moveCarousel(dir) {
+            if (dir === 1) {
+                carouselIndex = (carouselIndex + 1) % aiImages.length;
+            } else {
+                carouselIndex = (carouselIndex - 1 + aiImages.length) % aiImages.length;
+            }
+            updateCarousel();
+            pauseAutoScroll();
+        }
+
+        function handleItemClick(index) {
+            carouselIndex = index;
+            updateCarousel();
+            
+            openModal(index);
+            pauseAutoScroll();
+        }
+
+        function startAutoScroll() {
+            stopAutoScroll();
+            autoScrollTimer = setInterval(() => {
+                moveCarousel(1);
+            }, 3000);
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
+        }
+
+        function pauseAutoScroll() {
+            stopAutoScroll();
+            if (pauseTimer) clearTimeout(pauseTimer);
+            pauseTimer = setTimeout(startAutoScroll, 10000);
+        }
+
+        const modal = document.getElementById('aiModal');
+        const modalImg = document.getElementById('modalImg');
+        let currentModalIndex = 0;
+
+        function openModal(index) {
+            currentModalIndex = index;
+            modal.style.display = "flex";
+            modalImg.src = aiImages[index]; 
+        }
+        
+        function changeModalSlide(direction) {
+            event.stopPropagation(); // Stop click from closing modal
+            currentModalIndex = (currentModalIndex + direction + aiImages.length) % aiImages.length;
+            modalImg.src = aiImages[currentModalIndex];
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(e) {
+            if (e.target == modal) closeModal();
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === "flex") {
+                if (e.key === "ArrowLeft") changeModalSlide(-1);
+                if (e.key === "ArrowRight") changeModalSlide(1);
+                if (e.key === "Escape") closeModal();
+            }
+        });
+
+        let currentFilter = 'project';
+
+        function filterGallery(category) {
+            currentFilter = category;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.g-item');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            let count = 0;
+
+            items.forEach(item => {
+                item.style.animation = 'none';
+                item.offsetHeight; 
+
+                if (item.classList.contains(category)) {
+                    if (count < 8) {
+                        item.classList.remove('hidden-item');
+                        item.style.display = 'block';
+                    } else {
+                        item.classList.add('hidden-item');
+                        item.style.display = 'none'; 
                     }
-                });
-
-
-                    if (!isAlreadyActive) {
-                    clickedHeader.classList.add('active');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-
-                    const onTransitionEnd = () => {
-                        clickedHeader.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-
-                        content.removeEventListener('transitionend', onTransitionEnd);
-                    };
-
-                    content.addEventListener('transitionend', onTransitionEnd);
-
+                    count++;
                 } else {
-                    clickedHeader.classList.remove('active');
-                    content.style.maxHeight = null;
+                    item.style.display = 'none';
                 }
             });
+
+            if (count > 8) {
+                loadMoreBtn.style.display = 'inline-block';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            const hiddenItems = document.querySelectorAll(`.g-item.${currentFilter}.hidden-item`);
+            let count = 0;
+            
+            hiddenItems.forEach(item => {
+                if(count < 8) {
+                    item.classList.remove('hidden-item');
+                    item.style.display = 'block';
+                    count++;
+                }
+            });
+
+            if(document.querySelectorAll(`.g-item.${currentFilter}.hidden-item`).length === 0) {
+                this.style.display = 'none';
+            }
         });
-    });
-</script>
 
+        initCarousel();
+        document.querySelector('.filter-btn.active').click();
+
+    </script>
 </body>
-
 </html>
-
-
