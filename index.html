@@ -73,6 +73,7 @@
         .hero-content p {
             color: var(--text-muted);
             font-size: 1.25rem;
+            margin-left: 5px;
             margin-bottom: 1.5rem;
             letter-spacing: 3px;
             font-family: 'Poppins', sans-serif;
@@ -406,10 +407,18 @@
         .g-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .g-item:hover .g-thumb img { transform: scale(1.05); }
         
-        .g-info { padding: 20px; }
-        .g-info h4 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; text-transform: none; }
-        .g-info span { font-size: 0.85rem; color: #777; font-weight: 400; }
-
+        .g-info { padding: 15px; }
+.g-info h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    font-weight: normal;}
+.g-info span {
+    color: #666;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    display: block;
+}
         .hidden-item { display: none !important; }
         
         /* --- LOAD MORE BUTTON --- */
@@ -601,76 +610,100 @@
 <body>
 
     <header>
-        <div class="container hero-content">
-            <h1>DIMITAR<br><span style="color:var(--accent-red)">RISTEVSKI</span></h1>
-            <p>DIGITAL MARKETER | IT SPECIALIST</p>
-            
-            <div class="button-group">
-                <a href="#about" class="btn">Profile</a>
-                <a href="#ai-work" class="btn">AI Lab</a>
-                <a href="#gallery" class="btn">Work</a>
-            </div>
+    <div class="container hero-content">
+        <h1 class="fade-up" style="animation-delay: 0.2s;">
+            DIMITAR<br>
+            <span style="color:var(--accent-red)">RISTEVSKI</span>
+        </h1>
+        
+        <p class="fade-up" style="animation-delay: 0.4s; font-size: 1.4rem; letter-spacing: 4px; color: #fff;">
+            TECHNICAL <span style="color:var(--accent-red)">SUPPORT </span>& OPERATIONS
+        </p>
+        
+        <div class="button-group fade-up" style="animation-delay: 0.6s;">
+            <a href="#about" class="btn">Profile</a>
+            <a href="#ai-work" class="btn">AI Lab</a>
+            <a href="#gallery" class="btn">Work</a>
         </div>
-    </header>
+    </div>
+    
+    <style>
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpAnim 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes fadeUpAnim {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</header>
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">PROFILE <span>     <a href="https://www.linkedin.com/in/dimitar-ri/" target="_blank" aria-label="LinkedIn">
-        <svg class="social-icon linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-    </a>
-
-    <a href="https://github.com/dimidimi00" target="_blank" aria-label="GitHub">
-        <svg class="social-icon github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-    </a></span></h2>
+            <h2 class="section-title">PROFILE</h2>
 
             <p class="profile-text">
-                Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance to deliver seamless digital experiences. Proven ability to troubleshoot hardware and software, streamline workflows, and manage key platforms like Contentful and Brevo. 
+                <span style="color:var(--accent-red)">Technical Support Specialist</span> with a background in digital marketing.
+
+After years of working on the <span style="font-style: italic;">creative </span> side of projects, I realized my true strength lies in the technical execution: fixing the logic, managing the data, and ensuring the system actually works. <br> <br>
+
+I am the person who supports the tools that designers and businesses rely on. I combine customer empathy (from my marketing days) with technical troubleshooting to solve problems faster than a pure technician would.<br> <br>
+
+<span style="color:var(--accent-red)">Focus: Application Support, Process Automation & System Reliability. </span>
             </p>
             
             <h2 class="section-title" style="margin-top: 80px;">TECH STACK</h2>
-            <div class="tech-icon-grid">
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/adobe-after-effects--v1.png" alt="AE">
-                    <p>AfterEffects</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/adobe-premiere-pro--v1.png" alt="PR">
-                    <p>Premiere</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" alt="PS">
-                    <p>Photoshop</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/adobe-illustrator--v1.png" alt="AI">
-                    <p>Illustrator</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/html-5--v1.png" alt="HTML">
-                    <p>HTML5</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/css3.png" alt="CSS">
-                    <p>CSS3</p>
-                </div>
-                <div class="tech-card">
-                    <img src="https://img.icons8.com/color/96/javascript--v1.png" alt="JS">
-                    <p>JavaScript</p>
-                </div>
-                <div class="tech-card">
-                    <img src="images/contentful.png" onerror="this.src='https://img.icons8.com/fluency/96/content.png'" alt="Contentful">
-                    <p>Contentful</p>
-                </div>
-                <div class="tech-card">
-                    <img src="images/brevo.png" onerror="this.src='https://img.icons8.com/fluency/96/mail.png'" alt="Brevo">
-                    <p>Brevo</p>
-                </div>
+            <div class="tech-stack-container" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+    
+    <div style="flex: 1; min-width: 300px;">
+        <h4 style="margin-bottom: 20px; color: var(--accent-red); text-align: center;">DEVELOPMENT</h4>
+        <div class="tech-icon-grid" style="justify-content: center;">
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/html-5--v1.png" alt="HTML">
+                <p>HTML5</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/css3.png" alt="CSS">
+                <p>CSS3</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/javascript--v1.png" alt="JS">
+                <p>JavaScript</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/git.png" alt="Git">
+                <p>Git</p>
+            </div>
+             <div class="tech-card">
+                <img src="images/contentful.png" onerror="this.src='https://img.icons8.com/fluency/96/content.png'" alt="Contentful">
+                <p>Contentful</p>
             </div>
         </div>
+    </div>
+
+    <div style="flex: 1; min-width: 300px;">
+        <h4 style="margin-bottom: 20px; color: var(--accent-red); text-align: center;">CREATIVE & DESIGN</h4>
+        <div class="tech-icon-grid" style="justify-content: center;">
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/adobe-after-effects--v1.png" alt="AE">
+                <p>After Effects</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/adobe-premiere-pro--v1.png" alt="PR">
+                <p>Premiere Pro</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" alt="PS">
+                <p>Photoshop</p>
+            </div>
+            <div class="tech-card">
+                <img src="https://img.icons8.com/color/96/adobe-illustrator--v1.png" alt="AI">
+                <p>Illustrator</p>
+            </div>
+        </div>
+    </div>
+</div>
     </section>
 
     <section id="ai-work" class="section">
@@ -719,13 +752,51 @@
 
     <section id="gallery" class="section">
         <div class="container">
-            <div class="filter-bar">
-                <button class="filter-btn active" onclick="filterGallery('project')">Projects</button>
-                <button class="filter-btn" onclick="filterGallery('editing')">Video Editing</button>
-                <button class="filter-btn" onclick="filterGallery('social')">Social Media</button>
-            </div>
+<div class="filter-bar">
+    <button class="filter-btn active" data-filter="dev">Scripting & Logic</button>
+    <button class="filter-btn" data-filter="project">Marketing</button>
+    <button class="filter-btn" data-filter="editing">Video Editing</button>
+    <button class="filter-btn" data-filter="social">Social Media</button>
+</div>
+
+
 
             <div class="gallery-grid" id="gallery-container">
+                <a href="projects/tip-calculator-eng/index.html" target="_blank" class="g-item dev">
+    <div class="g-thumb" style="background: #111; display: flex; align-items: center; justify-content: center; position: relative;">
+        <div style="font-family: monospace; color: var(--accent-red); font-size: 2rem; border: 2px solid #333; padding: 10px 20px; border-radius: 8px;">
+            789<br>456<br>123
+        </div>
+    </div>
+    <div class="g-info">
+        <h4>Tip Calculator</h4>
+        <span>Calculation Logic / Input Validation</span>
+    </div>
+</a>
+
+<a href="projects/shopping-cart/index.html" target="_blank" class="g-item dev">
+    <div class="g-thumb" style="background: #111; display: flex; align-items: center; justify-content: center;">
+         <div style="font-family: monospace; color: #fff; font-size: 3rem;">
+            🛒
+        </div>
+    </div>
+    <div class="g-info">
+        <h4>E-Com Cart</h4>
+        <span>State Persistence / Session Storage</span>
+    </div>
+</a>
+
+<a href="projects/music-player-app/index.html" target="_blank" class="g-item dev">
+    <div class="g-thumb" style="background: #111; display: flex; align-items: center; justify-content: center;">
+         <div style="font-family: monospace; color: var(--accent-red); font-size: 3rem;">
+            ▶ ılıılı
+        </div>
+    </div>
+    <div class="g-info">
+        <h4>Audio Player</h4>
+        <span>Media Control | DOM Events</span>
+    </div>
+</a>
                 <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank" class="g-item project">
                     <div class="g-thumb"><img src="images/uslugigovmk.png" onerror="this.src='https://via.placeholder.com/300x200/111/333?text=Uslugi'" alt="Work"></div>
                     <div class="g-info"><h4>Uslugi.gov.mk</h4><span>Rebranding</span></div>
@@ -877,7 +948,7 @@
     </section>
 
     <footer style="text-align: center; padding: 40px; border-top: 1px solid #111; color: #555;">
-        <p>&copy; 2024 Dimitar Ristevski</p>
+        <p>&copy; 2025 Dimitar Ristevski</p>
     </footer>
 
     <div id="aiModal" class="modal">
@@ -890,6 +961,8 @@
     </div>
 
     <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
         const aiImages = [
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/001.jpg',
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/002.jpg',
@@ -898,35 +971,25 @@
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/005.jpg',
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/006.jpg',
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/007.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/008.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/009.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/010.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/011.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/012.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/013.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/014.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/015.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/016.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/017.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/018.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/019.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/020.jpg'
+            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/008.jpg'
         ];
 
         let carouselIndex = 0;
         let autoScrollTimer;
-        let pauseTimer;
         const track = document.getElementById('carouselTrack');
-
+        
         function initCarousel() {
             track.innerHTML = '';
             aiImages.forEach((src, i) => {
                 const div = document.createElement('div');
                 div.className = 'carousel-item c-hidden'; 
-                div.innerHTML = `
-                    <img src="${src}" alt="AI ${i+1}" loading="lazy">
-                `;
-                div.onclick = () => handleItemClick(i);
+                div.innerHTML = `<img src="${src}" alt="AI ${i+1}" loading="lazy">`;
+                div.addEventListener('click', () => {
+                    carouselIndex = i;
+                    updateCarousel();
+                    openModal(i);
+                    resetAutoScroll();
+                });
                 track.appendChild(div);
             });
             updateCarousel();
@@ -936,6 +999,7 @@
         function updateCarousel() {
             const items = document.querySelectorAll('.carousel-item');
             const total = items.length;
+            if(total === 0) return;
 
             items.forEach(item => item.className = 'carousel-item c-hidden');
 
@@ -953,100 +1017,56 @@
         }
 
         function moveCarousel(dir) {
-            if (dir === 1) {
-                carouselIndex = (carouselIndex + 1) % aiImages.length;
-            } else {
-                carouselIndex = (carouselIndex - 1 + aiImages.length) % aiImages.length;
-            }
+            carouselIndex = (carouselIndex + dir + aiImages.length) % aiImages.length;
             updateCarousel();
-            pauseAutoScroll();
-        }
-
-        function handleItemClick(index) {
-            carouselIndex = index;
-            updateCarousel();
-            
-            openModal(index);
-            pauseAutoScroll();
+            resetAutoScroll();
         }
 
         function startAutoScroll() {
             stopAutoScroll();
-            autoScrollTimer = setInterval(() => {
-                moveCarousel(1);
-            }, 1500);
+            autoScrollTimer = setInterval(() => moveCarousel(1), 2500);
         }
 
         function stopAutoScroll() {
             if (autoScrollTimer) clearInterval(autoScrollTimer);
         }
 
-        function pauseAutoScroll() {
+        function resetAutoScroll() {
             stopAutoScroll();
-            if (pauseTimer) clearTimeout(pauseTimer);
-            pauseTimer = setTimeout(startAutoScroll, 1000);
+            setTimeout(startAutoScroll, 3000); // Pause for 3s after interaction
         }
 
-        const modal = document.getElementById('aiModal');
-        const modalImg = document.getElementById('modalImg');
-        let currentModalIndex = 0;
-
-        function openModal(index) {
-            currentModalIndex = index;
-            modal.style.display = "flex";
-            modalImg.src = aiImages[index]; 
-        }
-        
-        function changeModalSlide(direction) {
-            event.stopPropagation(); // Stop click from closing modal
-            currentModalIndex = (currentModalIndex + direction + aiImages.length) % aiImages.length;
-            modalImg.src = aiImages[currentModalIndex];
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-        
-        window.onclick = function(e) {
-            if (e.target == modal) closeModal();
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (modal.style.display === "flex") {
-                if (e.key === "ArrowLeft") changeModalSlide(-1);
-                if (e.key === "ArrowRight") changeModalSlide(1);
-                if (e.key === "Escape") closeModal();
-            }
+        document.querySelectorAll('.c-arrow').forEach((arrow, index) => {
+            arrow.addEventListener('click', () => moveCarousel(index === 0 ? -1 : 1));
         });
 
-        let currentFilter = 'project';
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        let currentFilter = 'dev'; 
 
         function filterGallery(category) {
             currentFilter = category;
             
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // Update Active Button
+            filterBtns.forEach(btn => {
+                if(btn.dataset.filter === category) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
 
             const items = document.querySelectorAll('.g-item');
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            
             let count = 0;
 
             items.forEach(item => {
-                item.style.animation = 'none';
-                item.offsetHeight; 
+                item.style.display = 'none'; // Reset all
+                item.classList.add('hidden-item');
 
                 if (item.classList.contains(category)) {
+                    // Show first 8 items of category
                     if (count < 8) {
                         item.classList.remove('hidden-item');
                         item.style.display = 'block';
-                    } else {
-                        item.classList.add('hidden-item');
-                        item.style.display = 'none'; 
                     }
                     count++;
-                } else {
-                    item.style.display = 'none';
                 }
             });
 
@@ -1057,26 +1077,64 @@
             }
         }
 
-        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => filterGallery(e.target.dataset.filter));
+        });
+
+        loadMoreBtn.addEventListener('click', () => {
             const hiddenItems = document.querySelectorAll(`.g-item.${currentFilter}.hidden-item`);
             let count = 0;
-            
             hiddenItems.forEach(item => {
-                if(count < 8) {
+                if(count < 4) { // Load 4 at a time
                     item.classList.remove('hidden-item');
                     item.style.display = 'block';
                     count++;
                 }
             });
-
             if(document.querySelectorAll(`.g-item.${currentFilter}.hidden-item`).length === 0) {
-                this.style.display = 'none';
+                loadMoreBtn.style.display = 'none';
+            }
+        });
+
+        const modal = document.getElementById('aiModal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.querySelector('.close-modal');
+        const modalPrev = document.querySelector('.modal-prev');
+        const modalNext = document.querySelector('.modal-next');
+        let currentModalIndex = 0;
+
+        function openModal(index) {
+            currentModalIndex = index;
+            modal.style.display = "flex";
+            modalImg.src = aiImages[index]; 
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function changeModalSlide(dir) {
+            currentModalIndex = (currentModalIndex + dir + aiImages.length) % aiImages.length;
+            modalImg.src = aiImages[currentModalIndex];
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', (e) => { e.stopPropagation(); changeModalSlide(-1); });
+        modalNext.addEventListener('click', (e) => { e.stopPropagation(); changeModalSlide(1); });
+        
+        window.onclick = (e) => { if (e.target == modal) closeModal(); };
+        
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === "flex") {
+                if (e.key === "ArrowLeft") changeModalSlide(-1);
+                if (e.key === "ArrowRight") changeModalSlide(1);
+                if (e.key === "Escape") closeModal();
             }
         });
 
         initCarousel();
-        document.querySelector('.filter-btn.active').click();
-
-    </script>
+        filterGallery('dev');
+    });
+</script>
 </body>
 </html>
