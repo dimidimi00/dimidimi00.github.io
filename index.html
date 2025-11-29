@@ -33,7 +33,7 @@
 
         h1, h2, h3, h4 {
             font-family: 'Poppins', sans-serif;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             font-weight: 800;
             letter-spacing: 1px;
             color: #fff;
@@ -628,7 +628,7 @@
     </a></span></h2>
 
             <p class="profile-text">
-                Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance.
+                Digital Marketer & IT Support Specialist with 6+ years of proven experience in technical operations, project management, and digital infrastructure management. Highly proficient in managing project pipelines and user-facing systems while leveraging a background in motion graphics, visual design, and brand compliance to deliver seamless digital experiences. Proven ability to troubleshoot hardware and software, streamline workflows, and manage key platforms like Contentful and Brevo. 
             </p>
             
             <h2 class="section-title" style="margin-top: 80px;">TECH STACK</h2>
@@ -675,8 +675,7 @@
 
     <section id="ai-work" class="section">
         <div class="container">
-            <h2 class="section-title">AI @ WORK</h2>
-            
+            <h2 class="section-title">AI @ WORK <div><p style="font-size: 1rem; padding-top: 1rem; font-weight: 400;">Mastering AI for Campaign Creation</p></div></h2>
             <div class="carousel-wrapper">
                 <div class="carousel-track" id="carouselTrack">
                     </div>
@@ -691,7 +690,7 @@
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Featured Highlights</h2>
+            <h2 class="section-title">FEATURED HIGHLIGHTS</h2>
             <div class="highlights-grid">
                 <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="highlight-card">
                     <div class="video-wrapper">
@@ -975,7 +974,7 @@
             stopAutoScroll();
             autoScrollTimer = setInterval(() => {
                 moveCarousel(1);
-            }, 3000);
+            }, 1500);
         }
 
         function stopAutoScroll() {
@@ -985,7 +984,7 @@
         function pauseAutoScroll() {
             stopAutoScroll();
             if (pauseTimer) clearTimeout(pauseTimer);
-            pauseTimer = setTimeout(startAutoScroll, 10000);
+            pauseTimer = setTimeout(startAutoScroll, 1000);
         }
 
         const modal = document.getElementById('aiModal');
