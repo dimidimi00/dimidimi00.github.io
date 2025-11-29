@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Quick Tip</title>
+</head>
+
+<body>
+    <main id="container">
+        <h1>Quick Tip</h1>
+        <section>
+            <div class="bill">
+                <label for="yourBill">Your Bill</label>
+                <input type="number" placeholder="Euros" name="yourBill" id="yourBill">
+            </div>
+            <div>
+                <div class="space-between">
+                    <label for="tipInput">How much will you tip?</label>
+                    <span id="tipPercent">0%</span>
+                </div>
+                <input type="range" value="0" name="tipInput" id="tipInput">
+            </div>
+            <div class="space-between">
+                <span>Tip</span>
+                <span id="tipValue">0</span>
+            </div>
+            <hr>
+            <div class="space-between total">
+                <span>Total</span>
+                <span id="totalWithTip">0</span>
+            </div>
+        </section>
+        <section>
+            <div>
+                <div class="space-between">
+                    <label for="splitInput">Split</label>
+                    <span id="splitValue">1 person</span>
+                </div>
+                <input type="range" min="1" max="10" value="1" name="splitInput" id="splitInput">
+            </div>
+            <div class="space-between">
+                <span>Total - per person</span>
+                <span id="billEach"></span>
+            </div>
+            <div class="space-between">
+                <span>Tip - per person</span>
+                <span id="tipEach"></span>
+            </div>
+
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

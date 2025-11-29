@@ -1,0 +1,136 @@
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+body {
+    background: linear-gradient(220deg, #ffffff, #bebebe);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.player {
+    flex: 4;
+    padding: 2rem;
+    text-align: center;
+}
+
+img {
+    width: 10rem;
+}
+
+.container-controls {
+    display: flex;
+    border: 1px solid white;
+    background-image: linear-gradient(220deg, #43b4ff, #ff83d3);
+    border-radius: 1rem;
+    padding: 1.6rem;
+    max-width: 700px;
+    height: 480px;
+    max-height: 900px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.controlsWrapper>span {
+    cursor: pointer;
+    color: white;
+    font-size: 6rem;
+}
+
+.songsContainer {
+    flex: 6;
+    text-align: left;
+    padding: 0.5em 0 0.5em 1em;
+}
+
+h2 {
+    margin-bottom: 0px;
+
+}
+
+.songsContainer p {
+    letter-spacing: 2px;
+    font-size: 0.7em;
+    margin: 0 auto;
+}
+
+#currentSong {
+    overflow: hidden;
+}
+
+#songList {
+    overflow: hidden;
+    text-align: left;
+}
+
+li {
+    cursor: pointer;
+    padding: 1rem;
+    height: 1rem;
+}
+
+
+li:hover {
+    background-color: #818181;
+    border-radius: 1em;
+}
+
+#volumeSlider {
+    width: 50%;
+
+}
+
+progress {
+    width: 50%;
+    height: 3rem;
+}
+
+
+.pulse {
+    animation: pulse;
+    animation-duration: 0.4s;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        filter: blur(0px);
+    }
+
+    50% {
+        transform: scale(0.7);
+        filter: blur(10px);
+    }
+
+    to {
+        transform: scale(1);
+        filter: blur(0px);
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        font-size: 1.2rem;
+    }
+
+    .container-controls {
+        flex-direction: column;
+        height: 100svh;
+        /* border: none; */
+        border-radius: 1em;
+    }
+
+    .controlsrapper>span {
+        font-size: 4rem;
+    }
+}
