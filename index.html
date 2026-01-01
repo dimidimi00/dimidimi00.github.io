@@ -150,12 +150,22 @@
             position: relative; height: 100%; width: 100%;
             perspective: 1000px; transform-style: preserve-3d;
             display: flex; align-items: center; justify-content: center;
+            cursor: grab;
+    touch-action: pan-y;
         }
         
+        .carousel-container:active {
+    cursor: grabbing;
+}
         .carousel-card {
             position: absolute; 
-            width: 300px; height: 400px;
+            width: 280px; height: 380px;
             background: #000;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            will-change: transform, opacity; 
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
             border-radius: 20px; 
             border: 2px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -165,7 +175,8 @@
             display: block; 
         }
 
-        .carousel-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .carousel-card img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none;
+    -webkit-user-drag: none; }
 
         /* --- VIDEO HIGHLIGHTS --- */
         .video-grid {
@@ -693,9 +704,6 @@ h2 {
     <div class="footer-content">
         <div class="footer-section">
             <h3 style="font-size: 1rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Contact</h3>
-            <p style="margin-bottom: 5px;">
-                Open for Systems & Infrastructure opportunities.
-            </p>
             <p style="font-size: 1.1rem; font-weight: 500;">
                 Email: <a href="mailto:contact@dristevski.com" class="text-link">contact@dristevski.com</a>
             </p>
@@ -715,6 +723,7 @@ h2 {
 </footer>
 
     <script>
+        const carouselContainer = document.getElementById('carousel');
         const aiImages = [
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/001.jpg',
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/002.jpg',
@@ -738,72 +747,180 @@ h2 {
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/020.jpg'
         ];
 
-        const carouselContainer = document.getElementById('carousel');
-        let currentIndex = 0;
+let currentIndex = 0;
+    let autoSlideInterval;
+    
+    // Drag Variables
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+    let currentDragOffset = 0;
 
-        function initCarousel() {
-            carouselContainer.innerHTML = ''; 
-            aiImages.forEach((imgSrc, index) => {
-                const card = document.createElement('div');
-                card.className = 'carousel-card';
-                card.innerHTML = `
-                    <img src="${imgSrc}" alt="AI ${index + 1}">
-                `;
-                card.addEventListener('click', () => {
+    function initCarousel() {
+        carouselContainer.innerHTML = ''; 
+        aiImages.forEach((imgSrc, index) => {
+            const card = document.createElement('div');
+            card.className = 'carousel-card';
+            card.innerHTML = `<img src="${imgSrc}" alt="AI ${index + 1}" style="pointer-events: none;">`;
+            card.addEventListener('click', () => {
+                if(!isDragging) {
                     currentIndex = index;
                     renderCarousel();
-                });
-                carouselContainer.appendChild(card);
-            });
-            renderCarousel();
-        }
-
-        function renderCarousel() {
-            const cards = document.querySelectorAll('.carousel-card');
-            const total = cards.length;
-            
-            const isMobile = window.innerWidth < 768;
-            const spreadDistance = isMobile ? 120 : 260;
-
-            cards.forEach((card, i) => {
-                let offset = (i - currentIndex + total) % total;
-                if (offset > total / 2) offset -= total; 
-
-                if (offset === 0) {
-                    // Center
-                    card.style.transform = `translateX(0) scale(1) translateZ(0)`;
-                    card.style.zIndex = 20;
-                    card.style.opacity = 1;
-                    card.style.filter = 'brightness(1)';
-                    card.style.pointerEvents = 'auto';
-                } else if (Math.abs(offset) <= 2) { 
-                    const xTrans = offset * spreadDistance; 
-                    const zTrans = -Math.abs(offset) * 300; 
-                    const rotateY = offset * -25; 
-                    
-                    card.style.transform = `translateX(${xTrans}px) scale(0.85) translateZ(${zTrans}px) rotateY(${rotateY}deg)`;
-                    card.style.zIndex = 10 - Math.abs(offset);
-                    card.style.opacity = 1;
-                    card.style.filter = 'brightness(0.5)';
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    // Hidden
-                    card.style.transform = `translateX(0) scale(0.5) translateZ(-1000px)`;
-                    card.style.opacity = 0;
-                    card.style.pointerEvents = 'none';
+                    resetTimer();
                 }
             });
+            carouselContainer.appendChild(card);
+        });
+
+        addEvents();
+        renderCarousel();
+        startTimer();
+    }
+
+    function addEvents() {
+        // Touch Events
+        carouselContainer.addEventListener('touchstart', touchStart);
+        carouselContainer.addEventListener('touchend', touchEnd);
+        carouselContainer.addEventListener('touchmove', touchMove);
+
+        // Mouse Events
+        carouselContainer.addEventListener('mousedown', touchStart);
+        carouselContainer.addEventListener('mouseup', touchEnd);
+        carouselContainer.addEventListener('mouseleave', () => {
+            if (isDragging) touchEnd();
+        });
+        carouselContainer.addEventListener('mousemove', touchMove);
+    }
+
+    // --- DRAG LOGIC ---
+
+    function touchStart(index) {
+        isDragging = true;
+        clearInterval(autoSlideInterval);
+        startPos = getPositionX(index);
+        carouselContainer.style.cursor = 'grabbing';
+        animationID = requestAnimationFrame(animation);
+    }
+
+    function touchMove(event) {
+        if (isDragging) {
+            const currentPosition = getPositionX(event);
+            // Calculate how much we moved
+            currentDragOffset = currentPosition - startPos;
+        }
+    }
+
+   function touchEnd() {
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        carouselContainer.style.cursor = 'grab';
+
+        const isMobile = window.innerWidth < 768;
+        const spreadDistance = isMobile ? 135 : 260; 
+        const rawJump = -currentDragOffset / spreadDistance;
+        let slidesToJump = Math.round(rawJump);
+
+        if (slidesToJump === 0) {
+            const minDragDistance = 40;
+
+            if (currentDragOffset < -minDragDistance) {
+                slidesToJump = 1; 
+            } else if (currentDragOffset > minDragDistance) {
+                slidesToJump = -1;
+            }
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % aiImages.length;
-            renderCarousel();
+        if (slidesToJump !== 0) {
+            currentIndex = (currentIndex + slidesToJump) % aiImages.length;
+            
+            if (currentIndex < 0) {
+                currentIndex += aiImages.length;
+            }
         }
 
-        initCarousel();
-        setInterval(nextSlide, 3500);
-        window.addEventListener('resize', renderCarousel);
+        currentDragOffset = 0; 
+        renderCarousel(); 
+        startTimer(); 
+    }
 
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+
+    function animation() {
+        if(isDragging) {
+            renderCarousel(currentDragOffset);
+            requestAnimationFrame(animation);
+        }
+    }
+
+    function renderCarousel(dragPixelOffset = 0) {
+        const cards = document.querySelectorAll('.carousel-card');
+        const total = cards.length;
+        const isMobile = window.innerWidth < 768;
+        const spreadDistance = isMobile ? 135 : 260; // Distance between cards
+        const depthParam = isMobile ? 400 : 300;
+        const dragFactor = dragPixelOffset / spreadDistance;
+
+        cards.forEach((card, i) => {
+            let offset = (i - currentIndex + total) % total;
+            if (offset > total / 2) offset -= total;
+            
+            let visualOffset = offset + dragFactor;            
+            // 1. Translation X (Spread)
+            const xTrans = visualOffset * spreadDistance;
+            
+            // 2. Translation Z (Depth)
+            const zTrans = -Math.abs(visualOffset) * depthParam; 
+            
+            // 3. Rotation Y 
+            const rotateY = visualOffset * -25;
+            
+            // 4. Scale
+            const shrinkFactor = isMobile ? 0.2 : 0.15;
+const scale = 1 - Math.min(Math.abs(visualOffset) * shrinkFactor, 0.4);
+
+            // 5. Opacity
+            const opacity = Math.abs(visualOffset) > 2.5 ? 0 : 1;
+            
+            // 6. Brightness
+            const brightness = 1 - Math.min(Math.abs(visualOffset) * 0.5, 0.5);
+
+            // 7. Z-Index 
+            const zIndex = 1000 - Math.round(Math.abs(visualOffset) * 100);
+
+            card.style.transform = `translateX(${xTrans}px) scale(${scale}) translateZ(${zTrans}px) rotateY(${rotateY}deg)`;
+            card.style.zIndex = zIndex;
+            card.style.opacity = opacity;
+            card.style.filter = `brightness(${brightness})`;
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % aiImages.length;
+        renderCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + aiImages.length) % aiImages.length;
+        renderCarousel();
+    }
+
+    function startTimer() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, 3500);
+    }
+
+    function resetTimer() {
+        clearInterval(autoSlideInterval);
+        startTimer();
+    }
+
+    // Init
+    initCarousel();
+    window.addEventListener('resize', () => renderCarousel());
     </script>
 </body>
 </html>
