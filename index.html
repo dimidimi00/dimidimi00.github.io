@@ -193,10 +193,11 @@
 
         .video-card.full-width {
             grid-column: 1 / -1;
-            cursor: default; 
+            cursor: pointer; 
+
         }
         .video-card.full-width:hover {
-            transform: none; 
+            transform: scale(1.01);
             border-color: var(--glass-border);
         }
 
@@ -497,9 +498,8 @@
 </div>
 <div class="video-grid animate-up d-1">
 
-    <div class="video-card full-width">
-<a href="https://youtu.be/QgNXHDOZfy8" target="_blank" class="video-card">
-        <video autoplay loop muted playsinline poster="images/fibstar.mp4">
+<a href="https://youtu.be/QgNXHDOZfy8" target="_blank" class="video-card full-width">
+        <video autoplay loop muted playsinline>
             <source src="images/fibstar.mp4" type="video/mp4">
         </video>
         <div class="video-meta">
@@ -507,7 +507,6 @@
             <p>Complete animation for a B2B Event, from concept to completion. </p>
         </div>
     </a>
-    </div>
 
     <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="video-card">
         <video autoplay loop muted playsinline poster="images/bmini.png">
@@ -917,4 +916,5 @@ const scale = 1 - Math.min(Math.abs(visualOffset) * shrinkFactor, 0.4);
     </script>
 </body>
 </html>
+
 
