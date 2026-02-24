@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#030712">
     <meta property="og:image" content="images/thumbnail.png" />
 
-    
+
     <title>Dimitar Ristevski</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -14,14 +14,14 @@
             --bg-dark: #030712;
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
-            
+
             --neon-purple: #a855f7;
             --neon-blue: #3b82f6;
             --neon-pink: #ec4899;
-            
+
             --glass-bg: rgba(17, 24, 39, 0.7);
             --glass-border: rgba(255, 255, 255, 0.08);
-            
+
             --gradient-glow: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
         }
 
@@ -33,14 +33,13 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15), transparent 50%),
                 radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15), transparent 50%);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- PARTICLES --- */
         .particles {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
@@ -49,13 +48,11 @@
             mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
         }
 
-        /* --- LAYOUT --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .section-spacer { padding: 100px 0; }
 
-        /* --- TYPOGRAPHY --- */
-        h1 { 
-            font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -0.03em; 
+        h1 {
+            font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -0.03em;
             text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
         }
         h2 { font-size: 2.2rem; margin-bottom: 40px; font-weight: 700; display: flex; align-items: center; gap: 15px;}
@@ -71,7 +68,6 @@
         }
         @keyframes shimmer { to { background-position: 200% center; } }
 
-        /* --- NAV --- */
         nav {
             padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 100;
@@ -83,22 +79,20 @@
         .nav-links a { margin-left: 30px; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: 0.3s; font-weight: 500;}
         .nav-links a:hover { color: white; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
 
-        /* --- BUTTONS --- */
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-        .btn-primary { 
-            background: white; color: black; 
-            box-shadow: 0 0 25px rgba(255,255,255,0.2); 
+        .btn-primary {
+            background: white; color: black;
+            box-shadow: 0 0 25px rgba(255,255,255,0.2);
         }
         .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
         .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
-        /* --- GLOW CARDS --- */
-        .bento-grid { 
+        .bento-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%;
         }
-        
+
         .glow-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -112,7 +106,7 @@
 
         .glow-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 24px; padding: 2px; 
+            border-radius: 24px; padding: 2px;
             background: linear-gradient(45deg, transparent 50%, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.3));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
@@ -120,9 +114,9 @@
         }
         .glow-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5); }
         .glow-card:hover::before { opacity: 1; }
-        
+
         .icon-box {
-            font-size: 2rem; margin-bottom: 20px; 
+            font-size: 2rem; margin-bottom: 20px;
             background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
             width: 60px; height: 60px; border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
@@ -131,7 +125,7 @@
         }
 
         .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 20px; overflow: hidden; }
-        .progress-bar { 
+        .progress-bar {
             height: 100%; width: 35%; border-radius: 10px;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             box-shadow: 0 0 15px var(--neon-purple);
@@ -144,49 +138,47 @@
         }
         @keyframes shine-bar { 100% { transform: translateX(100%); } }
 
-        /* --- 3D CAROUSEL --- */
         .ai-section { margin-bottom: 80px; position: relative; height: 500px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
         .carousel-container {
             position: relative; height: 100%; width: 100%;
             perspective: 1000px; transform-style: preserve-3d;
             display: flex; align-items: center; justify-content: center;
             cursor: grab;
-    touch-action: pan-y;
+            touch-action: pan-y;
         }
-        
+
         .carousel-container:active {
-    cursor: grabbing;
-}
+            cursor: grabbing;
+        }
         .carousel-card {
-            position: absolute; 
+            position: absolute;
             width: 280px; height: 380px;
             background: #000;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            will-change: transform, opacity; 
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-            border-radius: 20px; 
+            will-change: transform, opacity;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            border-radius: 20px;
             border: 2px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             transition: all 0.5s ease-out;
             cursor: pointer;
             overflow: hidden;
-            display: block; 
+            display: block;
         }
 
         .carousel-card img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none;
-    -webkit-user-drag: none; }
+            -webkit-user-drag: none; }
 
-        /* --- VIDEO HIGHLIGHTS --- */
         .video-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px;
             margin-bottom: 60px;
         }
-        
+
         .video-card {
-            background: #000; 
-            border-radius: 20px; 
+            background: #000;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
             box-shadow: 0 0 30px rgba(0,0,0,0.3);
@@ -199,14 +191,35 @@
         .video-card video { width: 100%; height: 280px; object-fit: cover; background: #000; pointer-events: none; }
         .video-meta { padding: 25px; background: var(--glass-bg); backdrop-filter: blur(10px); }
 
-        /* --- ARCHIVE GRID --- */
+        .video-card.full-width {
+            grid-column: 1 / -1;
+            cursor: default; 
+        }
+        .video-card.full-width:hover {
+            transform: none; 
+            border-color: var(--glass-border);
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            max-height: 480px;
+            background: #000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .archive-header {
             margin-top: 80px; margin-bottom: 30px; border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px; 
-             justify-content: space-between; align-items: end;
+            padding-bottom: 15px;
+            justify-content: space-between; align-items: end;
         }
         .archive-title { font-size: 1.8rem; font-weight: 700; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-        
+
         .creative-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
 
         .mini-card {
@@ -216,7 +229,7 @@
         .mini-card:hover { border-color: var(--neon-purple); transform: translateY(-5px); z-index: 10; box-shadow: 0 10px 40px rgba(168, 85, 247, 0.2); }
         .mini-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .mini-card:hover img { opacity: 1; transform: scale(1.1); }
-        
+
         .mini-overlay {
             position: absolute; bottom: 0; left: 0; right: 0; padding: 15px;
             background: linear-gradient(to top, #000, transparent);
@@ -228,89 +241,81 @@
         .animate-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         .d-1 { animation-delay: 0.1s; } .d-2 { animation-delay: 0.2s; } .d-3 { animation-delay: 0.3s; }
-.footer-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--glass-border), transparent);
-    margin-bottom: 40px;
-}
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; 
-}
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--glass-border), transparent);
+            margin-bottom: 40px;
+        }
 
-.text-link {
-    color: var(--neon-blue);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--neon-blue); 
-    transition: 0.3s;
-}
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
 
-.text-link:hover {
-    color: #fff;
-    border-bottom: 1px solid #fff;
-}
+        .text-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--neon-blue);
+            transition: 0.3s;
+        }
 
-.social-links-text a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
+        .text-link:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
 
-.social-links-text a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
+        .social-links-text a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
 
-.separator {
-    margin: 0 10px;
-    color: rgba(255,255,255,0.2);
-}
-        /* --- MOBILE OPTIMIZATION --- */
+        .social-links-text a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .separator {
+            margin: 0 10px;
+            color: rgba(255,255,255,0.2);
+        }
+
         @media (max-width: 768px) {
-            
-            body {
-                margin: 0 25px ;
-            }
-            
-            /* 1. Global & Layout */
-            .container { padding: 10px 12px; } 
-            .section-spacer { padding: 40px 0; }
-            
-            /* 2. Navigation */
-            .nav-links { 
-                display: none;
-            
-                padding-top: 40px; 
-        padding-bottom: 25px;
-        flex-direction: column; 
-        gap: 15px;*/
-            }
-            nav {
 
-                justify-content: center; 
+            body { margin: 0 25px ; }
+
+            .container { padding: 10px 12px; }
+            .section-spacer { padding: 40px 0; }
+
+            .nav-links {
+                display: none;
+                padding-top: 40px;
+                padding-bottom: 25px;
+                flex-direction: column;
+                gap: 15px;
             }
-            .nav-links { 
-                width: 100%; 
-                justify-content: center; 
-                gap: 20px; 
+            nav { justify-content: center; }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
             }
             .nav-links a { margin-left: 0; font-size: 0.9rem; }
 
-            /* 3. Hero Alignment */
-            header { 
-                text-align: left; 
+            header {
+                text-align: left;
                 display: flex;
                 flex-direction: column;
                 padding-top: 40px;
             }
 
-            h1 { 
-                font-size: 2rem; 
-                margin-left: -2px; 
+            h1 {
+                font-size: 2rem;
+                margin-left: -2px;
             }
 
             header p {
@@ -319,86 +324,73 @@
                 text-align: left;
             }
 
-            /* 4. Buttons Stack */
-            .hero-buttons { 
-                flex-direction: column; 
-                width: 100%; 
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
                 align-items: flex-start;
-                gap: 16px; 
+                gap: 16px;
             }
             .btn { width: 100%; }
 
-            /* 5. Section Headers */
-            section h2 { 
-                flex-direction: column; 
+            section h2 {
+                flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
-                gap: 10px; 
+                gap: 10px;
             }
-            
-            /* 6. Grids */
+
             .bento-grid { grid-template-columns: 1fr; gap: 24px; }
             .video-grid { grid-template-columns: 1fr; gap: 30px; }
             .creative-grid {
-                grid-template-columns: repeat(2, 1fr); 
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
-            
-            /* 7. Components */
+
             .ai-section { height: 420px; }
             .carousel-card { width: 200px; height: 280px; }
             .video-card video { height: 210px; }
-            .mini-overlay { 
-                transform: translateY(0); 
+            .mini-overlay {
+                transform: translateY(0);
                 padding: 10px;
                 font-size: 0.75rem;
                 background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             }
-h2 {
-            font-size: 1.7rem;
-        }
-        .ai-section h3 {
-            font-size: 1rem !important;
-        }
-        
-        p {
-            font-size: 1rem !important;
-        }
-        
-        .archive-title { font-size: 1.4rem;}
+            h2 { font-size: 1.7rem; }
+            .ai-section h3 { font-size: 1rem !important; }
+            p { font-size: 1rem !important; }
+            .archive-title { font-size: 1.4rem;}
 
             #archive h2 {
-    align-items: center !important;
-    text-align: center !important;
-    justify-content: center !important;
-    width: 100%;
-}
+                align-items: center !important;
+                text-align: center !important;
+                justify-content: center !important;
+                width: 100%;
+            }
+
+            .video-card.full-width {
+                grid-column: auto;
+            }
         }
-        
 
-#archive > div:first-child {
-    text-align: center !important;
-}
+        #archive > div:first-child { text-align: center !important; }
 
-#archive .ai-section h3 {
-    text-align: center !important;
-}
+        #archive .ai-section h3 { text-align: center !important; }
+
         .footer-content {
-        flex-direction: column;
-        align-items: flex-start; 
-        gap: 30px;
-    }
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 30px;
+        }
 
-    .footer-section {
-        text-align: left !important; 
-        width: 100%;
-    }
-    
-    .text-link {
-        display: inline-block;
-        margin-top: 5px;
-        font-size: 1.2rem; 
-    }
+        .footer-section {
+            text-align: left !important;
+            width: 100%;
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -428,7 +420,7 @@ h2 {
             <p style="max-width: 650px; margin: 25px 0 35px;">
                 Versatile Technical Specialist with 7 years of experience managing high-stakes digital production pipelines. I have a proven track record in troubleshooting hardware/software, optimizing complex system workflows, and maintaining network reliability. By bridging the gap between system security and professional post-production, I ensure the entire digital lifecycle is efficient, secure, and impactful.
             </p>
-            
+
             <div class="hero-buttons">
                 <a href="#lab" class="btn btn-primary">Enter The Lab</a>
                 <a href="https://github.com/dimidimi00" target="_blank" class="btn btn-outline">GitHub Profile</a>
@@ -504,7 +496,19 @@ h2 {
     <div class="archive-title">🔥 Featured Highlights</div>
 </div>
 <div class="video-grid animate-up d-1">
-    
+
+    <div class="video-card full-width">
+<a href="https://youtu.be/QgNXHDOZfy8" target="_blank" class="video-card">
+        <video autoplay loop muted playsinline poster="images/bmini.png">
+            <source src="images/fibstar.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+            <h3>Fibula Workshop 2025</h3>
+            <p>Complete animation for a B2B Event, from concept to completion. </p>
+        </div>
+    </a>
+    </div>
+
     <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="video-card">
         <video autoplay loop muted playsinline poster="images/bmini.png">
             <source src="images/bvid.mp4" type="video/mp4">
@@ -526,6 +530,7 @@ h2 {
     </a>
 
 </div>
+
         <div class="archive-header">
             <div class="archive-title">💻 Web Logic</div>
             <div style="color:var(--neon-blue);">Self-Taught / Pre-AI</div>
@@ -700,7 +705,7 @@ h2 {
 
 <footer class="container section-spacer">
     <div class="footer-divider"></div>
-    
+
     <div class="footer-content">
         <div class="footer-section">
             <h3 style="font-size: 1rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Contact</h3>
@@ -747,10 +752,9 @@ h2 {
             'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/020.jpg'
         ];
 
-let currentIndex = 0;
+    let currentIndex = 0;
     let autoSlideInterval;
-    
-    // Drag Variables
+
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
@@ -759,7 +763,7 @@ let currentIndex = 0;
     let currentDragOffset = 0;
 
     function initCarousel() {
-        carouselContainer.innerHTML = ''; 
+        carouselContainer.innerHTML = '';
         aiImages.forEach((imgSrc, index) => {
             const card = document.createElement('div');
             card.className = 'carousel-card';
@@ -780,12 +784,10 @@ let currentIndex = 0;
     }
 
     function addEvents() {
-        // Touch Events
         carouselContainer.addEventListener('touchstart', touchStart);
         carouselContainer.addEventListener('touchend', touchEnd);
         carouselContainer.addEventListener('touchmove', touchMove);
 
-        // Mouse Events
         carouselContainer.addEventListener('mousedown', touchStart);
         carouselContainer.addEventListener('mouseup', touchEnd);
         carouselContainer.addEventListener('mouseleave', () => {
@@ -794,7 +796,6 @@ let currentIndex = 0;
         carouselContainer.addEventListener('mousemove', touchMove);
     }
 
-    // --- DRAG LOGIC ---
 
     function touchStart(index) {
         isDragging = true;
@@ -807,7 +808,6 @@ let currentIndex = 0;
     function touchMove(event) {
         if (isDragging) {
             const currentPosition = getPositionX(event);
-            // Calculate how much we moved
             currentDragOffset = currentPosition - startPos;
         }
     }
@@ -818,7 +818,7 @@ let currentIndex = 0;
         carouselContainer.style.cursor = 'grab';
 
         const isMobile = window.innerWidth < 768;
-        const spreadDistance = isMobile ? 135 : 260; 
+        const spreadDistance = isMobile ? 135 : 260;
         const rawJump = -currentDragOffset / spreadDistance;
         let slidesToJump = Math.round(rawJump);
 
@@ -826,7 +826,7 @@ let currentIndex = 0;
             const minDragDistance = 40;
 
             if (currentDragOffset < -minDragDistance) {
-                slidesToJump = 1; 
+                slidesToJump = 1;
             } else if (currentDragOffset > minDragDistance) {
                 slidesToJump = -1;
             }
@@ -834,15 +834,15 @@ let currentIndex = 0;
 
         if (slidesToJump !== 0) {
             currentIndex = (currentIndex + slidesToJump) % aiImages.length;
-            
+
             if (currentIndex < 0) {
                 currentIndex += aiImages.length;
             }
         }
 
-        currentDragOffset = 0; 
-        renderCarousel(); 
-        startTimer(); 
+        currentDragOffset = 0;
+        renderCarousel();
+        startTimer();
     }
 
     function getPositionX(event) {
@@ -867,28 +867,22 @@ let currentIndex = 0;
         cards.forEach((card, i) => {
             let offset = (i - currentIndex + total) % total;
             if (offset > total / 2) offset -= total;
-            
-            let visualOffset = offset + dragFactor;            
-            // 1. Translation X (Spread)
+
+            let visualOffset = offset + dragFactor;
             const xTrans = visualOffset * spreadDistance;
-            
-            // 2. Translation Z (Depth)
-            const zTrans = -Math.abs(visualOffset) * depthParam; 
-            
-            // 3. Rotation Y 
+
+            const zTrans = -Math.abs(visualOffset) * depthParam;
+
             const rotateY = visualOffset * -25;
-            
-            // 4. Scale
+
             const shrinkFactor = isMobile ? 0.2 : 0.15;
 const scale = 1 - Math.min(Math.abs(visualOffset) * shrinkFactor, 0.4);
 
-            // 5. Opacity
             const opacity = Math.abs(visualOffset) > 2.5 ? 0 : 1;
-            
-            // 6. Brightness
+
             const brightness = 1 - Math.min(Math.abs(visualOffset) * 0.5, 0.5);
 
-            // 7. Z-Index 
+
             const zIndex = 1000 - Math.round(Math.abs(visualOffset) * 100);
 
             card.style.transform = `translateX(${xTrans}px) scale(${scale}) translateZ(${zTrans}px) rotateY(${rotateY}deg)`;
@@ -918,13 +912,8 @@ const scale = 1 - Math.min(Math.abs(visualOffset) * shrinkFactor, 0.4);
         startTimer();
     }
 
-    // Init
     initCarousel();
     window.addEventListener('resize', () => renderCarousel());
     </script>
 </body>
 </html>
-
-
-
-
