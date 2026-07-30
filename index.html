@@ -1,920 +1,313 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#030712">
-    <meta property="og:image" content="images/thumbnail.png" />
-
-
-    <title>Dimitar Ristevski</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #030712;
-            --text-main: #ffffff;
-            --text-muted: #cbd5e1;
-
-            --neon-purple: #a855f7;
-            --neon-blue: #3b82f6;
-            --neon-pink: #ec4899;
-
-            --glass-bg: rgba(17, 24, 39, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-
-            --gradient-glow: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            background-image:
-                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15), transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15), transparent 50%);
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .particles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none; z-index: -1;
-            mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section-spacer { padding: 100px 0; }
-
-        h1 {
-            font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -0.03em;
-            text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
-        }
-        h2 { font-size: 2.2rem; margin-bottom: 40px; font-weight: 700; display: flex; align-items: center; gap: 15px;}
-        h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; font-weight: 600; }
-        p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; }
-
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shimmer 5s linear infinite;
-        }
-        @keyframes shimmer { to { background-position: 200% center; } }
-
-        nav {
-            padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
-            backdrop-filter: blur(20px); background: rgba(3, 7, 18, 0.8);
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .nav-logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; color: white; }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { margin-left: 30px; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: 0.3s; font-weight: 500;}
-        .nav-links a:hover { color: white; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
-
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-        .btn-primary {
-            background: white; color: black;
-            box-shadow: 0 0 25px rgba(255,255,255,0.2);
-        }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
-
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%;
-        }
-
-        .glow-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 35px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .glow-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 24px; padding: 2px;
-            background: linear-gradient(45deg, transparent 50%, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.3));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            pointer-events: none; opacity: 0.5; transition: opacity 0.4s;
-        }
-        .glow-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5); }
-        .glow-card:hover::before { opacity: 1; }
-
-        .icon-box {
-            font-size: 2rem; margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-            width: 60px; height: 60px; border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 20px; overflow: hidden; }
-        .progress-bar {
-            height: 100%; width: 35%; border-radius: 10px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-            box-shadow: 0 0 15px var(--neon-purple);
-            position: relative; overflow: hidden;
-        }
-        .progress-bar::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: translateX(-100%); animation: shine-bar 2s infinite;
-        }
-        @keyframes shine-bar { 100% { transform: translateX(100%); } }
-
-        .ai-section { margin-bottom: 80px; position: relative; height: 500px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-        .carousel-container {
-            position: relative; height: 100%; width: 100%;
-            perspective: 1000px; transform-style: preserve-3d;
-            display: flex; align-items: center; justify-content: center;
-            cursor: grab;
-            touch-action: pan-y;
-        }
-
-        .carousel-container:active {
-            cursor: grabbing;
-        }
-        .carousel-card {
-            position: absolute;
-            width: 280px; height: 380px;
-            background: #000;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            will-change: transform, opacity;
-            transform-style: preserve-3d;
-            -webkit-transform-style: preserve-3d;
-            border-radius: 20px;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: all 0.5s ease-out;
-            cursor: pointer;
-            overflow: hidden;
-            display: block;
-        }
-
-        .carousel-card img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none;
-            -webkit-user-drag: none; }
-
-        .video-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .video-card {
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 0 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s, border-color 0.3s;
-            display: flex; flex-direction: column;
-            text-decoration: none; color: inherit; cursor: pointer;
-        }
-
-        .video-card:hover { transform: scale(1.02); border-color: var(--neon-blue); }
-        .video-card video { width: 100%; height: 280px; object-fit: cover; background: #000; pointer-events: none; }
-        .video-meta { padding: 25px; background: var(--glass-bg); backdrop-filter: blur(10px); }
-
-        .video-card.full-width {
-            grid-column: 1 / -1;
-            cursor: pointer; 
-
-        }
-        .video-card.full-width:hover {
-            transform: scale(1.01);
-            border-color: var(--glass-border);
-        }
-
-        .iframe-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9; 
-            max-height: 480px;
-            background: #000;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .archive-header {
-            margin-top: 80px; margin-bottom: 30px; border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px;
-            justify-content: space-between; align-items: end;
-        }
-        .archive-title { font-size: 1.8rem; font-weight: 700; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-
-        .creative-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-
-        .mini-card {
-            background: rgba(255,255,255,0.03); border-radius: 16px; overflow: hidden; position: relative;
-            aspect-ratio: 16/9; cursor: pointer; border: 1px solid transparent; transition: 0.3s;
-        }
-        .mini-card:hover { border-color: var(--neon-purple); transform: translateY(-5px); z-index: 10; box-shadow: 0 10px 40px rgba(168, 85, 247, 0.2); }
-        .mini-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-        .mini-card:hover img { opacity: 1; transform: scale(1.1); }
-
-        .mini-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 15px;
-            background: linear-gradient(to top, #000, transparent);
-            color: white; font-size: 0.85rem; font-weight: 600;
-            transform: translateY(100%); transition: 0.3s;
-        }
-        .mini-card:hover .mini-overlay { transform: translateY(0); }
-
-        .animate-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .d-1 { animation-delay: 0.1s; } .d-2 { animation-delay: 0.2s; } .d-3 { animation-delay: 0.3s; }
-
-        .footer-divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--glass-border), transparent);
-            margin-bottom: 40px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .text-link {
-            color: var(--neon-blue);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--neon-blue);
-            transition: 0.3s;
-        }
-
-        .text-link:hover {
-            color: #fff;
-            border-bottom: 1px solid #fff;
-        }
-
-        .social-links-text a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .social-links-text a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .separator {
-            margin: 0 10px;
-            color: rgba(255,255,255,0.2);
-        }
-
-        @media (max-width: 768px) {
-
-            body { margin: 0 25px ; }
-
-            .container { padding: 10px 12px; }
-            .section-spacer { padding: 40px 0; }
-
-            .nav-links {
-                display: none;
-                padding-top: 40px;
-                padding-bottom: 25px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav { justify-content: center; }
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                gap: 20px;
-            }
-            .nav-links a { margin-left: 0; font-size: 0.9rem; }
-
-            header {
-                text-align: left;
-                display: flex;
-                flex-direction: column;
-                padding-top: 40px;
-            }
-
-            h1 {
-                font-size: 2rem;
-                margin-left: -2px;
-            }
-
-            header p {
-                font-size: 1.1rem;
-                margin-bottom: 40px;
-                text-align: left;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-                align-items: flex-start;
-                gap: 16px;
-            }
-            .btn { width: 100%; }
-
-            section h2 {
-                flex-direction: column;
-                align-items: flex-start;
-                text-align: left;
-                gap: 10px;
-            }
-
-            .bento-grid { grid-template-columns: 1fr; gap: 24px; }
-            .video-grid { grid-template-columns: 1fr; gap: 30px; }
-            .creative-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .ai-section { height: 420px; }
-            .carousel-card { width: 200px; height: 280px; }
-            .video-card video { height: 210px; }
-            .mini-overlay {
-                transform: translateY(0);
-                padding: 10px;
-                font-size: 0.75rem;
-                background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            }
-            h2 { font-size: 1.7rem; }
-            .ai-section h3 { font-size: 1rem !important; }
-            p { font-size: 1rem !important; }
-            .archive-title { font-size: 1.4rem;}
-
-            #archive h2 {
-                align-items: center !important;
-                text-align: center !important;
-                justify-content: center !important;
-                width: 100%;
-            }
-
-            .video-card.full-width {
-                grid-column: auto;
-            }
-        }
-
-        #archive > div:first-child { text-align: center !important; }
-
-        #archive .ai-section h3 { text-align: center !important; }
-
-        .footer-content {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 30px;
-        }
-
-        .footer-section {
-            text-align: left !important;
-            width: 100%;
-        }
-
-        .text-link {
-            display: inline-block;
-            margin-top: 5px;
-            font-size: 1.2rem;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dimitar Ristevski - video editor, motion designer and creative technologist combining storytelling, code and smarter production systems.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#030712">
+  <title>Dimitar Ristevski - Creative Technologist & Video Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-build="local-v7">
+  <div class="ambient-field ambient-field-sharp" aria-hidden="true"></div>
+  <div class="ambient-field ambient-field-blurred" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
-    <div class="particles"></div>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-logo magnetic" href="#top" aria-label="Back to top">DIMITAR<span>.RISTEVSKI</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
 
-    <nav class="container animate-up">
-        <div class="nav-logo">DIMITAR.RISTEVSKI</div>
-        <div class="nav-links">
-            <a href="#focus">Focus</a>
-            <a href="#lab">The Lab</a>
-            <a href="#archive">Archive</a>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <div class="container menu-inner">
+      <div class="menu-contact">
+        <p>GET IN TOUCH</p>
+        <a href="mailto:contact@dristevski.com">contact@dristevski.com</a>
+      </div>
+      <div class="menu-links">
+        <a href="#focus">What I do</a>
+        <a href="#featured">Featured content</a>
+        <a href="#archive">Other Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <header class="hero container section-spacer">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-pulse"></span>
+        Video editor × Motion designer × Creative technologist
+      </div>
+
+      <h1 class="hero-title reveal" data-delay="80">
+        <span class="hero-line" data-parallax="-0.018">Ads. Motion. AI.</span>
+        <span class="hero-line text-gradient" data-parallax="0.022">Engineered to perform.</span>
+      </h1>
+
+      <div class="hero-bottom reveal" data-delay="160">
+        <p class="hero-copy">
+          More than 7 years shaping campaigns, stories and motion. Now I’m connecting that editorial instinct with code, open-source tools, AI-assisted workflows and creative systems that make better work move faster.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary magnetic" href="#archive"><span>Explore the work</span><b>↓</b></a>
+          <a class="btn btn-ghost magnetic" href="https://www.youtube.com/watch?v=JraB2J3aNh8" target="_blank" rel="noreferrer"><span>Play featured project</span><b>▶</b></a>
         </div>
-    </nav>
+      </div>
 
-    <header class="container section-spacer">
-        <div class="animate-up d-1">
-            <div style="display:inline-block; padding:8px 16px; background:rgba(59, 130, 246, 0.1); border:1px solid rgba(59, 130, 246, 0.4); border-radius:30px; color:#60a5fa; font-weight:600; font-size:0.8rem; margin-bottom:20px;">
-                <span style="display:inline-block; width:8px; height:8px; background:#60a5fa; border-radius:50%; margin-right:8px; box-shadow:0 0 10px #60a5fa;"></span>
-                Currently mastering Google Cybersecurity
-            </div>
-            <h1>
-            Technical Operations & <br>
-            <span class="text-gradient">Digital Specialist</span>
-        </h1>
-            <p style="max-width: 650px; margin: 25px 0 35px;">
-                Versatile Technical Specialist with 7 years of experience managing high-stakes digital production pipelines. I have a proven track record in troubleshooting hardware/software, optimizing complex system workflows, and maintaining network reliability. By bridging the gap between system security and professional post-production, I ensure the entire digital lifecycle is efficient, secure, and impactful.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#lab" class="btn btn-primary">Enter The Lab</a>
-                <a href="https://github.com/dimidimi00" target="_blank" class="btn btn-outline">GitHub Profile</a>
-                <a href="https://www.linkedin.com/in/dimitar-ri/" target="_blank" class="btn btn-outline">LinkedIn</a>
-            </div>
+      <div class="hero-marquee reveal" data-delay="260" aria-label="Capabilities">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span>Editorial</span><i>✦</i><span>Motion graphics</span><i>✦</i><span>Creative coding</span><i>✦</i><span>AI workflows</span><i>✦</i><span>Open source</span><i>✦</i>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span>Editorial</span><i>✦</i><span>Motion graphics</span><i>✦</i><span>Creative coding</span><i>✦</i><span>AI workflows</span><i>✦</i><span>Open source</span><i>✦</i>
+          </div>
         </div>
+      </div>
     </header>
 
-<section id="focus" class="container section-spacer">
-    <h2 class="animate-up">🚀 Current Mission</h2>
-    <div class="bento-grid">
-        <div class="glow-card animate-up d-1">
-            <div class="icon-box">🛡️</div>
-            <h3>Google Cybersecurity Cert</h3>
-            <p>Mastering the foundations: Linux, SQL, and Network Security.</p>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
-            <div style="margin-top:10px; font-size:0.85rem; color:var(--neon-blue); display:flex; justify-content:space-between;">
-                <span>Status: In Progress</span>
-                <span>Mod 3: Network Architecture</span>
-            </div>
-        </div>
-        <div class="glow-card animate-up d-2">
-            <div class="icon-box">🧠</div>
-            <h3>The Pivot Logic</h3>
-            <p>I am translating established troubleshooting logic from high-stakes media pipelines into security telemetry analysis. The medium changes, the logic remains.</p>
-        </div>
-        <div class="glow-card animate-up d-3">
-            <div class="icon-box">🌍</div>
-            <h3>Language Stack</h3>
-            <ul style="list-style:none; margin-top:10px; color:var(--text-muted);">
-                <li style="margin-bottom:5px;">🇺🇸 <strong>English:</strong> Professional</li>
-                <li style="margin-bottom:5px;">🇲🇰 <strong>Macedonian:</strong> Native</li>
-            </ul>
-        </div>
-    </div>
-</section>
-    <section id="lab" class="container section-spacer">
-        <h2 class="animate-up">🧪 The Lab <span style="font-size:1rem; opacity:0.6; margin-left:15px; font-weight:400;">// Hands-on Environment</span></h2>
-        <div class="bento-grid">
-            <div class="glow-card animate-up d-1">
-                <div class="icon-box" style="background: linear-gradient(135deg, #f59e0b22, transparent);">🥧</div>
-                <h3>Network Operations</h3>
-                <p>Deployment of dedicated edge nodes to manage local network infrastructure. Implemented centralized DNS-layer filtering to harden network security, enhance user privacy, and optimize bandwidth by mitigating unsolicited traffic.</p>
-            </div>
-            <div class="glow-card animate-up d-2">
-                <div class="icon-box" style="background: linear-gradient(135deg, #10b98122, transparent);">💻</div>
-                <h3>Web Systems Optimization & Security Hygiene</h3>
-                <p>Reviewing my legacy code to identify how basic DOM interactions can become security vulnerabilities.</p>
-            </div>
-            <div class="glow-card animate-up d-3">
-                <div class="icon-box" style="background: linear-gradient(135deg, #ec489922, transparent);">🐧</div>
-                <h3>Linux CLI Driver</h3>
-                <p>Forcing daily usage of terminal for file management, permissions, and grep searching to build muscle memory.</p>
-            </div>
-        </div>
+    <section id="focus" class="container section-spacer">
+      <div class="section-heading reveal">
+        <p class="section-index">01 / WHAT I DO</p>
+        <h2>Creative craft,<br><span class="text-gradient">technical depth.</span></h2>
+        <p>I’m at my best where storytelling, motion and systems overlap.</p>
+      </div>
+
+      <div class="bento-grid">
+        <article class="glow-card card-wide reveal tilt-card" data-delay="50">
+          <div class="card-number">01</div>
+          <div class="icon-box">✂</div>
+          <h3>Editorial & motion</h3>
+          <p>I turn raw footage into clear, paced stories - from campaign films and event recaps to social content, explainers and motion-led brand pieces.</p>
+          <div class="card-tags"><span>Premiere Pro</span><span>After Effects</span><span>Story</span></div>
+        </article>
+
+        <article class="glow-card reveal tilt-card" data-delay="110">
+          <div class="card-number">02</div>
+          <div class="icon-box">⌘</div>
+          <h3>Creative systems</h3>
+          <p>I use scripting, AI-assisted tools and repeatable workflows to remove production friction - without removing the human taste.</p>
+          <div class="card-tags"><span>Automation</span><span>AI</span><span>AE scripts</span></div>
+        </article>
+
+        <article class="glow-card reveal tilt-card" data-delay="170">
+          <div class="card-number">03</div>
+          <div class="icon-box">/&gt;</div>
+          <h3>Technology fluency</h3>
+          <p>I build for the web, work comfortably in the terminal, run Linux, assemble PCs and reach for open tools before closed shortcuts.</p>
+          <div class="card-tags"><span>HTML/CSS/JS</span><span>Linux</span><span>Open source</span></div>
+        </article>
+      </div>
     </section>
 
-    <section id="archive" class="container section-spacer">
-        <div style="text-align: center; margin-bottom: 20px;">
-            <h2 style=" justify-content:center; text-shadow:0 0 30px rgba(255,255,255,0.2);">The Archive</h2>
-            <p style="font-size:1.2rem;">7+ Years of Creative Technology & Logic</p>
+    <section id="lab" class="lab-section section-spacer">
+      <div class="container">
+        <div class="section-heading split-heading reveal">
+          <div>
+            <p class="section-index">02 / THE LAB</p>
+            <h2>Beyond the<br><span class="text-gradient">timeline.</span></h2>
+          </div>
+          <p>Curiosity is part of the job. If a process can be improved, automated, connected or rebuilt, I’ll probably take it apart and find out how.</p>
         </div>
 
-        <div class="ai-section animate-up">
-            <h3 class="text-gradient" style="text-align:center; margin-bottom:40px; color:var(--neon-purple);">★ AI @ WORK: Campaign Generation</h3>
-            <div class="carousel-container" id="carousel">
-                </div>
+        <div class="lab-list">
+          <article class="lab-row reveal tilt-card">
+            <span class="lab-count">01</span>
+            <div><h3>Automate the friction</h3><p>Small scripts, smarter templates and AI where it genuinely saves time.</p></div>
+            <span class="lab-arrow">↗</span>
+          </article>
+          <article class="lab-row reveal tilt-card" data-delay="70">
+            <span class="lab-count">02</span>
+            <div><h3>Build beyond the edit</h3><p>Vanilla web experiences, interactive portfolios and tools that support the work.</p></div>
+            <span class="lab-arrow">↗</span>
+          </article>
+          <article class="lab-row reveal tilt-card" data-delay="140">
+            <span class="lab-count">03</span>
+            <div><h3>Stay tool-agnostic</h3><p>Linux, Homebrew, yt-dlp and open-source workflows - use the right tool, understand what it does.</p></div>
+            <span class="lab-arrow">↗</span>
+          </article>
         </div>
-
-<div class="archive-header">
-    <div class="archive-title">🔥 Featured Highlights</div>
-</div>
-<div class="video-grid animate-up d-1">
-
-<a href="https://youtu.be/QgNXHDOZfy8" target="_blank" class="video-card full-width">
-        <video autoplay loop muted playsinline>
-            <source src="images/fibstar.mp4" type="video/mp4">
-        </video>
-        <div class="video-meta">
-            <h3>Fibula Workshop 2025</h3>
-            <p>Complete animation for a B2B Event, from concept to completion. </p>
-        </div>
-    </a>
-
-    <a href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" class="video-card">
-        <video autoplay loop muted playsinline poster="images/bmini.png">
-            <source src="images/bvid.mp4" type="video/mp4">
-        </video>
-        <div class="video-meta">
-            <h3>Brainster+ Flagship Ad</h3>
-            <p>Key animation driving major campaign engagement.</p>
-        </div>
-    </a>
-
-    <a href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" class="video-card">
-        <video autoplay loop muted playsinline poster="images/bjf.png">
-            <source src="images/portfoliovid.mp4" type="video/mp4">
-        </video>
-        <div class="video-meta">
-            <h3>2023 Visual Showreel</h3>
-            <p>A dynamic showcase of motion graphics and editing.</p>
-        </div>
-    </a>
-
-</div>
-
-        <div class="archive-header">
-            <div class="archive-title">💻 Web Logic</div>
-            <div style="color:var(--neon-blue);">Self-Taught / Pre-AI</div>
-        </div>
-        <div class="creative-grid">
-            <a href="projects/tip-calculator-eng/index.html" target="_blank" class="mini-card">
-                <img src="https://img.icons8.com/color/96/calculator.png" style="object-fit:contain; padding:20px; background:#0f172a;" alt="Calc">
-                <div class="mini-overlay">JS Logic: Calculator</div>
-            </a>
-            <a href="projects/shopping-cart/index.html" target="_blank" class="mini-card">
-                <img src="https://img.icons8.com/color/96/shopping-cart.png" style="object-fit:contain; padding:20px; background:#0f172a;" alt="Cart">
-                <div class="mini-overlay">JS State: Shopping Cart</div>
-            </a>
-            <a href="projects/music-player-app/index.html" target="_blank" class="mini-card">
-                <img src="https://img.icons8.com/color/96/audio-wave.png" style="object-fit:contain; padding:20px; background:#0f172a;" alt="Audio">
-                <div class="mini-overlay">DOM Events: Audio Player</div>
-            </a>
-        </div>
-
-        <div class="archive-header">
-            <div class="archive-title">🎬 Video Production</div>
-        </div>
-        <div class="creative-grid">
-            <a href="https://youtu.be/FKvMNd88GSQ" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/FKvMNd88GSQ/maxresdefault.jpg" alt="AllWeb">
-                <div class="mini-overlay">ALLWEB.MK Event Visuals</div>
-            </a>
-            <a href="https://youtu.be/QNsONcdGqq8" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/QNsONcdGqq8/maxresdefault.jpg" alt="Lit Recap">
-                <div class="mini-overlay">Literatura.mk Recap</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=940102877023051" target="_blank" class="mini-card">
-                <img src="images/scivi.jpg" alt="SciVi">
-                <div class="mini-overlay">SciVi Platform Promo</div>
-            </a>
-            <a href="https://youtu.be/AmOpF0eS-OA" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/AmOpF0eS-OA/maxresdefault.jpg" alt="Literatura">
-                <div class="mini-overlay">Literatura Stores Promo</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=603657754393309" target="_blank" class="mini-card">
-                <img src="images/undp1.jpg" alt="UNDP">
-                <div class="mini-overlay">UNDP MK Animation</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=4674385525973608" target="_blank" class="mini-card">
-                <img src="images/undp2.jpg" alt="UNDP">
-                <div class="mini-overlay">UNDP New Systems</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=1001611937126307" target="_blank" class="mini-card">
-                <img src="images/undp3.jpg" alt="UNDP">
-                <div class="mini-overlay">UNDP Control App</div>
-            </a>
-            <a href="https://youtu.be/cg9ePsTWIO4" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/93clzL9Tw_E/maxresdefault.jpg" alt="Barmen">
-                <div class="mini-overlay">Sam Svoj Barmen Series</div>
-            </a>
-            <a href="https://youtu.be/RLWSNRApqs4" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/9IjjYciNyVo/maxresdefault.jpg" alt="Komkast">
-                <div class="mini-overlay">#Komkast Podcast</div>
-            </a>
-            <a href="https://youtu.be/hhkg03lHxgY" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/hhkg03lHxgY/maxresdefault.jpg" alt="Wellcast">
-                <div class="mini-overlay">Wellcast Editing</div>
-            </a>
-             <a href="https://rumble.com/v1x2dow-e-commerce-cyber-threats-callback-phishing-campaigns-android-apps-infecting.html" target="_blank" class="mini-card">
-                <img src="https://user-images.githubusercontent.com/122376776/222989350-7a79afb3-3af3-4be3-9f2c-d7fe6f244390.jpg" alt="Talk Nerdy">
-                <div class="mini-overlay">Talk Nerdy To Me</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=561745414710979" target="_blank" class="mini-card">
-                <img src="images/decal.jpg" alt="Decal">
-                <div class="mini-overlay">Decal.mk B-Roll</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=752601065161733" target="_blank" class="mini-card">
-                <img src="images/svc.jpg" alt="SVC">
-                <div class="mini-overlay">SVC Aftermovie</div>
-            </a>
-            <a href="https://www.instagram.com/p/CcLnC7PoCMy" target="_blank" class="mini-card">
-                <img src="images/brummel1.jpg" alt="Brummel">
-                <div class="mini-overlay">Brummel Promo</div>
-            </a>
-            <a href="https://www.facebook.com/watch/?v=775920689832625" target="_blank" class="mini-card">
-                <img src="images/undp4.jpg" alt="UNDP Live">
-                <div class="mini-overlay">UNDP Live Event</div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=xuJZBZtHrOo" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/xuJZBZtHrOo/maxresdefault.jpg" alt="Viva">
-                <div class="mini-overlay">Viva Sokovi Series</div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=f7dlK31t4Tw" target="_blank" class="mini-card">
-                <img src="https://img.youtube.com/vi/f7dlK31t4Tw/hqdefault.jpg" alt="Analitika">
-                <div class="mini-overlay">Analitika s Petkom</div>
-            </a>
-        </div>
-
-        <div class="archive-header">
-            <div class="archive-title">📢 Marketing Campaigns</div>
-        </div>
-        <div class="creative-grid">
-             <a href="https://www.instagram.com/reel/DD7R6NjIC7Z/" target="_blank" class="mini-card">
-                <img src="images/uslugigovmk.png" alt="Uslugi">
-                <div class="mini-overlay">Uslugi.gov.mk Rebrand</div>
-            </a>
-            <a href="https://www.instagram.com/fibulatravelmk/reel/DKeMobzIBD1/" target="_blank" class="mini-card">
-                <img src="images/fblstrg.png" alt="Fibula">
-                <div class="mini-overlay">Fibula Struga</div>
-            </a>
-            <a href="https://www.instagram.com/fibulatravelmk/reel/DIlCmhuxu6a/" target="_blank" class="mini-card">
-                <img src="images/fibws.png" alt="Fibula">
-                <div class="mini-overlay">Fibula Teaser</div>
-            </a>
-            <a href="https://www.instagram.com/fibulatravelmk/reel/DIwJGrovdEX/" target="_blank" class="mini-card">
-                <img src="images/fiblol.png" alt="Land of Legends">
-                <div class="mini-overlay">Land of Legends</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C2uunjwN9cL/" target="_blank" class="mini-card">
-                <img src="images/bux.png" alt="Brainster">
-                <div class="mini-overlay">Brainster+ Ani</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C04TzF4ubzk/" target="_blank" class="mini-card">
-                <img src="images/bmini.png" alt="Brainster">
-                <div class="mini-overlay">Brainster Flagship Short</div>
-            </a>
-             <a href="https://www.instagram.com/brainsterco/reel/C31_MgpMdVg/" target="_blank" class="mini-card">
-                <img src="images/bbilt.png" alt="Brainster">
-                <div class="mini-overlay">Brainster Bilten</div>
-            </a>
-            <a href="https://www.instagram.com/reel/C9UZrUQsUjp/" target="_blank" class="mini-card">
-                <img src="images/bjf.png" alt="JobFair">
-                <div class="mini-overlay">JobFair Shorts</div>
-            </a>
-            <a href="https://www.instagram.com/brainsternext/reel/C_C9l_2scqc/" target="_blank" class="mini-card">
-                <img src="images/bnpr.png" alt="Meet">
-                <div class="mini-overlay">Meet Students</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C5YnrEPsAcm/" target="_blank" class="mini-card">
-                <img src="images/blab.png" alt="Event">
-                <div class="mini-overlay">Event Aftermovie</div>
-            </a>
-            <a href="https://www.instagram.com/fibulatravelmk/reel/DI3tZuTvA-A/" target="_blank" class="mini-card">
-                <img src="images/fibnp.png" alt="Early">
-                <div class="mini-overlay">Early Booking</div>
-            </a>
-            <a href="https://www.instagram.com/reel/CR650ZcqhqR/" target="_blank" class="mini-card">
-                <img src="images/xuJZBZtHrOo.jpg" alt="Viva">
-                <div class="mini-overlay">Viva Sokovi IGTV</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C8T-0MvsU4S/" target="_blank" class="mini-card">
-                <img src="images/bsbp.png" alt="JF2">
-                <div class="mini-overlay">JobFair Short 2</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C8l5Lg7M6Yz/" target="_blank" class="mini-card">
-                <img src="images/bfl.png" alt="JF3">
-                <div class="mini-overlay">JobFair Short 3</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/DBv8Djts92l/" target="_blank" class="mini-card">
-                <img src="images/bjf4.png" alt="JF4">
-                <div class="mini-overlay">JobFair Short 4</div>
-            </a>
-            <a href="https://www.instagram.com/brainsternext/reel/C_LQU0zMvpH/" target="_blank" class="mini-card">
-                <img src="images/bnan.png" alt="Meet2">
-                <div class="mini-overlay">Meet Students 2</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C6L9w3Usep-/" target="_blank" class="mini-card">
-                <img src="images/bsnp.png" alt="Teaser">
-                <div class="mini-overlay">Teaser Short</div>
-            </a>
-            <a href="https://www.instagram.com/brainsterco/reel/C8CEsW1MnVe/" target="_blank" class="mini-card">
-                <img src="images/bjf9.png" alt="After">
-                <div class="mini-overlay">Aftermovie Short</div>
-            </a>
-        </div>
+      </div>
     </section>
 
-<footer class="container section-spacer">
-    <div class="footer-divider"></div>
-
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3 style="font-size: 1rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Contact</h3>
-            <p style="font-size: 1.1rem; font-weight: 500;">
-                Email: <a href="mailto:contact@dristevski.com" class="text-link">contact@dristevski.com</a>
-            </p>
+    <section class="container section-spacer archive">
+      <section id="featured" class="archive-block highlights-block">
+        <div class="subsection-title highlights-heading reveal">
+          <div><p>FEATURED</p></div>
+          <h3>Highlights in motion</h3>
         </div>
-
-        <div class="footer-section" style="text-align: right;">
-            <div class="social-links-text">
-                <a href="https://github.com/dimidimi00" target="_blank">GitHub</a>
-                <span class="separator">/</span>
-                <a href="https://www.linkedin.com/in/dimitar-ri/" target="_blank">LinkedIn</a>
+        <div class="video-grid featured-grid">
+          <a class="video-card featured-card featured-hero reveal tilt-card" href="https://www.youtube.com/watch?v=JraB2J3aNh8" target="_blank" rel="noreferrer">
+            <div class="media-frame placeholder-frame">
+              <video src="https://dristevski.com/images/fibAI.mp4" autoplay muted loop playsinline preload="metadata">
+                <span class="placeholder-year">2026</span>
+                <span class="placeholder-title">FIBULA<br>WORKSHOP</span>
+                <span class="placeholder-note">AI Cinematic</span>
+              </video>
+              <span class="play-button">▶</span>
+              <span class="project-type">NEW CINEMATIC</span>
+              <div class="ai-callout">
+                <span class="ai-callout-arrow">↘</span>
+                <div><strong>AI VISUALS</strong><small>+ Manual Sound Design</small></div>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-top: 10px;">
-                © 2025 Dimitar Ristevski
-            </p>
+            <div class="project-meta feature-meta">
+              <div><p>Fibula Workshop 2026</p><h4>Cinematic - AI-generated picture, human-crafted sound</h4></div>
+            </div>
+          </a>
+          <a class="video-card featured-card reveal tilt-card" href="https://youtu.be/QgNXHDOZfy8" target="_blank" rel="noreferrer">
+            <div class="media-frame">
+              <video src="https://dristevski.com/images/fibstar.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <span class="play-button">▶</span><span class="project-type">EVENT FILM</span>
+            </div>
+            <div class="project-meta"><div><p>Fibula Workshop</p><h4>Travel, energy and atmosphere</h4></div><span>2025</span></div>
+          </a>
+          <a class="video-card featured-card reveal tilt-card" data-delay="80" href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noreferrer">
+            <div class="media-frame">
+              <video src="https://dristevski.com/images/bvid.mp4" poster="https://dristevski.com/images/bmini.png" autoplay muted loop playsinline preload="metadata"></video>
+              <span class="play-button">▶</span><span class="project-type">CAMPAIGN</span>
+            </div>
+            <div class="project-meta"><div><p>Brainster+</p><h4>Flagship brand campaign</h4></div><span>2024</span></div>
+          </a>
+          <a class="video-card featured-card reveal tilt-card" data-delay="160" href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" rel="noreferrer">
+            <div class="media-frame">
+              <video src="https://dristevski.com/images/portfoliovid.mp4" poster="https://dristevski.com/images/bjf.png" autoplay muted loop playsinline preload="metadata"></video>
+              <span class="play-button">▶</span><span class="project-type">SHOWREEL</span>
+            </div>
+            <div class="project-meta"><div><p>Visual Showreel</p><h4>A year of cuts and motion</h4></div><span>2023</span></div>
+          </a>
         </div>
-    </div>
-</footer>
+      </section>
 
-    <script>
-        const carouselContainer = document.getElementById('carousel');
-        const aiImages = [
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/001.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/002.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/003.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/004.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/005.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/006.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/007.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/008.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/009.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/010.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/011.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/012.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/013.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/014.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/015.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/016.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/017.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/018.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/019.jpg',
-            'https://raw.githubusercontent.com/dimidimi00/dimidimi00.github.io/refs/heads/main/images/AIDesign/020.jpg'
-        ];
+      <div id="archive" class="archive-header reveal">
+        <p class="section-index">03 / SELECTED WORK</p>
+        <h2>The <span class="text-gradient">Archive.</span></h2>
+        <p>More than 7 years of edits, motion, campaigns and experiments. Drag the carousel. Hover everything.</p>
+      </div>
 
-    let currentIndex = 0;
-    let autoSlideInterval;
-
-    let isDragging = false;
-    let startPos = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationID;
-    let currentDragOffset = 0;
-
-    function initCarousel() {
-        carouselContainer.innerHTML = '';
-        aiImages.forEach((imgSrc, index) => {
-            const card = document.createElement('div');
-            card.className = 'carousel-card';
-            card.innerHTML = `<img src="${imgSrc}" alt="AI ${index + 1}" style="pointer-events: none;">`;
-            card.addEventListener('click', () => {
-                if(!isDragging) {
-                    currentIndex = index;
-                    renderCarousel();
-                    resetTimer();
-                }
-            });
-            carouselContainer.appendChild(card);
-        });
-
-        addEvents();
-        renderCarousel();
-        startTimer();
-    }
-
-    function addEvents() {
-        carouselContainer.addEventListener('touchstart', touchStart);
-        carouselContainer.addEventListener('touchend', touchEnd);
-        carouselContainer.addEventListener('touchmove', touchMove);
-
-        carouselContainer.addEventListener('mousedown', touchStart);
-        carouselContainer.addEventListener('mouseup', touchEnd);
-        carouselContainer.addEventListener('mouseleave', () => {
-            if (isDragging) touchEnd();
-        });
-        carouselContainer.addEventListener('mousemove', touchMove);
-    }
-
-
-    function touchStart(index) {
-        isDragging = true;
-        clearInterval(autoSlideInterval);
-        startPos = getPositionX(index);
-        carouselContainer.style.cursor = 'grabbing';
-        animationID = requestAnimationFrame(animation);
-    }
-
-    function touchMove(event) {
-        if (isDragging) {
-            const currentPosition = getPositionX(event);
-            currentDragOffset = currentPosition - startPos;
-        }
-    }
-
-   function touchEnd() {
-        isDragging = false;
-        cancelAnimationFrame(animationID);
-        carouselContainer.style.cursor = 'grab';
-
-        const isMobile = window.innerWidth < 768;
-        const spreadDistance = isMobile ? 135 : 260;
-        const rawJump = -currentDragOffset / spreadDistance;
-        let slidesToJump = Math.round(rawJump);
-
-        if (slidesToJump === 0) {
-            const minDragDistance = 40;
-
-            if (currentDragOffset < -minDragDistance) {
-                slidesToJump = 1;
-            } else if (currentDragOffset > minDragDistance) {
-                slidesToJump = -1;
+      <section class="latest-reels archive-block">
+        <div class="subsection-title latest-reels-heading reveal">
+          <div><p>LATEST CONTENT</p></div>
+          <h3>UGC Content</h3>
+        </div>
+        <script type="application/json" id="ugc-content">
+          [
+            {
+              "title": "SoCal Skin & Surgery",
+              "thumbnail": "https://dristevski.com/images/socal1.jpg",
+              "link": "https://www.instagram.com/socalskinsurg/reel/DaN0miViXnL/"
+            },
+            {
+              "title": "New Wave Dermatology",
+              "thumbnail": "https://dristevski.com/images/newwave1.jpg",
+              "link": "https://www.instagram.com/reel/DanrgObgX45/"
+            },
+            {
+              "title": "Prime Dermatology",
+              "thumbnail": "https://dristevski.com/images/prime1.jpg",
+              "link": "https://www.instagram.com/reel/DbV7TdLCWv6/"
             }
-        }
+          ]
+        </script>
+        <div class="latest-reels-grid" id="latest-reels-grid"></div>
+        <button class="show-more magnetic" id="reels-show-more" type="button" hidden>
+          <span>Show more</span><b>↓</b>
+        </button>
+      </section>
 
-        if (slidesToJump !== 0) {
-            currentIndex = (currentIndex + slidesToJump) % aiImages.length;
+      <section class="ai-section archive-block reveal">
+        <div class="subsection-title">
+          <div><span class="status-dot"></span><p>AI @ WORK</p></div>
+          <h3>Static AI design generations & experiments</h3>
+        </div>
+        <div class="carousel-stage">
+          <div class="carousel-container" id="carousel" aria-label="AI visual project carousel"></div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-button magnetic" id="carousel-prev" type="button" aria-label="Previous project">←</button>
+          <div class="carousel-meter"><span></span></div>
+          <span class="carousel-count"><b id="carousel-current">01</b> / 20</span>
+          <button class="carousel-button magnetic" id="carousel-next" type="button" aria-label="Next project">→</button>
+        </div>
+      </section>
 
-            if (currentIndex < 0) {
-                currentIndex += aiImages.length;
-            }
-        }
+      <section class="archive-block">
+        <div class="subsection-title reveal">
+          <div><p>WEB LOGIC</p></div>
+          <h3>Small builds, real code</h3>
+        </div>
+        <div class="creative-grid">
+          <a class="mini-card reveal tilt-card" href="https://dristevski.com/projects/tip-calculator-eng/index.html" target="_blank" rel="noreferrer">
+            <img src="https://img.icons8.com/fluency/240/calculator.png" alt="" loading="lazy">
+            <div class="mini-overlay"><span>VANILLA JS</span><h4>Tip Calculator</h4><b>↗</b></div>
+          </a>
+          <a class="mini-card reveal tilt-card" data-delay="70" href="https://dristevski.com/projects/shopping-cart/index.html" target="_blank" rel="noreferrer">
+            <img src="https://img.icons8.com/fluency/240/shopping-cart.png" alt="" loading="lazy">
+            <div class="mini-overlay"><span>VANILLA JS</span><h4>Shopping Cart</h4><b>↗</b></div>
+          </a>
+          <a class="mini-card reveal tilt-card" data-delay="140" href="https://dristevski.com/projects/music-player-app/index.html" target="_blank" rel="noreferrer">
+            <img src="https://img.icons8.com/fluency/240/audio-wave.png" alt="" loading="lazy">
+            <div class="mini-overlay"><span>VANILLA JS</span><h4>Music Player</h4><b>↗</b></div>
+          </a>
+        </div>
+      </section>
 
-        currentDragOffset = 0;
-        renderCarousel();
-        startTimer();
-    }
+      <section class="archive-block">
+        <div class="subsection-title reveal">
+          <div><p>VIDEO PRODUCTION</p></div>
+          <h3>Stories, events & brands</h3>
+        </div>
+        <div class="expandable-projects" data-expandable-projects>
+          <div class="video-grid archive-grid" id="video-production-grid"></div>
+          <div class="projects-fade" aria-hidden="true"></div>
+          <button class="show-more projects-show-more" type="button" aria-expanded="false">
+            <span>Show more</span><b>↓</b>
+          </button>
+        </div>
+      </section>
 
-    function getPositionX(event) {
-        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-    }
+      <section class="archive-block">
+        <div class="subsection-title reveal">
+          <div><p>CAMPAIGNS</p></div>
+          <h3>Fast formats, clear ideas</h3>
+        </div>
+        <div class="expandable-projects" data-expandable-projects>
+          <div class="video-grid archive-grid" id="campaign-grid"></div>
+          <div class="projects-fade" aria-hidden="true"></div>
+          <button class="show-more projects-show-more" type="button" aria-expanded="false">
+            <span>Show more</span><b>↓</b>
+          </button>
+        </div>
+      </section>
+    </section>
 
-    function animation() {
-        if(isDragging) {
-            renderCarousel(currentDragOffset);
-            requestAnimationFrame(animation);
-        }
-    }
+    <section id="contact" class="contact-section section-spacer">
+      <div class="container contact-inner reveal">
+        <p class="section-index">04 / NEXT</p>
+        <h2>Have footage, an idea<br>or a problem worth <span class="text-gradient">solving?</span></h2>
+        <a class="contact-link magnetic" href="mailto:contact@dristevski.com">contact@dristevski.com <span>↗</span></a>
+      </div>
+    </section>
+  </main>
 
-    function renderCarousel(dragPixelOffset = 0) {
-        const cards = document.querySelectorAll('.carousel-card');
-        const total = cards.length;
-        const isMobile = window.innerWidth < 768;
-        const spreadDistance = isMobile ? 135 : 260; // Distance between cards
-        const depthParam = isMobile ? 400 : 300;
-        const dragFactor = dragPixelOffset / spreadDistance;
+  <footer class="container">
+    <p>© <span id="year"></span> Dimitar Ristevski</p>
+    <div><a href="https://github.com/dimidimi00" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/dimitar-ri/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+    <p>Built from scratch. Still evolving.</p>
+  </footer>
 
-        cards.forEach((card, i) => {
-            let offset = (i - currentIndex + total) % total;
-            if (offset > total / 2) offset -= total;
-
-            let visualOffset = offset + dragFactor;
-            const xTrans = visualOffset * spreadDistance;
-
-            const zTrans = -Math.abs(visualOffset) * depthParam;
-
-            const rotateY = visualOffset * -25;
-
-            const shrinkFactor = isMobile ? 0.2 : 0.15;
-const scale = 1 - Math.min(Math.abs(visualOffset) * shrinkFactor, 0.4);
-
-            const opacity = Math.abs(visualOffset) > 2.5 ? 0 : 1;
-
-            const brightness = 1 - Math.min(Math.abs(visualOffset) * 0.5, 0.5);
-
-
-            const zIndex = 1000 - Math.round(Math.abs(visualOffset) * 100);
-
-            card.style.transform = `translateX(${xTrans}px) scale(${scale}) translateZ(${zTrans}px) rotateY(${rotateY}deg)`;
-            card.style.zIndex = zIndex;
-            card.style.opacity = opacity;
-            card.style.filter = `brightness(${brightness})`;
-        });
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % aiImages.length;
-        renderCarousel();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + aiImages.length) % aiImages.length;
-        renderCarousel();
-    }
-
-    function startTimer() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(nextSlide, 3500);
-    }
-
-    function resetTimer() {
-        clearInterval(autoSlideInterval);
-        startTimer();
-    }
-
-    initCarousel();
-    window.addEventListener('resize', () => renderCarousel());
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
