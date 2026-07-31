@@ -256,67 +256,69 @@ addEventListener("scroll", () => {
 }, { passive: true });
 updateScrollMotion();
 
-let targetX = innerWidth / 2;
-let targetY = innerHeight / 3;
-let glowX = targetX;
-let glowY = targetY;
-let dotX = targetX;
-let dotY = targetY;
+const supportsHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-addEventListener("pointermove", (event) => {
-  targetX = event.clientX;
-  targetY = event.clientY;
-}, { passive: true });
+if (supportsHover) {
+  let targetX = innerWidth / 2;
+  let targetY = innerHeight / 3;
+  let glowX = targetX;
+  let glowY = targetY;
+  let dotX = targetX;
+  let dotY = targetY;
 
-function cursorLoop() {
-  glowX += (targetX - glowX) * .07;
-  glowY += (targetY - glowY) * .07;
-  dotX += (targetX - dotX) * .24;
-  dotY += (targetY - dotY) * .24;
-  root.style.setProperty("--mouse-x", `${glowX}px`);
-  root.style.setProperty("--mouse-y", `${glowY}px`);
-  root.style.setProperty("--cursor-x", `${dotX}px`);
-  root.style.setProperty("--cursor-y", `${dotY}px`);
-  requestAnimationFrame(cursorLoop);
+  addEventListener("pointermove", (event) => {
+    targetX = event.clientX;
+    targetY = event.clientY;
+  }, { passive: true });
+
+  function cursorLoop() {
+    glowX += (targetX - glowX) * .07;
+    glowY += (targetY - glowY) * .07;
+    dotX += (targetX - dotX) * .24;
+    dotY += (targetY - dotY) * .24;
+    root.style.setProperty("--mouse-x", `${glowX}px`);
+    root.style.setProperty("--mouse-y", `${glowY}px`);
+    root.style.setProperty("--cursor-x", `${dotX}px`);
+    root.style.setProperty("--cursor-y", `${dotY}px`);
+    requestAnimationFrame(cursorLoop);
+  }
+  cursorLoop();
+
+  document.querySelectorAll("a, button, .tilt-card").forEach((element) => {
+    element.addEventListener("pointerenter", () => document.body.classList.add("cursor-active"));
+    element.addEventListener("pointerleave", () => document.body.classList.remove("cursor-active"));
+  });
+
+  document.querySelectorAll(".tilt-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = event.clientX - bounds.left;
+      const y = event.clientY - bounds.top;
+      const rotateY = ((x / bounds.width) - .5) * 5;
+      const rotateX = ((y / bounds.height) - .5) * -5;
+      card.style.setProperty("--mx", `${x}px`);
+      card.style.setProperty("--my", `${y}px`);
+      card.style.setProperty("--rx", `${rotateX}deg`);
+      card.style.setProperty("--ry", `${rotateY}deg`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  });
+
+  document.querySelectorAll(".magnetic").forEach((item) => {
+    item.addEventListener("pointermove", (event) => {
+      const bounds = item.getBoundingClientRect();
+      const x = (event.clientX - bounds.left - bounds.width / 2) * .14;
+      const y = (event.clientY - bounds.top - bounds.height / 2) * .14;
+      item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
+    item.addEventListener("pointerleave", () => {
+      item.style.transform = "";
+    });
+  });
 }
-cursorLoop();
-
-document.querySelectorAll("a, button, .tilt-card").forEach((element) => {
-  element.addEventListener("pointerenter", () => document.body.classList.add("cursor-active"));
-  element.addEventListener("pointerleave", () => document.body.classList.remove("cursor-active"));
-});
-
-document.querySelectorAll(".tilt-card").forEach((card) => {
-  card.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "touch") return;
-    const bounds = card.getBoundingClientRect();
-    const x = event.clientX - bounds.left;
-    const y = event.clientY - bounds.top;
-    const rotateY = ((x / bounds.width) - .5) * 5;
-    const rotateX = ((y / bounds.height) - .5) * -5;
-    card.style.setProperty("--mx", `${x}px`);
-    card.style.setProperty("--my", `${y}px`);
-    card.style.setProperty("--rx", `${rotateX}deg`);
-    card.style.setProperty("--ry", `${rotateY}deg`);
-  });
-  card.addEventListener("pointerleave", () => {
-    card.style.setProperty("--rx", "0deg");
-    card.style.setProperty("--ry", "0deg");
-  });
-});
-
-document.querySelectorAll(".magnetic").forEach((item) => {
-  item.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "touch") return;
-    const bounds = item.getBoundingClientRect();
-    const x = (event.clientX - bounds.left - bounds.width / 2) * .14;
-    const y = (event.clientY - bounds.top - bounds.height / 2) * .14;
-    item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-  });
-  item.addEventListener("pointerleave", () => {
-    item.style.transform = "";
-  });
-});
 
 const featuredVideos = document.querySelectorAll(".featured-card video");
 const videoObserver = new IntersectionObserver((entries) => {
@@ -363,9 +365,19 @@ let autoPlay;
 
 aiImages.forEach((src, index) => {
   const card = document.createElement("div");
+  const image = document.createElement("img");
   card.className = "carousel-card";
   card.dataset.label = `AI visual / ${String(index + 1).padStart(2, "0")}`;
-  card.innerHTML = `<img src="${src}" alt="AI-assisted campaign visual ${index + 1}" loading="${index < 3 ? "eager" : "lazy"}" draggable="false">`;
+  image.dataset.src = src;
+  image.alt = `AI-assisted campaign visual ${index + 1}`;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.draggable = false;
+  image.addEventListener("error", () => {
+    image.dataset.failed = "true";
+    image.removeAttribute("src");
+  });
+  card.appendChild(image);
   carousel.appendChild(card);
 });
 
@@ -396,6 +408,13 @@ function renderCarousel() {
     const opacity = visible ? Math.max(.08, 1 - distance * .43) : 0;
     const depth = -distance * 115;
     const rotation = position * -17;
+    const image = card.querySelector("img");
+
+    if (visible && !image.hasAttribute("src") && image.dataset.failed !== "true") {
+      image.src = image.dataset.src;
+    } else if (!visible && image.hasAttribute("src")) {
+      image.removeAttribute("src");
+    }
 
     card.classList.toggle("is-active", active);
     card.setAttribute("aria-hidden", visible ? "false" : "true");
