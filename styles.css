@@ -1082,7 +1082,90 @@ footer a:hover { color: white; }
   .carousel-container { height: 340px; }
   .carousel-card { width: min(62vw, 230px); }
 }
-@media (pointer: coarse) {
-  .cursor-glow { opacity: .08; }
+@media (hover: none), (pointer: coarse) {
+  .ambient-field-sharp {
+    opacity: 1;
+    will-change: auto;
+  }
+  .ambient-field-blurred { display: none; }
+  .cursor-glow,
   .cursor-dot { display: none; }
+  .glow-card,
+  .lab-row,
+  .video-card,
+  .mini-card,
+  .reel-card {
+    --lift: 0;
+    --rx: 0deg;
+    --ry: 0deg;
+    will-change: auto;
+  }
+  .carousel-card,
+  .section-heading,
+  .archive-header,
+  .subsection-title,
+  .contact-inner { will-change: auto; }
+  .menu-toggle:hover {
+    border-color: var(--line);
+    transform: none;
+  }
+  .menu-links a:hover {
+    color: inherit;
+    transform: none;
+  }
+  .btn:hover::before { transform: translateY(100%); }
+  .btn-ghost:hover {
+    border-color: var(--line);
+    box-shadow: none;
+  }
+  .glow-card:hover {
+    --lift: 0;
+    border-color: var(--line);
+    box-shadow: none;
+  }
+  .glow-card:hover::before { opacity: .28; }
+  .glow-card:hover::after {
+    transform: none;
+    opacity: .07;
+  }
+  .lab-row:hover {
+    padding-inline: 18px;
+    background: transparent;
+  }
+  .lab-row:hover::before { opacity: .28; }
+  .lab-row:hover .lab-arrow {
+    transform: none;
+    color: inherit;
+    background: transparent;
+  }
+  .carousel-card.is-active:hover img,
+  .video-card:hover .media-frame img,
+  .video-card:hover .media-frame video,
+  .mini-card:hover img {
+    transform: none;
+    filter: none;
+  }
+  .carousel-button:hover {
+    color: white;
+    background: rgba(255,255,255,.04);
+  }
+  .reel-card:hover,
+  .video-card:hover,
+  .mini-card:hover {
+    --lift: 0;
+    z-index: auto;
+  }
+  .show-more:hover {
+    border-color: var(--line);
+    background: rgba(255,255,255,.035);
+  }
+  .video-card:hover .play-button {
+    transform: none;
+    color: inherit;
+    background: rgba(3,7,18,.42);
+  }
+  footer a:hover { color: inherit; }
+}
+@media (hover: none) and (max-width: 720px), (pointer: coarse) and (max-width: 720px) {
+  .lab-row:hover { padding-inline: 5px; }
 }
