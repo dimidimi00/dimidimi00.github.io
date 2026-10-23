@@ -1,313 +1,244 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-loading" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Dimitar Ristevski - video editor, motion designer and creative technologist combining storytelling, code and smarter production systems.">
-  <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#030712">
   <title>Dimitar Ristevski - Creative Technologist & Video Editor</title>
+  <meta name="description" content="Video editor, motion designer and creative technologist. Ads. Motion. AI. Engineered to perform.">
+  <meta name="theme-color" content="#f4f2ee">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff4f1f'/%3E%3Ctext x='50%25' y='56%25' fill='white' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' dominant-baseline='middle'%3EDR%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/lenis.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
+  <link rel="preload" href="data/content.json" as="fetch" crossorigin>
+  <link rel="modulepreload" href="vendor/three.module.js">
+  <link rel="modulepreload" href="js/main.js">
+  <link rel="modulepreload" href="js/gl/stage.js">
+  <link rel="modulepreload" href="js/gl/media.js">
+  <link rel="modulepreload" href="js/gl/lines.js">
+  <link rel="modulepreload" href="js/gl/blob.js">
+  <link rel="modulepreload" href="js/ui/loader.js">
+  <link rel="modulepreload" href="js/ui/reveal.js">
+  <link rel="modulepreload" href="js/ui/fx.js">
+  <link rel="modulepreload" href="js/gl/post.js">
+  <link rel="modulepreload" href="js/ui/cursor.js">
+  <link rel="modulepreload" href="js/ui/archive.js">
+  <link rel="modulepreload" href="js/ui/player.js">
+  <link rel="modulepreload" href="js/ui/timeline.js">
+  <link rel="modulepreload" href="js/ui/scrub.js">
+  <link rel="modulepreload" href="js/ui/config.js">
+  <link rel="modulepreload" href="js/ui/debug.js">
+  <link rel="modulepreload" href="js/ui/asciitext.js">
+  <link rel="modulepreload" href="js/ui/imgfx.js">
 </head>
-<body data-build="local-v7">
-  <div class="ambient-field ambient-field-sharp" aria-hidden="true"></div>
-  <div class="ambient-field ambient-field-blurred" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-
-  <nav class="site-nav">
-    <div class="container nav-inner">
-      <a class="nav-logo magnetic" href="#top" aria-label="Back to top">DIMITAR<span>.RISTEVSKI</span></a>
-      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-
-  <div class="site-menu" id="site-menu" aria-hidden="true">
-    <div class="container menu-inner">
-      <div class="menu-contact">
-        <p>GET IN TOUCH</p>
-        <a href="mailto:contact@dristevski.com">contact@dristevski.com</a>
-      </div>
-      <div class="menu-links">
-        <a href="#focus">What I do</a>
-        <a href="#featured">Featured content</a>
-        <a href="#archive">Other Projects</a>
-        <a href="#contact">Contact</a>
+<body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <canvas class="loader-rain" id="loader-rain"></canvas>
+    <div class="term">
+      <div class="term-top"><span class="dots"><i></i><i></i><i></i></span><span class="term-name">guest@portfolio: ~</span><span class="term-sys" id="term-sys"></span></div>
+      <div class="term-body">
+        <p class="term-cmd"><span class="term-prompt">&gt;</span> <span id="term-cmd"></span><i class="term-caret" id="term-caret"></i></p>
+        <ol class="term-log" id="term-log"></ol>
+        <div class="term-progress"><span class="term-label">rendering</span><span class="term-meter" id="term-bar"></span><span class="term-pct" id="term-pct">0%</span></div>
+        <ol class="term-log term-end" id="term-end"></ol>
       </div>
     </div>
+    <div class="term-foot"><span>portfolio v2.8 · tty1</span><span id="term-clock"></span></div>
   </div>
 
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true">
+    <filter id="px8" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feFlood x="4" y="4" width="1" height="1" />
+      <feComposite width="8" height="8" />
+      <feTile result="grid" />
+      <feComposite in="SourceGraphic" in2="grid" operator="in" />
+      <feMorphology operator="dilate" radius="4" />
+    </filter>
+  </svg>
+
+  <div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+  <div class="crt" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursor-label"></span></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <div class="hud mono" aria-hidden="true">
+    <span class="hud-tc"><i class="rec"></i> <span id="hud-tc">00:00:00:00</span></span>
+    <span class="hud-section" id="hud-section">00 / Intro</span>
+  </div>
+  <div class="playhead" aria-hidden="true"><span id="playhead"></span></div>
+
+  <header class="nav">
+    <a class="nav-logo magnetic" href="#top" aria-label="Back to top">DIMITAR<span>.RISTEVSKI</span></a>
+    <nav class="nav-links mono" aria-label="Sections">
+      <a href="#work" data-scramble>Work</a><a href="#craft" data-scramble>Craft</a><a href="#lab" data-scramble>Lab</a><a href="#archive" data-scramble>Archive</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="nav-remix magnetic" id="nav-remix" type="button" data-open-config data-cursor="Remix" aria-label="Remix this site"><code>&lt;/&gt;</code><span>Remix</span><i class="nav-remix-dot" aria-hidden="true"></i></button>
+      <a class="pill magnetic" href="#contact" data-cursor="Say hi"><span>Let's talk</span><b>●</b></a>
+    </div>
+  </header>
+
   <main id="top">
-    <header class="hero container section-spacer">
-      <div class="eyebrow reveal">
-        <span class="eyebrow-pulse"></span>
-        Video editor × Motion designer × Creative technologist
-      </div>
-
-      <h1 class="hero-title reveal" data-delay="80">
-        <span class="hero-line" data-parallax="-0.018">Ads. Motion. AI.</span>
-        <span class="hero-line text-gradient" data-parallax="0.022">Engineered to perform.</span>
+    <section class="intro" data-theme="light" data-lines="full" data-label="00 / Intro">
+      <p class="eyebrow mono" data-reveal data-scramble>Video editor × Motion designer × Creative technologist</p>
+      <h1 class="intro-title" data-chars>
+        <span class="line">Ads. Motion. AI.</span>
+        <span class="line"><em>Engineered</em></span>
+        <span class="line">to perform.</span>
       </h1>
-
-      <div class="hero-bottom reveal" data-delay="160">
-        <p class="hero-copy">
-          More than 7 years shaping campaigns, stories and motion. Now I’m connecting that editorial instinct with code, open-source tools, AI-assisted workflows and creative systems that make better work move faster.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary magnetic" href="#archive"><span>Explore the work</span><b>↓</b></a>
-          <a class="btn btn-ghost magnetic" href="https://www.youtube.com/watch?v=JraB2J3aNh8" target="_blank" rel="noreferrer"><span>Play featured project</span><b>▶</b></a>
-        </div>
+      <div class="intro-aside">
+        <p data-reveal>More than 7 years shaping campaigns, stories and motion. Now I'm connecting that editorial instinct with code, open-source tools, AI-assisted workflows and creative systems that make better work move faster.</p>
+        <a class="pill pill-dark magnetic" href="#work" data-reveal><span>Explore the work</span><b>↓</b></a>
       </div>
+      <div class="scroll-hint mono" data-reveal><span>Scroll</span><i></i></div>
+    </section>
 
-      <div class="hero-marquee reveal" data-delay="260" aria-label="Capabilities">
-        <div class="marquee-track">
-          <div class="marquee-group">
-            <span>Editorial</span><i>✦</i><span>Motion graphics</span><i>✦</i><span>Creative coding</span><i>✦</i><span>AI workflows</span><i>✦</i><span>Open source</span><i>✦</i>
+    <div class="marquee mono" aria-hidden="true">
+      <div class="marquee-track" id="marquee">
+        <span>Editorial ✦ Motion graphics ✦ Creative coding ✦ AI workflows ✦ Open source ✦&nbsp;</span>
+        <span>Editorial ✦ Motion graphics ✦ Creative coding ✦ AI workflows ✦ Open source ✦&nbsp;</span>
+      </div>
+    </div>
+
+    <section class="reel" id="reel" data-theme="light" data-lines="full" data-label="00 / Latest project">
+      <div class="reel-pin">
+        <span class="reel-word reel-word-l" aria-hidden="true">LATEST</span>
+        <span class="reel-word reel-word-r" aria-hidden="true">PROJECT</span>
+        <div class="reel-stack" id="reel-stack">
+          <a class="reel-media" id="reel-media" data-gl="video" data-cursor="Play" data-player>
+            <video muted loop playsinline preload="auto"></video>
+            <span class="reel-tc mono" id="reel-tc">TC 00:00:00:00</span>
+          </a>
+          <div class="timeline mono" id="timeline" data-cursor="Scrub" aria-hidden="true">
+            <div class="tl-ruler" id="tl-ruler"></div>
+            <div class="tl-track"><span class="tl-label">V1</span><div class="tl-lane" id="tl-v1"></div></div>
+            <div class="tl-track"><span class="tl-label">A1</span><div class="tl-lane tl-wave" id="tl-a1"></div></div>
+            <span class="tl-playhead" id="tl-playhead"><i></i></span>
           </div>
-          <div class="marquee-group" aria-hidden="true">
-            <span>Editorial</span><i>✦</i><span>Motion graphics</span><i>✦</i><span>Creative coding</span><i>✦</i><span>AI workflows</span><i>✦</i><span>Open source</span><i>✦</i>
-          </div>
         </div>
-      </div>
-    </header>
-
-    <section id="focus" class="container section-spacer">
-      <div class="section-heading reveal">
-        <p class="section-index">01 / WHAT I DO</p>
-        <h2>Creative craft,<br><span class="text-gradient">technical depth.</span></h2>
-        <p>I’m at my best where storytelling, motion and systems overlap.</p>
-      </div>
-
-      <div class="bento-grid">
-        <article class="glow-card card-wide reveal tilt-card" data-delay="50">
-          <div class="card-number">01</div>
-          <div class="icon-box">✂</div>
-          <h3>Editorial & motion</h3>
-          <p>I turn raw footage into clear, paced stories - from campaign films and event recaps to social content, explainers and motion-led brand pieces.</p>
-          <div class="card-tags"><span>Premiere Pro</span><span>After Effects</span><span>Story</span></div>
-        </article>
-
-        <article class="glow-card reveal tilt-card" data-delay="110">
-          <div class="card-number">02</div>
-          <div class="icon-box">⌘</div>
-          <h3>Creative systems</h3>
-          <p>I use scripting, AI-assisted tools and repeatable workflows to remove production friction - without removing the human taste.</p>
-          <div class="card-tags"><span>Automation</span><span>AI</span><span>AE scripts</span></div>
-        </article>
-
-        <article class="glow-card reveal tilt-card" data-delay="170">
-          <div class="card-number">03</div>
-          <div class="icon-box">/&gt;</div>
-          <h3>Technology fluency</h3>
-          <p>I build for the web, work comfortably in the terminal, run Linux, assemble PCs and reach for open tools before closed shortcuts.</p>
-          <div class="card-tags"><span>HTML/CSS/JS</span><span>Linux</span><span>Open source</span></div>
-        </article>
+        <span class="reel-caption mono" id="reel-caption"></span>
       </div>
     </section>
 
-    <section id="lab" class="lab-section section-spacer">
-      <div class="container">
-        <div class="section-heading split-heading reveal">
-          <div>
-            <p class="section-index">02 / THE LAB</p>
-            <h2>Beyond the<br><span class="text-gradient">timeline.</span></h2>
+    <section class="work" id="work" data-theme="light" data-label="01 / Featured">
+      <div class="section-head">
+        <span class="mono" data-scramble>01 / Featured</span>
+        <h2 data-split data-drift><span class="line">Highlights</span><span class="line">in motion<sup class="mono">(03)</sup></span></h2>
+      </div>
+      <div class="projects" id="work-grid"></div>
+    </section>
+
+    <section class="craft" id="craft" data-theme="dark" data-label="02 / What I do">
+      <div class="craft-pin">
+        <div class="craft-track" id="craft-track">
+          <div class="craft-panel craft-intro">
+            <span class="mono" data-scramble>02 / What I do</span>
+            <h2 data-split><span class="line">Creative craft,</span><span class="line">technical depth.</span></h2>
+            <p data-reveal>I'm at my best where storytelling, motion and systems overlap.</p>
+            <span class="craft-arrow mono">Keep scrolling →</span>
           </div>
-          <p>Curiosity is part of the job. If a process can be improved, automated, connected or rebuilt, I’ll probably take it apart and find out how.</p>
+          <article class="craft-panel">
+            <span class="craft-num" aria-hidden="true">01</span>
+            <span class="mono">✂ Editorial &amp; motion</span>
+            <h3>Raw footage into clear, paced stories.</h3>
+            <p>From campaign films and event recaps to social content, explainers and motion-led brand pieces.</p>
+            <ul class="tags mono"><li>Premiere Pro</li><li>After Effects</li><li>Story</li></ul>
+          </article>
+          <article class="craft-panel">
+            <span class="craft-num" aria-hidden="true">02</span>
+            <span class="mono">⌘ Creative systems</span>
+            <h3>Less production friction. Same human taste.</h3>
+            <p>I use scripting, AI-assisted tools and repeatable workflows to remove production friction - without removing the human taste.</p>
+            <ul class="tags mono"><li>Automation</li><li>AI</li><li>AE scripts</li></ul>
+          </article>
+          <article class="craft-panel">
+            <span class="craft-num" aria-hidden="true">03</span>
+            <span class="mono">/&gt; Technology fluency</span>
+            <h3>Web, terminal, Linux, hardware.</h3>
+            <p>I build for the web, work comfortably in the terminal, run Linux, assemble PCs and reach for open tools before closed shortcuts.</p>
+            <ul class="tags mono"><li>HTML/CSS/JS</li><li>Linux</li><li>Open source</li></ul>
+          </article>
         </div>
-
-        <div class="lab-list">
-          <article class="lab-row reveal tilt-card">
-            <span class="lab-count">01</span>
-            <div><h3>Automate the friction</h3><p>Small scripts, smarter templates and AI where it genuinely saves time.</p></div>
-            <span class="lab-arrow">↗</span>
-          </article>
-          <article class="lab-row reveal tilt-card" data-delay="70">
-            <span class="lab-count">02</span>
-            <div><h3>Build beyond the edit</h3><p>Vanilla web experiences, interactive portfolios and tools that support the work.</p></div>
-            <span class="lab-arrow">↗</span>
-          </article>
-          <article class="lab-row reveal tilt-card" data-delay="140">
-            <span class="lab-count">03</span>
-            <div><h3>Stay tool-agnostic</h3><p>Linux, Homebrew, yt-dlp and open-source workflows - use the right tool, understand what it does.</p></div>
-            <span class="lab-arrow">↗</span>
-          </article>
-        </div>
+        <div class="craft-progress"><span id="craft-progress"></span></div>
       </div>
     </section>
 
-    <section class="container section-spacer archive">
-      <section id="featured" class="archive-block highlights-block">
-        <div class="subsection-title highlights-heading reveal">
-          <div><p>FEATURED</p></div>
-          <h3>Highlights in motion</h3>
-        </div>
-        <div class="video-grid featured-grid">
-          <a class="video-card featured-card featured-hero reveal tilt-card" href="https://www.youtube.com/watch?v=JraB2J3aNh8" target="_blank" rel="noreferrer">
-            <div class="media-frame placeholder-frame">
-              <video src="https://dristevski.com/images/fibAI.mp4" autoplay muted loop playsinline preload="metadata">
-                <span class="placeholder-year">2026</span>
-                <span class="placeholder-title">FIBULA<br>WORKSHOP</span>
-                <span class="placeholder-note">AI Cinematic</span>
-              </video>
-              <span class="play-button">▶</span>
-              <span class="project-type">NEW CINEMATIC</span>
-              <div class="ai-callout">
-                <span class="ai-callout-arrow">↘</span>
-                <div><strong>AI VISUALS</strong><small>+ Manual Sound Design</small></div>
-              </div>
-            </div>
-            <div class="project-meta feature-meta">
-              <div><p>Fibula Workshop 2026</p><h4>Cinematic - AI-generated picture, human-crafted sound</h4></div>
-            </div>
-          </a>
-          <a class="video-card featured-card reveal tilt-card" href="https://youtu.be/QgNXHDOZfy8" target="_blank" rel="noreferrer">
-            <div class="media-frame">
-              <video src="https://dristevski.com/images/fibstar.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <span class="play-button">▶</span><span class="project-type">EVENT FILM</span>
-            </div>
-            <div class="project-meta"><div><p>Fibula Workshop</p><h4>Travel, energy and atmosphere</h4></div><span>2025</span></div>
-          </a>
-          <a class="video-card featured-card reveal tilt-card" data-delay="80" href="https://youtu.be/tKv0Y_P9Ivg" target="_blank" rel="noreferrer">
-            <div class="media-frame">
-              <video src="https://dristevski.com/images/bvid.mp4" poster="https://dristevski.com/images/bmini.png" autoplay muted loop playsinline preload="metadata"></video>
-              <span class="play-button">▶</span><span class="project-type">CAMPAIGN</span>
-            </div>
-            <div class="project-meta"><div><p>Brainster+</p><h4>Flagship brand campaign</h4></div><span>2024</span></div>
-          </a>
-          <a class="video-card featured-card reveal tilt-card" data-delay="160" href="https://www.youtube.com/watch?v=yUJAUBe0hZQ" target="_blank" rel="noreferrer">
-            <div class="media-frame">
-              <video src="https://dristevski.com/images/portfoliovid.mp4" poster="https://dristevski.com/images/bjf.png" autoplay muted loop playsinline preload="metadata"></video>
-              <span class="play-button">▶</span><span class="project-type">SHOWREEL</span>
-            </div>
-            <div class="project-meta"><div><p>Visual Showreel</p><h4>A year of cuts and motion</h4></div><span>2023</span></div>
-          </a>
-        </div>
-      </section>
-
-      <div id="archive" class="archive-header reveal">
-        <p class="section-index">03 / SELECTED WORK</p>
-        <h2>The <span class="text-gradient">Archive.</span></h2>
-        <p>More than 7 years of edits, motion, campaigns and experiments. Drag the carousel. Hover everything.</p>
+    <section class="lab" id="lab" data-theme="light" data-label="03 / The Lab">
+      <div class="section-head">
+        <span class="mono" data-scramble>03 / The Lab</span>
+        <h2 data-split data-drift><span class="line">Beyond the</span><span class="line">timeline.</span></h2>
+        <p data-reveal>Curiosity is part of the job. If a process can be improved, automated, connected or rebuilt, I'll probably take it apart and find out how.</p>
       </div>
-
-      <section class="latest-reels archive-block">
-        <div class="subsection-title latest-reels-heading reveal">
-          <div><p>LATEST CONTENT</p></div>
-          <h3>UGC Content</h3>
-        </div>
-        <script type="application/json" id="ugc-content">
-          [
-            {
-              "title": "",
-              "thumbnail": "https://dristevski.com/images/socal1.jpg",
-              "link": ""
-            },
-            {
-              "title": "",
-              "thumbnail": "https://dristevski.com/images/newwave1.jpg",
-              "link": ""
-            },
-            {
-              "title": "",
-              "thumbnail": "https://dristevski.com/images/prime1.jpg",
-              "link": ""
-            }
-          ]
-        </script>
-        <div class="latest-reels-grid" id="latest-reels-grid"></div>
-        <button class="show-more magnetic" id="reels-show-more" type="button" hidden>
-          <span>Show more</span><b>↓</b>
-        </button>
-      </section>
-
-      <section class="ai-section archive-block reveal">
-        <div class="subsection-title">
-          <div><span class="status-dot"></span><p>AI @ WORK</p></div>
-          <h3>Static AI design generations & experiments</h3>
-        </div>
-        <div class="carousel-stage">
-          <div class="carousel-container" id="carousel" aria-label="AI visual project carousel"></div>
-        </div>
-        <div class="carousel-controls">
-          <button class="carousel-button magnetic" id="carousel-prev" type="button" aria-label="Previous project">←</button>
-          <div class="carousel-meter"><span></span></div>
-          <span class="carousel-count"><b id="carousel-current">01</b> / 20</span>
-          <button class="carousel-button magnetic" id="carousel-next" type="button" aria-label="Next project">→</button>
-        </div>
-      </section>
-
-      <section class="archive-block">
-        <div class="subsection-title reveal">
-          <div><p>WEB LOGIC</p></div>
-          <h3>Small builds, real code</h3>
-        </div>
-        <div class="creative-grid">
-          <a class="mini-card reveal tilt-card" href="https://dristevski.com/projects/tip-calculator-eng/index.html" target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/fluency/240/calculator.png" alt="" loading="lazy">
-            <div class="mini-overlay"><span>VANILLA JS</span><h4>Tip Calculator</h4><b>↗</b></div>
-          </a>
-          <a class="mini-card reveal tilt-card" data-delay="70" href="https://dristevski.com/projects/shopping-cart/index.html" target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/fluency/240/shopping-cart.png" alt="" loading="lazy">
-            <div class="mini-overlay"><span>VANILLA JS</span><h4>Shopping Cart</h4><b>↗</b></div>
-          </a>
-          <a class="mini-card reveal tilt-card" data-delay="140" href="https://dristevski.com/projects/music-player-app/index.html" target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/fluency/240/audio-wave.png" alt="" loading="lazy">
-            <div class="mini-overlay"><span>VANILLA JS</span><h4>Music Player</h4><b>↗</b></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="archive-block">
-        <div class="subsection-title reveal">
-          <div><p>VIDEO PRODUCTION</p></div>
-          <h3>Stories, events & brands</h3>
-        </div>
-        <div class="expandable-projects" data-expandable-projects>
-          <div class="video-grid archive-grid" id="video-production-grid"></div>
-          <div class="projects-fade" aria-hidden="true"></div>
-          <button class="show-more projects-show-more" type="button" aria-expanded="false">
-            <span>Show more</span><b>↓</b>
-          </button>
-        </div>
-      </section>
-
-      <section class="archive-block">
-        <div class="subsection-title reveal">
-          <div><p>CAMPAIGNS</p></div>
-          <h3>Fast formats, clear ideas</h3>
-        </div>
-        <div class="expandable-projects" data-expandable-projects>
-          <div class="video-grid archive-grid" id="campaign-grid"></div>
-          <div class="projects-fade" aria-hidden="true"></div>
-          <button class="show-more projects-show-more" type="button" aria-expanded="false">
-            <span>Show more</span><b>↓</b>
-          </button>
-        </div>
-      </section>
+      <ul class="lab-list">
+        <li class="lab-row" data-cmd="$ ./batch-export.sh --all --notify"><span class="mono">01</span><h3>Automate the friction</h3><p>Small scripts, smarter templates and AI where it genuinely saves time.</p><b class="magnetic">↗</b></li>
+        <li class="lab-row" data-cmd="$ touch index.html &amp;&amp; open ."><span class="mono">02</span><h3>Build beyond the edit</h3><p>Vanilla web experiences, interactive portfolios and tools that support the work.</p><b class="magnetic">↗</b></li>
+        <li class="lab-row" data-cmd="$ brew install yt-dlp"><span class="mono">03</span><h3>Stay tool-agnostic</h3><p>Linux, Homebrew, yt-dlp and open-source workflows - use the right tool, understand what it does.</p><b class="magnetic">↗</b></li>
+        <li class="lab-row" data-cmd="$ open site.config.js" data-open-config data-cursor="Remix"><span class="mono">04</span><h3>Remix this site</h3><p>Round or sharpen every corner, render the 3D in code or pixels, switch on an amber CRT or the developer view. Live, in your browser.</p><b class="magnetic">↗</b></li>
+      </ul>
     </section>
 
-    <section id="contact" class="contact-section section-spacer">
-      <div class="container contact-inner reveal">
-        <p class="section-index">04 / NEXT</p>
-        <h2>Have footage, an idea<br>or a problem worth <span class="text-gradient">solving?</span></h2>
-        <a class="contact-link magnetic" href="mailto:contact@dristevski.com">contact@dristevski.com <span>↗</span></a>
+    <section class="archive" id="archive" data-theme="light" data-label="04 / Archive">
+      <div class="section-head">
+        <span class="mono" data-scramble>04 / Selected work</span>
+        <h2 data-split data-drift><span class="line">The</span><span class="line">Archive.</span></h2>
+        <p data-reveal>More than 7 years of edits, motion, campaigns and experiments. Hover everything.</p>
       </div>
+
+      <div class="tabs mono" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="video" data-scramble>Video production</button>
+        <button role="tab" aria-selected="false" data-tab="campaigns" data-scramble>Campaigns</button>
+        <button role="tab" aria-selected="false" data-tab="web" data-scramble>Web logic</button>
+        <button role="tab" aria-selected="false" data-tab="ai" data-scramble>AI @ Work</button>
+      </div>
+      <div class="archive-grid" id="archive-grid"></div>
+      <button class="more-bar" id="archive-more" type="button" data-cursor="Show all">
+        <span class="more-label">Show all <b id="archive-count">17</b><small id="archive-kind">video projects</small></span>
+        <span class="more-arrow" aria-hidden="true">↓</span>
+      </button>
+    </section>
+
+    <section class="bigtype" data-theme="dark" data-lines="full" data-label="05 / Next" aria-hidden="true">
+      <div class="bigtype-row" data-dir="-1"><span>Let's make it move ✦ Let's make it move ✦&nbsp;</span></div>
+      <div class="bigtype-row outline" data-dir="1"><span>Ads ✦ Motion ✦ AI ✦ Ads ✦ Motion ✦ AI ✦&nbsp;</span></div>
+    </section>
+
+    <section class="contact" id="contact" data-theme="dark" data-lines="full" data-label="05 / Contact">
+      <div class="blob-anchor" id="blob-anchor"></div>
+      <span class="mono" data-scramble>05 / Next</span>
+      <h2 class="contact-title" data-split>
+        <span class="line">Have footage,</span><span class="line">an idea or a problem</span><span class="line">worth solving?</span>
+      </h2>
+      <a class="contact-mail magnetic" id="contact-mail" data-cursor="Write">Get in touch <b>↗</b></a>
     </section>
   </main>
 
-  <footer class="container">
-    <p>© <span id="year"></span> Dimitar Ristevski</p>
-    <div><a href="https://github.com/dimidimi00" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/dimitar-ri/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
-    <p>Built from scratch. Still evolving.</p>
+  <footer class="footer" data-theme="dark">
+    <div class="footer-name" aria-hidden="true" data-footer-name>DIMITAR RISTEVSKI</div>
+    <div class="footer-row mono">
+      <span>© <span id="year"></span> Dimitar Ristevski</span>
+      <span class="footer-links" id="socials"></span>
+      <span>Built from scratch. Still evolving.</span>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+    <video id="player-video" playsinline controls></video>
+    <div class="player-bar mono">
+      <span id="player-title"></span>
+      <span class="player-actions">
+        <a id="player-yt" target="_blank" rel="noreferrer">Watch on YouTube ↗</a>
+        <button id="player-close" type="button" data-cursor="Close">Close ✕</button>
+      </span>
+    </div>
+  </div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
