@@ -108,6 +108,21 @@ export function setupLabHover() {
     });
     row.addEventListener('pointerleave', () => { clearInterval(timer); cmd.textContent = ''; });
   });
+
+  const out = document.getElementById('stack-cmd');
+  const list = document.querySelector('.stack-list');
+  if (!out || !list) return;
+  let timer = null;
+  list.querySelectorAll('li').forEach((li) => li.addEventListener('pointerenter', () => {
+    const text = `open -a "${li.textContent}"`;
+    let i = 0;
+    clearInterval(timer);
+    timer = setInterval(() => {
+      out.textContent = text.slice(0, ++i);
+      if (i >= text.length) clearInterval(timer);
+    }, 24);
+  }));
+  list.addEventListener('pointerleave', () => { clearInterval(timer); out.textContent = ''; });
 }
 
 export function setupTilt(gsap) {

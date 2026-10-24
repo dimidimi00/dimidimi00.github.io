@@ -2,7 +2,7 @@ const VERTICAL = new Set(['campaigns', 'ai']);
 
 function tile([client, title, href, image], kind) {
   const tag = href ? 'a' : 'div';
-  const attrs = href ? ` href="${href}" target="_blank" rel="noreferrer" data-cursor="Open"` : '';
+  const attrs = href ? ` href="${href}" target="_blank" rel="noreferrer" data-cursor="Open"` : kind === 'ai' ? ' role="button" tabindex="0" data-cursor="View"' : '';
   const media = image
     ? `<div class="tile-media"><img src="${image}" alt="${client} - ${title}" loading="lazy" decoding="async"><span class="tile-shine"></span></div>`
     : `<div class="tile-media tile-code">&lt;/&gt;<span class="tile-shine"></span></div>`;

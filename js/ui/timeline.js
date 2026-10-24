@@ -10,16 +10,20 @@ export function setupTimeline(video) {
   const head = document.getElementById('tl-playhead');
   let clips = [], bars = [], activeClip = -1, played = -1, laneW = 0;
   const measure = () => { laneW = v1.clientWidth; };
-  addEventListener('resize', measure);
+  const marks = () => {
+    const d = video.duration || 40;
+    const w = v1.clientWidth || 600;
+    const step = [5, 10, 15, 30, 60].find((s) => (s / d) * w >= 58) || 120;
+    let html = '';
+    for (let t = 0; t <= d - step * 0.6; t += step) html += `<span style="left:${(t / d) * 100}%">${timecode(Math.round(t * 25)).slice(3, 8)}</span>`;
+    ruler.innerHTML = html;
+  };
+  addEventListener('resize', () => { measure(); marks(); });
 
   const build = () => {
     let seed = 11;
     const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    const d = video.duration || 40;
-    const step = d > 60 ? 10 : 5;
-    let marks = '';
-    for (let t = 0; t <= d; t += step) marks += `<span style="left:${(t / d) * 100}%">${timecode(Math.round(t * 25)).slice(3, 8)}</span>`;
-    ruler.innerHTML = marks;
+    marks();
 
     let at = 0, html = '';
     clips = [];

@@ -1,7 +1,7 @@
 const SPEC = {
   ascii: { type: 'bool', def: false, comment: 'letters filled with living code' },
   pixel: { type: 'bool', def: false, comment: 'pixelate 3D, marquee and timeline' },
-  crt: { type: 'bool', def: false, comment: 'amber terminal monitor' },
+  crt: { type: 'bool', def: false, comment: 'CRT monitor scanlines' },
   debug: { type: 'bool', def: false, comment: 'developer view' },
 };
 const KEYS = Object.keys(SPEC);

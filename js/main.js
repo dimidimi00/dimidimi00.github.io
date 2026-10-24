@@ -1,7 +1,7 @@
 import { Stage } from './gl/stage.js';
 import { MediaPlanes } from './gl/media.js';
 import { Lines } from './gl/lines.js';
-import { ChromeBlob } from './gl/blob.js';
+import { Comet } from './gl/comet.js';
 import { runLoader, timecode } from './ui/loader.js';
 import { splitText, splitChars, setupReveals, playIntro } from './ui/reveal.js';
 import { setupCursor } from './ui/cursor.js';
@@ -13,6 +13,7 @@ import { setupImageFx } from './ui/imgfx.js';
 import { setupDebug } from './ui/debug.js';
 import { setupArchive } from './ui/archive.js';
 import { setupPlayer } from './ui/player.js';
+import { setupLightbox } from './ui/lightbox.js';
 import { setupThemes, setupScrollFx, setupLabHover, setupTilt, setupFrameFx } from './ui/fx.js';
 
 const { gsap, ScrollTrigger, Lenis } = window;
@@ -72,7 +73,7 @@ try {
   lines = stage.add(new Lines(stage));
   media = stage.add(new MediaPlanes(stage));
   media.addAll();
-  stage.add(new ChromeBlob(stage, document.getElementById('blob-anchor'), document.querySelector('.bigtype')));
+  stage.add(new Comet(stage, document.getElementById('blob-anchor'), document.querySelector('.bigtype')));
   root.classList.add('gl-on');
 } catch (err) {
   console.warn('[portfolio] WebGL unavailable - showing plain video. Check that hardware acceleration is enabled.', err);
@@ -93,6 +94,7 @@ setupTilt(gsap);
 setupLabHover();
 setupHoverScrub();
 setupPlayer(gsap, lenis);
+setupLightbox(gsap, lenis, content.aiImages);
 setupThemes(ScrollTrigger, (theme, showLines) => {
   lines?.setTheme(theme);
   lines?.setPresence(showLines ? 1 : 0.16);
@@ -163,15 +165,15 @@ const config = setupConfig(gsap, (s) => {
   debug.set(s.debug);
 });
 
-const marquee = document.getElementById('marquee');
-let mx = 0, mdir = -1, mloop = 1;
-const fillMarquee = () => {
-  const base = marquee.firstElementChild;
-  marquee.replaceChildren(base);
-  mloop = base.offsetWidth;
-  const copies = Math.ceil(innerWidth / mloop) + 1;
-  for (let i = 0; i < copies; i++) marquee.append(base.cloneNode(true));
-};
+const marquees = [...document.querySelectorAll('.marquee-track')].map((el) => ({ el, dir: Number(el.dataset.dir || 1), loop: 1 }));
+let mx = 0, mdir = -1;
+const fillMarquee = () => marquees.forEach((m) => {
+  const base = m.el.firstElementChild;
+  m.el.replaceChildren(base);
+  m.loop = base.offsetWidth || 1;
+  const copies = Math.ceil(innerWidth / m.loop) + 1;
+  for (let i = 0; i < copies; i++) m.el.append(base.cloneNode(true));
+});
 fillMarquee();
 document.fonts?.ready.then(fillMarquee);
 addEventListener('resize', fillMarquee);
@@ -227,9 +229,10 @@ gsap.ticker.add((time) => {
 
   if (Math.abs(vel) > 0.1) mdir = vel > 0 ? -1 : 1;
   mx += mdir * (0.6 + Math.min(Math.abs(vel), 40) * 0.18);
-  if (mx <= -mloop) mx += mloop;
-  if (mx > 0) mx -= mloop;
-  marquee.style.transform = `translate3d(${mx}px, 0, 0)`;
+  for (const m of marquees) {
+    const x = (((mx * m.dir) % m.loop) + m.loop) % m.loop - m.loop;
+    m.el.style.transform = `translate3d(${x}px, 0, 0)`;
+  }
 
   if (reelVideo.readyState >= 2) {
     const tc = `TC ${timecode(Math.floor(reelVideo.currentTime * 25))}`;

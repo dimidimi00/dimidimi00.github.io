@@ -4,8 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dimitar Ristevski - Creative Technologist & Video Editor</title>
-  <meta name="description" content="Video editor, motion designer and creative technologist. Ads. Motion. AI. Engineered to perform.">
+  <meta name="description" content="Video editor, motion designer and creative technologist working with AI tools like Higgsfield, Kling, Midjourney, ElevenLabs and Claude Code. Ads. Motion. AI. Engineered to perform.">
   <meta name="theme-color" content="#f4f2ee">
+  <link rel="canonical" href="https://dristevski.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dimitar Ristevski">
+  <meta property="og:url" content="https://dristevski.com/">
+  <meta property="og:title" content="Dimitar Ristevski - Creative Technologist & Video Editor">
+  <meta property="og:description" content="Video editor, motion designer and creative technologist working with AI tools like Higgsfield, Kling, Midjourney, ElevenLabs and Claude Code.">
+  <meta property="og:image" content="https://dristevski.com/assets/img/icon.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="DR monogram">
+  <meta name="twitter:card" content="summary">
+  <link rel="apple-touch-icon" href="assets/img/icon.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff4f1f'/%3E%3Ctext x='50%25' y='56%25' fill='white' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' dominant-baseline='middle'%3EDR%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +31,7 @@
   <link rel="modulepreload" href="js/gl/stage.js">
   <link rel="modulepreload" href="js/gl/media.js">
   <link rel="modulepreload" href="js/gl/lines.js">
-  <link rel="modulepreload" href="js/gl/blob.js">
+  <link rel="modulepreload" href="js/gl/comet.js">
   <link rel="modulepreload" href="js/ui/loader.js">
   <link rel="modulepreload" href="js/ui/reveal.js">
   <link rel="modulepreload" href="js/ui/fx.js">
@@ -27,6 +39,7 @@
   <link rel="modulepreload" href="js/ui/cursor.js">
   <link rel="modulepreload" href="js/ui/archive.js">
   <link rel="modulepreload" href="js/ui/player.js">
+  <link rel="modulepreload" href="js/ui/lightbox.js">
   <link rel="modulepreload" href="js/ui/timeline.js">
   <link rel="modulepreload" href="js/ui/scrub.js">
   <link rel="modulepreload" href="js/ui/config.js">
@@ -103,6 +116,11 @@
         <span>Editorial ✦ Motion graphics ✦ Creative coding ✦ AI workflows ✦ Open source ✦&nbsp;</span>
       </div>
     </div>
+    <div class="marquee marquee-tools mono" aria-hidden="true">
+      <div class="marquee-track" data-dir="-1">
+        <span>Claude Code ✦ Higgsfield ✦ Kling ✦ Google Veo ✦ Midjourney ✦ GPT Image ✦ ElevenLabs ✦&nbsp;</span>
+      </div>
+    </div>
 
     <section class="reel" id="reel" data-theme="light" data-lines="full" data-label="00 / Latest project">
       <div class="reel-pin">
@@ -177,8 +195,23 @@
         <li class="lab-row" data-cmd="$ ./batch-export.sh --all --notify"><span class="mono">01</span><h3>Automate the friction</h3><p>Small scripts, smarter templates and AI where it genuinely saves time.</p><b class="magnetic">↗</b></li>
         <li class="lab-row" data-cmd="$ touch index.html &amp;&amp; open ."><span class="mono">02</span><h3>Build beyond the edit</h3><p>Vanilla web experiences, interactive portfolios and tools that support the work.</p><b class="magnetic">↗</b></li>
         <li class="lab-row" data-cmd="$ brew install yt-dlp"><span class="mono">03</span><h3>Stay tool-agnostic</h3><p>Linux, Homebrew, yt-dlp and open-source workflows - use the right tool, understand what it does.</p><b class="magnetic">↗</b></li>
-        <li class="lab-row" data-cmd="$ open site.config.js" data-open-config data-cursor="Remix"><span class="mono">04</span><h3>Remix this site</h3><p>Round or sharpen every corner, render the 3D in code or pixels, switch on an amber CRT or the developer view. Live, in your browser.</p><b class="magnetic">↗</b></li>
+        <li class="lab-row" data-cmd="$ open site.config.js" data-open-config data-cursor="Remix"><span class="mono">04</span><h3>Remix this site</h3><p>Render the whole site in living ASCII or pixels, switch on a CRT monitor or the developer view. Live, in your browser.</p><b class="magnetic">↗</b></li>
       </ul>
+      <div class="stack mono" id="stack" data-reveal>
+        <div class="stack-top"><i></i><i></i><i></i><span>guest@portfolio: ~/toolchain</span><span class="stack-date">updated 2026</span></div>
+        <div class="stack-body">
+          <p class="stack-line"><b>$</b> ls ~/toolchain --by-use</p>
+          <dl class="stack-list">
+            <div><dt>video gen/</dt><dd><ul><li>Higgsfield</li><li>Kling</li><li>Google Veo</li></ul></dd></div>
+            <div><dt>image gen/</dt><dd><ul><li>Midjourney</li><li>GPT Image</li></ul></dd></div>
+            <div><dt>voice/</dt><dd><ul><li>ElevenLabs</li></ul></dd></div>
+            <div><dt>assist/</dt><dd><ul><li>Claude</li></ul></dd></div>
+            <div><dt>code/</dt><dd><ul><li>Claude Code</li><li>HTML/CSS/JS</li><li>Three.js</li><li>GSAP</li></ul></dd></div>
+            <div><dt>edit/</dt><dd><ul><li>Premiere Pro</li><li>After Effects</li></ul></dd></div>
+          </dl>
+          <p class="stack-line"><b>$</b> <span id="stack-cmd"></span><i class="stack-caret"></i></p>
+        </div>
+      </div>
     </section>
 
     <section class="archive" id="archive" data-theme="light" data-label="04 / Archive">
@@ -216,7 +249,7 @@
     </section>
   </main>
 
-  <footer class="footer" data-theme="dark">
+  <footer class="footer" data-theme="dark" data-lines="full">
     <div class="footer-name" aria-hidden="true" data-footer-name>DIMITAR RISTEVSKI</div>
     <div class="footer-row mono">
       <span>© <span id="year"></span> Dimitar Ristevski</span>
@@ -224,6 +257,16 @@
       <span>Built from scratch. Still evolving.</span>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <img id="lightbox-img" alt="" draggable="false">
+    <div class="player-bar mono">
+      <span id="lightbox-count"></span>
+      <span class="player-actions"><button id="lightbox-close" type="button" data-cursor="Close">Close ✕</button></span>
+    </div>
+    <button class="lightbox-nav" id="lightbox-prev" type="button" aria-label="Previous image" data-cursor="Prev">←</button>
+    <button class="lightbox-nav" id="lightbox-next" type="button" aria-label="Next image" data-cursor="Next">→</button>
+  </div>
 
   <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Video player" hidden>
     <video id="player-video" playsinline controls></video>
