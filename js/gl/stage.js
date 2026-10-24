@@ -4,11 +4,11 @@ import { PostPass } from './post.js';
 export class Stage {
   constructor(canvas) {
     this.isMobile = matchMedia('(max-width: 760px), (hover: none)').matches;
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: devicePixelRatio < 2, alpha: true, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: true });
+    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: this.isMobile || devicePixelRatio < 2, alpha: true, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: true });
     const lowEnd = (navigator.deviceMemory || 8) <= 4 || (navigator.hardwareConcurrency || 8) <= 4;
-    this.maxDpr = Math.min(devicePixelRatio, lowEnd ? 1 : this.isMobile ? 1.25 : 1.5);
+    this.maxDpr = Math.min(devicePixelRatio, this.isMobile ? 2 : lowEnd ? 1 : 1.5);
     this.minDpr = 0.6;
-    this.pixelBudget = this.isMobile ? 1.2e6 : 2.1e6;
+    this.pixelBudget = this.isMobile ? 1.8e6 : 2.1e6;
     this.dpr = this.maxDpr;
     this.frameMs = 16.7;
     this.lastFrame = 0;
